@@ -161,8 +161,8 @@
 <!-- Section 2: Video Scrollytelling (Unboxing Premium) -->
 <section id="exclusivos" class="relative bg-surface-container-lowest" style="height: 300vh;">
 <div class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
-<!-- Video -->
-<video id="unboxing-video" class="absolute inset-0 w-full h-full object-cover" src="video_scroll_final.mp4" preload="metadata" muted playsinline></video>
+<!-- Canvas -->
+<canvas id="unboxing-canvas" class="absolute inset-0 w-full h-full object-cover" style="display: block;"></canvas>
 <!-- Dark Overlay for text readability -->
 <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/30 to-transparent z-10"></div>
 <!-- Copy Overlays -->
@@ -404,39 +404,83 @@ Receber Catálogo Exclusivo
 <p class="font-sans text-[10px] uppercase tracking-[0.2em] text-neutral-600">© 2024 T-SHIRT BOUTIQUE. URBAN NOIR &amp; NEON EDITORIAL.</p>
 </div>
 </footer>
-<!-- Video Scrollytelling Controller -->
+<!-- Video Scrollytelling Controller (Canvas Optimized) -->
 <script>
 (function() {
-  const video = document.getElementById('unboxing-video');
+  const canvas = document.getElementById('unboxing-canvas');
+  const context = canvas.getContext('2d');
   const section = document.getElementById('exclusivos');
   const argument = document.getElementById('scroll-argument');
   const highlight = document.getElementById('scroll-highlight');
   
-  if (!video || !section) return;
+  if (!canvas || !section) return;
 
-  // Lazy load: only start loading video when section is near viewport
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        video.preload = 'auto';
-        observer.unobserve(section);
-      }
-    });
-  }, { rootMargin: '200px' });
-  observer.observe(section);
+  // Configurações da Sequência
+  const frameCount = 240; // Quantidade total de frames extraídos
+  const currentFrame = index => (
+    `assets/video-frames/frame_${index.toString().padStart(3, '0')}.webp`
+  );
 
-  // Scroll-driven video + copy control
-  const updateVideo = () => {
+  const images = [];
+  const sequence = { frame: 0 };
+
+  // Preloading de imagens
+  const preloadImages = () => {
+    for (let i = 1; i <= frameCount; i++) {
+      const img = new Image();
+      img.src = currentFrame(i);
+      images.push(img);
+    }
+  };
+
+  // Ajuste de responsividade (Object-fit: cover em Canvas)
+  const setCanvasSize = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    render();
+  };
+
+  // Função de Desenho
+  const render = () => {
+    const img = images[sequence.frame];
+    if (!img || !img.complete) return;
+
+    const canvasRatio = canvas.width / canvas.height;
+    const imgRatio = img.width / img.height;
+    
+    let drawWidth, drawHeight, offsetX, offsetY;
+
+    if (canvasRatio > imgRatio) {
+      drawWidth = canvas.width;
+      drawHeight = canvas.width / imgRatio;
+      offsetX = 0;
+      offsetY = (canvas.height - drawHeight) / 2;
+    } else {
+      drawWidth = canvas.height * imgRatio;
+      drawHeight = canvas.height;
+      offsetX = (canvas.width - drawWidth) / 2;
+      offsetY = 0;
+    }
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+  };
+
+  // Lógica de Scroll e Animação
+  const updateScrolly = () => {
     const rect = section.getBoundingClientRect();
     let progress = -rect.top / (rect.height - window.innerHeight);
     progress = Math.max(0, Math.min(1, progress));
 
-    // Sync video currentTime
-    if (video.duration && isFinite(video.duration)) {
-      video.currentTime = video.duration * progress;
-    }
+    // Atualiza o frame baseado no progresso
+    const frameIndex = Math.min(
+      frameCount - 1,
+      Math.floor(progress * frameCount)
+    );
+    sequence.frame = frameIndex;
+    render();
 
-    // Advanced Scroll-Driven Text Interpolation (Float-up + Fade-in)
+    // Reuso da lógica de fade-in dos textos
     const animateEl = (el, p, start, duration, offset) => {
         if (!el) return;
         if (p < start) {
@@ -446,42 +490,32 @@ Receber Catálogo Exclusivo
             el.style.opacity = '1';
             el.style.transform = 'translateY(0px)';
         } else {
-            // Local progress (0 to 1) relative to its start and duration window
             const localP = (p - start) / duration;
-            // Cubic ease-out algorithm for buttery smooth deceleration
             const easeOut = 1 - Math.pow(1 - localP, 3);
-            
             el.style.opacity = easeOut.toFixed(3);
             el.style.transform = `translateY(${offset * (1 - easeOut)}px)`;
         }
     };
 
     const title = document.getElementById('scroll-title');
-    // Title rises early (0% to 15%)
     animateEl(title, progress, 0.05, 0.15, 60);
-    // Argument follows (30% to 45%)
     animateEl(argument, progress, 0.30, 0.15, 60);
-    // Highlight crowns it at the end (70% to 90%)
     animateEl(highlight, progress, 0.70, 0.20, 60);
 
-    // Fade out the scroll hint near the end
     const hint = document.getElementById('video-scroll-indicator');
     if (hint) {
-      // Começa a sumir em 80% do percurso
       hint.style.opacity = progress >= 0.8 ? '0' : '1';
     }
 
-    requestAnimationFrame(updateVideo);
+    requestAnimationFrame(updateScrolly);
   };
 
-  // Wait for video metadata before starting animation loop
-  if (video.readyState >= 1) {
-    requestAnimationFrame(updateVideo);
-  } else {
-    video.addEventListener('loadedmetadata', () => {
-      requestAnimationFrame(updateVideo);
-    });
-  }
+  // Inicialização
+  window.addEventListener('resize', setCanvasSize);
+  preloadImages();
+  setCanvasSize();
+  requestAnimationFrame(updateScrolly);
+
 })();
 </script>
 </body></html>
