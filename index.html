@@ -4,10 +4,16 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>T-Shirt Boutique - Urban Premium</title>
+<meta name="description" content="T-Shirt Boutique: moda urbana premium com peças 100% originais e importadas. Marcas como Lacoste, Tommy Hilfiger, Tripps e Aero For Men com estoque limitado.">
+<meta property="og:title" content="T-Shirt Boutique - Urban Premium">
+<meta property="og:description" content="Peças exclusivas de moda urbana. 100% originais e importadas.">
+<meta property="og:image" content="screen.webp">
+<meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF1493' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2a2.5 2.5 0 0 1 2.5 2.5c0 1.5-2.5 2-2.5 4v1'/%3E%3Cpath d='M12 9.5 2.5 15.2a2 2 0 0 0 .9 3.8h17.2a2 2 0 0 0 .9-3.8L12 9.5Z'/%3E%3C/svg%3E">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
@@ -218,18 +224,18 @@ Marcas globais. 100% originais. Sem exceções.
 <div class="grid grid-cols-2 gap-3 md:gap-4 order-1 lg:order-2">
 <div class="space-y-4">
 <div class="bg-surface-container-high rounded p-2 overflow-hidden aspect-[4/5] ghost-border group flex items-center justify-center">
-<img alt="Camiseta Aero For Men" class="w-full h-full object-contain rounded grayscale group-hover:grayscale-0 transition-all duration-700" src="assets/imagens-produtos/aero for man.png"/>
+<img alt="Camiseta Aero For Men" class="w-full h-full object-contain rounded grayscale group-hover:grayscale-0 transition-all duration-700" src="assets/imagens-produtos/aero for man.webp"/>
 </div>
 <div class="bg-surface-container-high rounded p-2 overflow-hidden aspect-square ghost-border group flex items-center justify-center">
-<img alt="Camiseta Tripps" class="w-full h-full object-contain rounded grayscale group-hover:grayscale-0 transition-all duration-700" src="assets/imagens-produtos/tripps.png"/>
+<img alt="Camiseta Tripps" class="w-full h-full object-contain rounded grayscale group-hover:grayscale-0 transition-all duration-700" src="assets/imagens-produtos/tripps.webp"/>
 </div>
 </div>
 <div class="space-y-3 md:space-y-4 pt-6 md:pt-12">
 <div class="bg-surface-container-high rounded p-2 overflow-hidden aspect-square ghost-border group flex items-center justify-center">
-<img alt="Camiseta Tommy Hilfiger" class="w-full h-full object-contain rounded grayscale group-hover:grayscale-0 transition-all duration-700" src="assets/imagens-produtos/tommy hilfiger.png"/>
+<img alt="Camiseta Tommy Hilfiger" class="w-full h-full object-contain rounded grayscale group-hover:grayscale-0 transition-all duration-700" src="assets/imagens-produtos/tommy hilfiger.webp"/>
 </div>
 <div class="bg-surface-container-high rounded p-2 overflow-hidden aspect-[4/5] ghost-border group flex items-center justify-center">
-<img alt="Camiseta Lacoste" class="w-full h-full object-contain rounded grayscale group-hover:grayscale-0 transition-all duration-700" src="assets/imagens-produtos/lacoste.png"/>
+<img alt="Camiseta Lacoste" class="w-full h-full object-contain rounded grayscale group-hover:grayscale-0 transition-all duration-700" src="assets/imagens-produtos/lacoste.webp"/>
 </div>
 </div>
 </div>
@@ -635,20 +641,24 @@ Quero Vestir as Melhores Marcas
   if (!canvas || !section) return;
 
   // Configurações da Sequência
-  const frameCount = 240; // Quantidade total de frames extraídos
+  const frameCount = 240; 
   const currentFrame = index => (
     `assets/video-frames/frame_${index.toString().padStart(3, '0')}.webp`
   );
 
-  const images = [];
-  const sequence = { frame: 0 };
+  const images = new Array(frameCount).fill(null);
+  let currentFrameIndex = 0;
 
-  // Preloading de imagens
-  const preloadImages = () => {
-    for (let i = 1; i <= frameCount; i++) {
-      const img = new Image();
-      img.src = currentFrame(i);
-      images.push(img);
+  // 3.1 — Carregar Frames sob Demanda (Chunked Loading)
+  const loadChunk = (centerFrame, range = 30) => {
+    const start = Math.max(1, centerFrame - range);
+    const end = Math.min(frameCount, centerFrame + range);
+    for (let i = start; i <= end; i++) {
+      if (!images[i - 1]) {
+        const img = new Image();
+        img.src = currentFrame(i);
+        images[i - 1] = img;
+      }
     }
   };
 
@@ -661,7 +671,7 @@ Quero Vestir as Melhores Marcas
 
   // Função de Desenho
   const render = () => {
-    const img = images[sequence.frame];
+    const img = images[currentFrameIndex];
     if (!img || !img.complete) return;
 
     const canvasRatio = canvas.width / canvas.height;
@@ -685,18 +695,34 @@ Quero Vestir as Melhores Marcas
     context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
   };
 
-  // Lógica de Scroll e Animação
-  const updateScrolly = () => {
+  // Lógica de Scroll e Animação com Throttle (3.2)
+  let lastTime = 0;
+  const targetFPS = 30;
+  const frameInterval = 1000 / targetFPS;
+
+  const updateScrolly = (timestamp) => {
+    if (timestamp - lastTime < frameInterval) {
+      requestAnimationFrame(updateScrolly);
+      return;
+    }
+    lastTime = timestamp;
+
     const rect = section.getBoundingClientRect();
+    if (rect.top > window.innerHeight || rect.bottom < 0) {
+        requestAnimationFrame(updateScrolly);
+        return;
+    }
+
     let progress = -rect.top / (rect.height - window.innerHeight);
     progress = Math.max(0, Math.min(1, progress));
 
-    // Atualiza o frame baseado no progresso
     const frameIndex = Math.min(
       frameCount - 1,
       Math.floor(progress * frameCount)
     );
-    sequence.frame = frameIndex;
+    
+    currentFrameIndex = frameIndex;
+    loadChunk(frameIndex + 1); // Carrega frames próximos
     render();
 
     // Reuso da lógica de fade-in dos textos
@@ -729,10 +755,31 @@ Quero Vestir as Melhores Marcas
     requestAnimationFrame(updateScrolly);
   };
 
+  // 2.1 — IntersectionObserver para Vídeos do Carrossel
+  const initVideoObserver = () => {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+          if (video.currentTime > 0) video.currentTime = 0;
+        }
+      });
+    }, { rootMargin: '200px' });
+
+    document.querySelectorAll('#experiencia video').forEach(v => {
+      v.removeAttribute('autoplay');
+      videoObserver.observe(v);
+    });
+  };
+
   // Inicialização
-  window.addEventListener('resize', setCanvasSize);
-  preloadImages();
+  window.addEventListener('resize', setCanvasSize, { passive: true });
+  loadChunk(1, 50); // Preload inicial dos primeiros frames
   setCanvasSize();
+  initVideoObserver();
   requestAnimationFrame(updateScrolly);
 
 })();
