@@ -114,9 +114,54 @@
             opacity: 0.03;
             pointer-events: none;
         }
+
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background-color: #0e0e0e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader-spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(255, 20, 147, 0.2);
+            border-radius: 50%;
+            border-top-color: #FF1493;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        #loading-text {
+            margin-top: 16px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            color: #e2e2e2;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        /* Bloquear scroll durante o load */
+        body.loading {
+            overflow: hidden;
+        }
     </style>
 </head>
-<body class="bg-surface text-on-surface antialiased overflow-x-hidden min-h-screen flex flex-col" style="scroll-behavior: smooth;">
+<body class="bg-surface text-on-surface antialiased overflow-x-hidden min-h-screen flex flex-col loading" style="scroll-behavior: smooth;">
+<!-- Preloader -->
+<div id="preloader">
+    <div class="loader-spinner"></div>
+    <div id="loading-text">CARREGANDO EXPERIÊNCIA... 0%</div>
+</div>
 <!-- TopNavBar -->
 <nav class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl h-16 md:h-20 shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-none">
 <div class="max-w-7xl mx-auto w-full h-full flex justify-between items-center px-4 md:px-6 lg:px-12">
@@ -649,16 +694,40 @@ Quero Vestir as Melhores Marcas
   const images = new Array(frameCount).fill(null);
   let currentFrameIndex = 0;
 
-  // 3.1 — Carregar Frames sob Demanda (Chunked Loading)
-  const loadChunk = (centerFrame, range = 30) => {
-    const start = Math.max(1, centerFrame - range);
-    const end = Math.min(frameCount, centerFrame + range);
-    for (let i = start; i <= end; i++) {
-      if (!images[i - 1]) {
-        const img = new Image();
-        img.src = currentFrame(i);
-        images[i - 1] = img;
-      }
+  // Lógica de Preload Total e Loading Screen
+  const preloader = document.getElementById('preloader');
+  const loadingText = document.getElementById('loading-text');
+  let loadedFrames = 0;
+
+  const hidePreloader = () => {
+      document.body.classList.remove('loading');
+      preloader.classList.add('hidden');
+      setTimeout(() => {
+          preloader.style.display = 'none';
+      }, 800);
+  };
+
+  const preloadAllFrames = () => {
+    for (let i = 1; i <= frameCount; i++) {
+      const img = new Image();
+      img.onload = () => {
+          loadedFrames++;
+          const progress = Math.floor((loadedFrames / frameCount) * 100);
+          if (loadingText) {
+              loadingText.innerText = `CARREGANDO EXPERIÊNCIA... ${progress}%`;
+          }
+          if (loadedFrames === frameCount) {
+              hidePreloader();
+          }
+      };
+      img.onerror = () => {
+          loadedFrames++;
+          if (loadedFrames === frameCount) {
+              hidePreloader();
+          }
+      };
+      img.src = currentFrame(i);
+      images[i - 1] = img;
     }
   };
 
@@ -695,7 +764,7 @@ Quero Vestir as Melhores Marcas
     context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
   };
 
-  // Lógica de Scroll e Animação com Throttle (3.2)
+  // Lógica de Scroll e Animação com Throttle
   let lastTime = 0;
   const targetFPS = 30;
   const frameInterval = 1000 / targetFPS;
@@ -722,7 +791,6 @@ Quero Vestir as Melhores Marcas
     );
     
     currentFrameIndex = frameIndex;
-    loadChunk(frameIndex + 1); // Carrega frames próximos
     render();
 
     // Reuso da lógica de fade-in dos textos
@@ -777,7 +845,7 @@ Quero Vestir as Melhores Marcas
 
   // Inicialização
   window.addEventListener('resize', setCanvasSize, { passive: true });
-  loadChunk(1, 50); // Preload inicial dos primeiros frames
+  preloadAllFrames();
   setCanvasSize();
   initVideoObserver();
   requestAnimationFrame(updateScrolly);
