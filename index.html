@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>T-Shirt Boutique - Urban Premium</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF1493' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2a2.5 2.5 0 0 1 2.5 2.5c0 1.5-2.5 2-2.5 4v1'/%3E%3Cpath d='M12 9.5 2.5 15.2a2 2 0 0 0 .9 3.8h17.2a2 2 0 0 0 .9-3.8L12 9.5Z'/%3E%3C/svg%3E">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#393939",
+                        "error": "#ffb4ab",
+                        "surface-dim": "#131313",
+                        "surface-tint": "#ffb0ca",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-container-low": "#1b1b1b",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#e2e2e2",
+                        "outline": "#aa8892",
+                        "surface": "#131313",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "surface-container": "#1f1f1f",
+                        "surface-variant": "#353535",
+                        "outline-variant": "#5b3f48",
+                        "secondary": "#c6c6c6",
+                        "surface-container-highest": "#353535",
+                        "on-primary-fixed": "#3e001f",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary-fixed-variant": "#8d004e",
+                        "primary-fixed-dim": "#ffb0ca",
+                        "tertiary-fixed": "#86fd66",
+                        "on-secondary-container": "#b5b5b5",
+                        "inverse-surface": "#e2e2e2",
+                        "on-error": "#690005",
+                        "on-primary": "#640036",
+                        "on-secondary": "#2f3131",
+                        "inverse-primary": "#b90068",
+                        "primary": "#ffb0ca",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary-container": "#053200",
+                        "secondary-container": "#454747",
+                        "tertiary-fixed-dim": "#6ae04d",
+                        "on-primary-container": "#58002f",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "background": "#131313",
+                        "on-surface": "#e2e2e2",
+                        "primary-fixed": "#ffd9e3",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#0d5300",
+                        "on-tertiary": "#063900",
+                        "tertiary": "#6ae04d",
+                        "primary-container": "#ff479c",
+                        "inverse-on-surface": "#303030",
+                        "on-surface-variant": "#e3bdc7",
+                        "on-tertiary-fixed": "#022100",
+                        "tertiary-container": "#2fa714"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.25rem",
+                        "xl": "0.25rem",
+                        "full": "0.25rem"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #131313; color: #e2e2e2; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Newsreader', serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+        
+        /* Custom Neon Glow */
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(255, 71, 156, 0.3);
+        }
+        .neon-glow:hover {
+            box-shadow: 0 0 25px rgba(255, 71, 156, 0.5);
+        }
+        
+        /* Ghost Border Fallback */
+        .ghost-border {
+            border: 1px solid rgba(91, 63, 72, 0.2);
+        }
+        
+        /* Hide scrollbar for marquee */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-x-hidden min-h-screen flex flex-col" style="scroll-behavior: smooth;">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl h-16 md:h-20 shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-none">
+<div class="max-w-7xl mx-auto w-full h-full flex justify-between items-center px-4 md:px-6 lg:px-12">
+<a href="#" class="flex items-center">
+            <img src="logovetorizada.webp" alt="T-Shirt Boutique" class="h-10 md:h-12 w-auto object-contain" />
+        </a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-pink-400 font-bold border-b-2 border-pink-500 pb-1 hover:bg-neutral-800/50 hover:text-pink-300 transition-all duration-300 scale-95 active:scale-90 font-serif text-lg tracking-tight" href="#curadoria">CURADORIA</a>
+<a class="text-neutral-400 font-medium hover:text-neutral-100 transition-colors hover:bg-neutral-800/50 hover:text-pink-300 duration-300 scale-95 active:scale-90 font-serif text-lg tracking-tight" href="#exclusivos">AUTENTICIDADE</a>
+<a class="text-neutral-400 font-medium hover:text-neutral-100 transition-colors hover:bg-neutral-800/50 hover:text-pink-300 duration-300 scale-95 active:scale-90 font-serif text-lg tracking-tight" href="#marcas">O PANTEÃO</a>
+<a class="text-neutral-400 font-medium hover:text-neutral-100 transition-colors hover:bg-neutral-800/50 hover:text-pink-300 duration-300 scale-95 active:scale-90 font-serif text-lg tracking-tight" href="#experiencia">EXPERIÊNCIA</a>
+</div>
+<div class="flex gap-3 md:gap-4 items-center">
+<a href="https://wa.me/556992762900?text=Ol%C3%A1%21%20Conheci%20a%20T-Shirt%20Boutique%20pelo%20site%20e%20gostaria%20de%20saber%20mais." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-transparent text-pink-400 border border-pink-500/50 hover:bg-[#FF1493] hover:text-white hover:border-[#FF1493] transition-all duration-300 font-label text-xs md:text-sm py-1.5 md:py-2 px-4 md:px-5 rounded-sm shadow-[0_0_10px_rgba(255,20,147,0.1)] hover:shadow-[0_0_20px_rgba(255,20,147,0.6)] whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px] md:text-[18px]">forum</span>
+<span class="font-bold tracking-wider uppercase">Falar com Consultor</span>
+</a>
+</div>
+</div>
+</nav>
+<main class="flex-grow pt-16 md:pt-20">
+<!-- Section 1: Hero -->
+<section class="relative min-h-[100svh] md:min-h-[921px] flex items-center justify-center bg-surface-container-lowest overflow-hidden px-4 md:px-6 lg:px-12 py-16 md:py-20">
+<!-- Background Image Overlay -->
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-b from-surface-container-lowest/80 via-surface/60 to-surface-container-lowest z-10"></div>
+<img alt="" class="w-full h-full object-cover object-center opacity-40 mix-blend-luminosity" data-alt="high contrast editorial fashion photography of a model wearing dark urban streetwear standing in shadows with moody neon lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7HBOKbPgWopfYdYnyh48q8FO3bfq-kVLl6P2uxOHM6gun1A6uGeYavgfX2SMmPX4mYBXTu0V8m_x3lkDi85tCvGAOJQK2fXOKHskFNWkvqEUqRyzcjUHDNcHAfzzpgOt49uR1CG5gcIYZWq-u7TJ76eEa56ipUg4hhAllvN8_FKLshcFQQSt_QrJJA86rp6_8sW59QpcK7Hm_VoA6YB1_jCR6II9KxakdX95bwok6BkmjhN0mo51d-T9MfHRQR_bf0IHIwKJMMQ"/>
+</div>
+<div class="relative z-10 max-w-5xl mx-auto text-center space-y-6 md:space-y-8 px-2">
+<div class="flex justify-center">
+    <img src="logovetorizada.webp" alt="T-Shirt Boutique Logo" class="h-24 md:h-36 lg:h-40 w-auto object-contain drop-shadow-[0_0_30px_rgba(255,20,147,0.4)] hover:drop-shadow-[0_0_45px_rgba(255,20,147,0.7)] hover:-translate-y-2 transition-all duration-700 ease-out cursor-pointer" />
+</div>
+<h1 class="font-headline text-3xl sm:text-4xl leading-[1.2] md:text-5xl lg:text-6xl font-medium tracking-tight text-on-surface md:leading-tight drop-shadow-2xl">
+                    O Seu Estilo Não Aceita Cópias.<br/>
+<span class="text-primary italic">Vista a Verdadeira Exclusividade.</span>
+</h1>
+<p class="font-body text-base md:text-xl text-secondary-fixed max-w-2xl mx-auto leading-relaxed">
+                    Marcas globais, 100% originais e importadas. Peças com estoque ultralimitado.
+                </p>
+<div class="pt-4 md:pt-8">
+<a href="https://wa.me/556992762900?text=Ol%C3%A1%21%20Acessei%20a%20p%C3%A1gina%20inicial%20da%20boutique%20e%20gostaria%20de%20um%20atendimento%20VIP%20para%20garantir%20minha%20pe%C3%A7a%20antes%20que%20esgote." target="_blank" rel="noopener noreferrer" class="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-[#FF1493] text-white font-bold text-sm md:text-base py-4 px-6 md:px-8 rounded neon-glow transition-all duration-300 hover:-translate-y-1">
+<span class="material-symbols-outlined text-lg">bolt</span>
+                        Atendimento VIP: Garantir Minha Peça
+                    </a>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-20">
+<div class="flex flex-col items-center gap-1 md:gap-2 animate-bounce opacity-60 hover:opacity-100 hover:text-primary transition-all cursor-pointer text-white">
+<span class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-body pl-[0.3em]">Descubra</span>
+<span class="material-symbols-outlined text-xl md:text-2xl font-light">keyboard_arrow_down</span>
+</div>
+</div>
+</section>
+<!-- Section 2: Video Scrollytelling (Unboxing Premium) -->
+<section id="exclusivos" class="relative bg-surface-container-lowest" style="height: 300vh;">
+<div class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+<!-- Video -->
+<video id="unboxing-video" class="absolute inset-0 w-full h-full object-cover" src="video_scroll_final.mp4" preload="metadata" muted playsinline></video>
+<!-- Dark Overlay for text readability -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/30 to-transparent z-10"></div>
+<!-- Copy Overlays -->
+<div class="relative z-20 flex flex-col items-center justify-end h-full w-full pb-16 md:pb-24 px-4 md:px-6 lg:px-12">
+<!-- H2 Sticky Title - Always visible -->
+<h2 id="scroll-title" class="font-headline text-2xl md:text-5xl lg:text-6xl text-on-surface text-center tracking-tight drop-shadow-2xl mb-4 md:mb-6" style="opacity: 0; transform: translateY(60px); will-change: transform, opacity;">
+A Autenticidade Exige Provas.
+</h2>
+<!-- Argument Copy - fades in at 30% -->
+<p id="scroll-argument" class="font-body text-sm md:text-lg text-secondary-fixed max-w-2xl text-center leading-relaxed drop-shadow-lg mb-6 md:mb-8" style="opacity: 0; transform: translateY(60px); will-change: transform, opacity;">
+Não trabalhamos com promessas vazias, entregamos garantias reais. Da embalagem ao toque no tecido, cada peça que entra na nossa boutique passa por uma curadoria implacável. O verdadeiro luxo não aceita réplicas.
+</p>
+<!-- Authority Highlight - fades in at 70% -->
+<span id="scroll-highlight" class="inline-block text-center font-headline text-base md:text-2xl text-primary font-bold tracking-wide uppercase drop-shadow-lg" style="opacity: 0; transform: translateY(60px); will-change: transform, opacity;">
+Marcas globais. 100% originais. Sem exceções.
+</span>
+</div>
+
+<!-- Video Scroll Indicator -->
+<div id="video-scroll-indicator" class="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-20 pointer-events-none transition-opacity duration-700">
+<div class="flex flex-col items-center gap-1 md:gap-2 animate-[bounce_2s_infinite] opacity-60 text-white">
+<span class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-body pl-[0.3em]">Deslize para revelar</span>
+<span class="material-symbols-outlined text-xl md:text-2xl font-light">keyboard_arrow_down</span>
+</div>
+</div>
+
+</div>
+</section>
+<!-- Section 3: Curadoria -->
+<section id="curadoria" class="py-12 md:py-24 px-4 md:px-6 lg:px-12 bg-surface-container-low relative">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
+<div class="space-y-5 md:space-y-8 order-2 lg:order-1">
+<h2 class="font-headline text-[1.75rem] leading-tight md:text-5xl lg:text-6xl text-on-surface tracking-tight">
+                        A Regra de Ouro:<br/>
+<span class="text-secondary">A Peça Que Você Veste, Ninguém Mais Compra.</span>
+</h2>
+<div class="w-12 h-1 bg-primary-container"></div>
+<p class="font-body text-on-surface-variant text-base md:text-lg leading-relaxed">
+                        Nossa curadoria é implacável. Não trabalhamos com volume, trabalhamos com arte. Cada peça é selecionada a dedo nas maiores capitais da moda urbana mundial. Quando você adquire uma peça na T-Shirt Boutique, você leva um pedaço da história do streetwear que não se repetirá em nosso catálogo.
+                    </p>
+<a class="inline-block mt-4 font-label text-sm font-bold text-secondary uppercase tracking-widest border-b border-outline-variant hover:border-primary hover:text-primary transition-colors pb-1" href="https://wa.me/556992762900?text=Ol%C3%A1%21%20Estava%20lendo%20sobre%20a%20curadoria%20rigorosa%20de%20voc%C3%AAs%20e%20quero%20ter%20acesso%20exclusivo%20aos%20lan%C3%A7amentos%20limitados%20desta%20semana." target="_blank" rel="noopener noreferrer">
+                        Descubra a Curadoria
+                    </a>
+</div>
+<div class="grid grid-cols-2 gap-3 md:gap-4 order-1 lg:order-2">
+<div class="space-y-4">
+<div class="bg-surface-container-high rounded p-2 overflow-hidden aspect-[4/5] ghost-border group">
+<img alt="" class="w-full h-full object-cover rounded grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="close up of premium heavy cotton black t-shirt texture with intricate stitching detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxHJ33H7rxjuyHbXkJMmgyBbZ7rV9J26b53DJxDkWjwZRyNTlBFcXHuB4yrsrtiTmjnxgRfq1djzm8jWcNiGTKyPbq-EO-5BzlTp1OZu-J8Gk6mRfttYc3drVECZYeFmrd_R_GyCdMDxGUp-OL9L664MYcnPOPawpGQ5DjtUgw_1OmVw1-PH2FJ5kIGuhvPyyYTTEpV2KS7vxqEGXiE4OzTZfFTuT_kzpNmaCFSpQaMEci28sP82U47i4jbjZloV321BBf6OCuWg"/>
+</div>
+<div class="bg-surface-container-high rounded p-2 overflow-hidden aspect-square ghost-border group">
+<img alt="" class="w-full h-full object-cover rounded grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="detail shot of a luxury streetwear clothing tag with minimalist typography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJOlef2F5Rzb36ovFwCUhihbJuXVwoVAKeyP9Zs2swt2bdj0hWU2M9UvKO9k3zr4SaSoBt7Cw2C4Nk1sthPb67eFWo_pOt3zjq-xlOmZlZhWEP5JuxUm0QUbLLdR6RpBAcRpdTxkl0Mn_BuFbE9d7DcI3wEMNmoZi03ENwa5kPV_gnWAeMzcBM5mIzRnzsiBHXZnAsS4jYvpkBMO-brc1uU2pn310o-9bKcek26Ga7-P95EZhsid9QxHH5oEEvPf1lFEtsPhU0yg"/>
+</div>
+</div>
+<div class="space-y-3 md:space-y-4 pt-6 md:pt-12">
+<div class="bg-surface-container-high rounded p-2 overflow-hidden aspect-square ghost-border group">
+<img alt="" class="w-full h-full object-cover rounded grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="folded dark graphic t-shirt on a sleek metallic surface under dramatic spotlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8g47Igz8x7lF3BFNgVMcSt7WARY7R4dZvxJ1tmLYoLa6-GFl_kOAgETcjnryb0jFL9v8mtvPe4wO15oURl4Ac2UcMbRI2Nf99h4MgDNzlEKAfQlYtO6eofv1V2V056GqTgJnXxa2921MC-E-f7EJbSVl7kLtEh0tmBJtBwZ7dgWhohGI8tR2Cm1TqPULU4gVn_lyPYFdhzjDpFGdwNxX3tIe0UlZoOQRNdtIPVL9fXInLHAvyEZJfyjCZrPn9fGmFgF0DDAncUQ"/>
+</div>
+<div class="bg-surface-container-high rounded p-2 overflow-hidden aspect-[4/5] ghost-border group">
+<img alt="" class="w-full h-full object-cover rounded grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="person wearing an oversized black hoodie walking down a dimly lit concrete alleyway" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJBQ7OXl1nF-TXa7sxIOTs6EC7QeLV5RQoCmV8pglmgkYkuoOZOJ-nzCqPr07WYMlcEbVpQrd9BHIGXpHaT8JXBE4f-o0cXBVbSlUuiX9cAf-SQvKKP--Y_l2JYI2vnW0kNipdtIFEwp86qHncjEMGb0oKqEl_jASzR9TZPCt_04tUjUl3qBea1hvIXHbYAmGrKeiZX8vhxlFuNdXmtrTUFpT_H4OxsQmuHTbVVJ9fvT7JK2MSwLrz61c59R7WhViD9NFiO-3zRQ"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Panteão das Marcas -->
+<section id="marcas" class="py-12 md:py-20 bg-surface-container border-y border-surface-variant/20 overflow-hidden">
+<div class="text-center max-w-4xl mx-auto mb-8 md:mb-12 px-4 md:px-6 space-y-4 md:space-y-6">
+<h2 class="font-headline text-2xl md:text-4xl text-on-surface leading-snug">O Peso das Maiores Marcas do Mundo, Diretamente Para o Seu Guarda-Roupa.</h2>
+<p class="font-body text-secondary text-base md:text-lg max-w-3xl mx-auto leading-relaxed">Trabalhamos apenas com grifes internacionais e nacionais de altíssimo padrão. 100% de garantia de originalidade, com etiquetas e procedência certificadas. O padrão que você exige, nas marcas que você respeita.</p>
+<div class="pt-2">
+<a href="https://wa.me/556992762900?text=Ol%C3%A1%21%20Vi%20a%20sele%C3%A7%C3%A3o%20de%20grifes%20no%20site%20e%20gostaria%20de%20saber%20quais%20pe%C3%A7as%20100%25%20originais%20da%20nova%20cole%C3%A7%C3%A3o%20est%C3%A3o%20dispon%C3%ADveis%20no%20meu%20tamanho." target="_blank" rel="noopener noreferrer" class="w-full md:w-auto inline-flex items-center justify-center bg-[#FF1493] text-white font-bold text-sm md:text-base py-4 px-6 md:px-8 rounded neon-glow transition-all duration-300 hover:-translate-y-1">
+Quero Vestir as Melhores Marcas
+</a>
+</div>
+</div>
+<div class="relative w-full overflow-hidden flex flex-col gap-6 group pt-8 pb-8 mt-6">
+<!-- Linha 1: Direita para a Esquerda -->
+<div class="flex items-center min-w-max animate-[marquee_40s_linear_infinite] group-hover:[animation-play-state:paused]">
+<!-- Metade 1 -->
+<div class="flex items-center gap-16 px-8">
+<!-- Conjunto 1 -->
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 150 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="28" fill="currentColor" letter-spacing="0.1em">TRIPPS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="35%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="20" fill="currentColor" letter-spacing="0.2em">AERO</text><text x="50%" y="75%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="500" font-size="11" fill="currentColor" letter-spacing="0.4em">FOR MEN</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 160 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Newsreader', serif" font-weight="600" font-size="32" fill="currentColor" letter-spacing="0.05em">ARAMIS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="900" font-size="28" fill="currentColor" letter-spacing="0.15em">LACOSTE</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 200 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><rect x="0" y="5" width="40" height="30" fill="none" stroke="currentColor" stroke-width="2" /><rect x="0" y="5" width="40" height="10" fill="currentColor" /><rect x="0" y="25" width="40" height="10" fill="currentColor" /><rect x="20" y="15" width="20" height="10" fill="currentColor" opacity="0.5"/><text x="50" y="32%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">TOMMY</text><text x="50" y="72%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">HILFIGER</text></svg></div>
+<!-- Conjunto 2 -->
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 150 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="28" fill="currentColor" letter-spacing="0.1em">TRIPPS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="35%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="20" fill="currentColor" letter-spacing="0.2em">AERO</text><text x="50%" y="75%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="500" font-size="11" fill="currentColor" letter-spacing="0.4em">FOR MEN</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 160 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Newsreader', serif" font-weight="600" font-size="32" fill="currentColor" letter-spacing="0.05em">ARAMIS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="900" font-size="28" fill="currentColor" letter-spacing="0.15em">LACOSTE</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 200 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><rect x="0" y="5" width="40" height="30" fill="none" stroke="currentColor" stroke-width="2" /><rect x="0" y="5" width="40" height="10" fill="currentColor" /><rect x="0" y="25" width="40" height="10" fill="currentColor" /><rect x="20" y="15" width="20" height="10" fill="currentColor" opacity="0.5"/><text x="50" y="32%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">TOMMY</text><text x="50" y="72%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">HILFIGER</text></svg></div>
+</div>
+<!-- Metade 2 -->
+<div class="flex items-center gap-16 px-8">
+<!-- Conjunto 1 -->
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 150 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="28" fill="currentColor" letter-spacing="0.1em">TRIPPS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="35%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="20" fill="currentColor" letter-spacing="0.2em">AERO</text><text x="50%" y="75%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="500" font-size="11" fill="currentColor" letter-spacing="0.4em">FOR MEN</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 160 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Newsreader', serif" font-weight="600" font-size="32" fill="currentColor" letter-spacing="0.05em">ARAMIS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="900" font-size="28" fill="currentColor" letter-spacing="0.15em">LACOSTE</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 200 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><rect x="0" y="5" width="40" height="30" fill="none" stroke="currentColor" stroke-width="2" /><rect x="0" y="5" width="40" height="10" fill="currentColor" /><rect x="0" y="25" width="40" height="10" fill="currentColor" /><rect x="20" y="15" width="20" height="10" fill="currentColor" opacity="0.5"/><text x="50" y="32%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">TOMMY</text><text x="50" y="72%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">HILFIGER</text></svg></div>
+<!-- Conjunto 2 -->
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 150 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="28" fill="currentColor" letter-spacing="0.1em">TRIPPS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="35%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="20" fill="currentColor" letter-spacing="0.2em">AERO</text><text x="50%" y="75%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="500" font-size="11" fill="currentColor" letter-spacing="0.4em">FOR MEN</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 160 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Newsreader', serif" font-weight="600" font-size="32" fill="currentColor" letter-spacing="0.05em">ARAMIS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="900" font-size="28" fill="currentColor" letter-spacing="0.15em">LACOSTE</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 200 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><rect x="0" y="5" width="40" height="30" fill="none" stroke="currentColor" stroke-width="2" /><rect x="0" y="5" width="40" height="10" fill="currentColor" /><rect x="0" y="25" width="40" height="10" fill="currentColor" /><rect x="20" y="15" width="20" height="10" fill="currentColor" opacity="0.5"/><text x="50" y="32%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">TOMMY</text><text x="50" y="72%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">HILFIGER</text></svg></div>
+</div>
+</div>
+<!-- Linha 2: Esquerda para a Direita -->
+<div class="flex items-center min-w-max animate-[marquee-reverse_45s_linear_infinite] group-hover:[animation-play-state:paused]">
+<!-- Metade 1 -->
+<div class="flex items-center gap-16 px-8">
+<!-- Conjunto 1 -->
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="900" font-size="28" fill="currentColor" letter-spacing="0.15em">LACOSTE</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 200 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><rect x="0" y="5" width="40" height="30" fill="none" stroke="currentColor" stroke-width="2" /><rect x="0" y="5" width="40" height="10" fill="currentColor" /><rect x="0" y="25" width="40" height="10" fill="currentColor" /><rect x="20" y="15" width="20" height="10" fill="currentColor" opacity="0.5"/><text x="50" y="32%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">TOMMY</text><text x="50" y="72%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">HILFIGER</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 160 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Newsreader', serif" font-weight="600" font-size="32" fill="currentColor" letter-spacing="0.05em">ARAMIS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 150 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="28" fill="currentColor" letter-spacing="0.1em">TRIPPS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="35%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="20" fill="currentColor" letter-spacing="0.2em">AERO</text><text x="50%" y="75%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="500" font-size="11" fill="currentColor" letter-spacing="0.4em">FOR MEN</text></svg></div>
+<!-- Conjunto 2 -->
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="900" font-size="28" fill="currentColor" letter-spacing="0.15em">LACOSTE</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 200 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><rect x="0" y="5" width="40" height="30" fill="none" stroke="currentColor" stroke-width="2" /><rect x="0" y="5" width="40" height="10" fill="currentColor" /><rect x="0" y="25" width="40" height="10" fill="currentColor" /><rect x="20" y="15" width="20" height="10" fill="currentColor" opacity="0.5"/><text x="50" y="32%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">TOMMY</text><text x="50" y="72%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">HILFIGER</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 160 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Newsreader', serif" font-weight="600" font-size="32" fill="currentColor" letter-spacing="0.05em">ARAMIS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 150 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="28" fill="currentColor" letter-spacing="0.1em">TRIPPS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="35%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="20" fill="currentColor" letter-spacing="0.2em">AERO</text><text x="50%" y="75%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="500" font-size="11" fill="currentColor" letter-spacing="0.4em">FOR MEN</text></svg></div>
+</div>
+<!-- Metade 2 -->
+<div class="flex items-center gap-16 px-8">
+<!-- Conjunto 1 -->
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="900" font-size="28" fill="currentColor" letter-spacing="0.15em">LACOSTE</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 200 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><rect x="0" y="5" width="40" height="30" fill="none" stroke="currentColor" stroke-width="2" /><rect x="0" y="5" width="40" height="10" fill="currentColor" /><rect x="0" y="25" width="40" height="10" fill="currentColor" /><rect x="20" y="15" width="20" height="10" fill="currentColor" opacity="0.5"/><text x="50" y="32%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">TOMMY</text><text x="50" y="72%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">HILFIGER</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 160 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Newsreader', serif" font-weight="600" font-size="32" fill="currentColor" letter-spacing="0.05em">ARAMIS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 150 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="28" fill="currentColor" letter-spacing="0.1em">TRIPPS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="35%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="20" fill="currentColor" letter-spacing="0.2em">AERO</text><text x="50%" y="75%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="500" font-size="11" fill="currentColor" letter-spacing="0.4em">FOR MEN</text></svg></div>
+<!-- Conjunto 2 -->
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="900" font-size="28" fill="currentColor" letter-spacing="0.15em">LACOSTE</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 200 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><rect x="0" y="5" width="40" height="30" fill="none" stroke="currentColor" stroke-width="2" /><rect x="0" y="5" width="40" height="10" fill="currentColor" /><rect x="0" y="25" width="40" height="10" fill="currentColor" /><rect x="20" y="15" width="20" height="10" fill="currentColor" opacity="0.5"/><text x="50" y="32%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">TOMMY</text><text x="50" y="72%" dominant-baseline="central" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="0.15em">HILFIGER</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 160 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Newsreader', serif" font-weight="600" font-size="32" fill="currentColor" letter-spacing="0.05em">ARAMIS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 150 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="28" fill="currentColor" letter-spacing="0.1em">TRIPPS</text></svg></div>
+<div class="flex items-center justify-center text-secondary-fixed-dim/50 hover:text-primary transition-all duration-500 cursor-default"><svg viewBox="0 0 180 40" class="h-8 md:h-10 w-auto hover:drop-shadow-[0_0_12px_rgba(255,176,202,0.6)]"><text x="50%" y="35%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="20" fill="currentColor" letter-spacing="0.2em">AERO</text><text x="50%" y="75%" dominant-baseline="central" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="500" font-size="11" fill="currentColor" letter-spacing="0.4em">FOR MEN</text></svg></div>
+</div>
+</div>
+</div>
+<style>
+@keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+@keyframes marquee-reverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
+</style>
+</section>
+<!-- Section 4: Experiência e Prova Social -->
+<section id="experiencia" class="py-12 md:py-24 px-4 md:px-6 lg:px-12 bg-surface">
+<div class="max-w-7xl mx-auto space-y-8 md:space-y-16">
+<div class="text-center max-w-3xl mx-auto space-y-4 md:space-y-6">
+<h2 class="font-headline text-[1.75rem] leading-tight md:text-5xl text-on-surface tracking-tight">Uma Experiência Premium, Onde Quer Que Você Esteja.</h2>
+<p class="font-body text-secondary text-base md:text-lg">Nossa comunidade veste a atitude que vendemos. Do unboxing à rua.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded ghost-border overflow-hidden flex flex-col group hover:bg-surface-container-low transition-colors duration-300">
+<div class="aspect-[4/3] md:aspect-square p-3 md:p-4">
+<img alt="" class="w-full h-full object-cover rounded opacity-80 group-hover:opacity-100 transition-opacity" data-alt="customer wearing a stylish urban outfit sitting on a concrete step in the city" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe-fh2c9XQmFeG0ngG5wjVWjTpn9-hPcq_QpEoApElXtFd8O4a0HBeJVbbLu76OgSQiGVrQuW-WvMnAAm7y9L6mNfXGa-Nf3xOFHqXonNaz5VJrGnDTXYAcaR0uDTqUeiNhlA05JXPaLywazEmpCF88hoLbi5cVtlPjv0_O2mMufQROwtP_64-8ALIAMloPx1NY2MCVqMyFkdRXalSvfTSlqwkf97ny6d4gr1W7n3o_NsIKBF1Ax-jpzDLP0JVYKUrcg70USLHxg"/>
+</div>
+<div class="p-4 md:p-6 space-y-3 bg-surface-container-low flex-grow">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+</div>
+<p class="font-body text-sm text-on-surface-variant italic">"A entrega foi impecável. A caixa preta com selo de cera já mostra o nível da loja. A peça superou as expectativas."</p>
+<p class="font-label text-xs font-bold text-secondary uppercase pt-2">— Marcos V.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded ghost-border overflow-hidden flex flex-col group hover:bg-surface-container-low transition-colors duration-300">
+<div class="aspect-[4/3] md:aspect-square p-3 md:p-4">
+<img alt="" class="w-full h-full object-cover rounded opacity-80 group-hover:opacity-100 transition-opacity" data-alt="premium matte black unboxing experience with tissue paper and a sleek custom sticker" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9aGqTB2bPfQ0XVWriK7_w2tmVPunkQDHge6aSkFYjCteNc3O0k6xvj-WxQst3UZlh6wnl-vdDv9hQyttkgHh9-s2kvVR7uDBjtPk6wOpQLN4JU0TlYVD8KIBf-misylUU4KrVRlcKTWbyRAAbj4dfHmmD3Qvp5yrUyxbisE-CWxU_STm17jaiQ_563G1yeKf4YieTjUX0BToiba85dFaXC_7c1fSDbEdiA9GglBiXE7zJ2NheVwNq5Za0KCMzufccGmFMRft_9Q"/>
+</div>
+<div class="p-4 md:p-6 space-y-3 bg-surface-container-low flex-grow">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+</div>
+<p class="font-body text-sm text-on-surface-variant italic">"Atendimento VIP no WhatsApp faz toda a diferença. O consultor me ajudou a escolher o tamanho exato da drop."</p>
+<p class="font-label text-xs font-bold text-secondary uppercase pt-2">— Thiago S.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded ghost-border overflow-hidden flex flex-col group hover:bg-surface-container-low transition-colors duration-300">
+<div class="aspect-[4/3] md:aspect-square p-3 md:p-4">
+<img alt="" class="w-full h-full object-cover rounded opacity-80 group-hover:opacity-100 transition-opacity" data-alt="streetwear fashion details showing layered dark clothing and metallic accessories" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChoPnhlApwpBNddMAmMm7xwuOHIm8bvrkVkbGhgpjjLG_H-l1I5UxbL3NMMM0KcNAz9PNGRGqpaD4lMt6l0xdDYt9d--d9zYxBm3Du-GVgF54mqgmr248lshhRHDoAxqF4Xp5M7l_pbY_QqIgZplp287WwejEAtnWfDXO4ECB011aveWtUca7ZijSbTH3vAlsRLou9rvhiM8BmS8xG6qivvtk8PcO0dmaJwU9Z_ljdP778Zc-lAiY2HehFLh1Ek7tdCBfbsL2bIg"/>
+</div>
+<div class="p-4 md:p-6 space-y-3 bg-surface-container-low flex-grow">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+</div>
+<p class="font-body text-sm text-on-surface-variant italic">"A exclusividade é real. Ninguém na minha cidade tem essa peça da Kith. Cliente fiel agora."</p>
+<p class="font-label text-xs font-bold text-secondary uppercase pt-2">— Rafael C.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-8 text-center">
+<a href="https://wa.me/556992762900?text=Ol%C3%A1%21%20Gostei%20muito%20do%20padr%C3%A3o%20e%20da%20estrutura%20da%20boutique.%20Poderiam%20me%20enviar%20o%20cat%C3%A1logo%20atualizado%20com%20as%20pe%C3%A7as%20exclusivas%3F" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto inline-flex items-center justify-center bg-[#FF1493] text-white font-bold text-sm md:text-base py-4 px-6 md:px-8 rounded neon-glow transition-all duration-300 hover:-translate-y-1">
+Receber Catálogo Exclusivo
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 md:py-12 px-4 md:px-6 lg:px-12 border-none bg-surface-container-lowest">
+<div class="flex flex-col items-center gap-6 md:gap-8 md:flex-row md:justify-between max-w-7xl mx-auto w-full">
+<div class="text-sm font-bold text-neutral-500 font-headline uppercase tracking-widest text-center md:text-left">
+                T-SHIRT BOUTIQUE<br/>
+<span class="font-body text-[10px] font-normal tracking-[0.2em] opacity-70">URBAN NOIR &amp; NEON EDITORIAL.</span>
+</div>
+<div class="flex flex-col items-center gap-4 w-full md:w-auto">
+<a class="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-surface-container hover:bg-surface-container-high text-primary-fixed-dim font-bold text-sm py-3 px-6 rounded ghost-border transition-all duration-300 animate-pulse hover:animate-none" href="https://wa.me/556992762900?text=Ol%C3%A1%21%20Terminei%20de%20ver%20o%20site%20e%20gostaria%20de%20falar%20com%20um%20consultor%20de%20estilo%20para%20me%20ajudar%20a%20escolher%20as%20melhores%20pe%C3%A7as." target="_blank" rel="noopener noreferrer">
+<span class="material-symbols-outlined text-xl">forum</span>
+                    Falar com um Consultor de Estilo
+                </a>
+</div>
+<div class="flex flex-wrap justify-center gap-4 md:gap-6 font-sans text-[10px] uppercase tracking-[0.2em]">
+<a class="text-neutral-500 hover:text-pink-400 transition-colors opacity-80 hover:opacity-100" href="#">PRIVACIDADE</a>
+<a class="text-neutral-500 hover:text-pink-400 transition-colors opacity-80 hover:opacity-100" href="#">TERMOS</a>
+<a class="text-neutral-500 hover:text-pink-400 transition-colors opacity-80 hover:opacity-100" href="#">INSTAGRAM</a>
+<a class="text-neutral-500 hover:text-pink-400 transition-colors opacity-80 hover:opacity-100" href="#">CONTATO</a>
+</div>
+</div>
+<div class="mt-8 md:mt-12 text-center">
+<p class="font-sans text-[10px] uppercase tracking-[0.2em] text-neutral-600">© 2024 T-SHIRT BOUTIQUE. URBAN NOIR &amp; NEON EDITORIAL.</p>
+</div>
+</footer>
+<!-- Video Scrollytelling Controller -->
+<script>
+(function() {
+  const video = document.getElementById('unboxing-video');
+  const section = document.getElementById('exclusivos');
+  const argument = document.getElementById('scroll-argument');
+  const highlight = document.getElementById('scroll-highlight');
+  
+  if (!video || !section) return;
+
+  // Lazy load: only start loading video when section is near viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        video.preload = 'auto';
+        observer.unobserve(section);
+      }
+    });
+  }, { rootMargin: '200px' });
+  observer.observe(section);
+
+  // Scroll-driven video + copy control
+  const updateVideo = () => {
+    const rect = section.getBoundingClientRect();
+    let progress = -rect.top / (rect.height - window.innerHeight);
+    progress = Math.max(0, Math.min(1, progress));
+
+    // Sync video currentTime
+    if (video.duration && isFinite(video.duration)) {
+      video.currentTime = video.duration * progress;
+    }
+
+    // Advanced Scroll-Driven Text Interpolation (Float-up + Fade-in)
+    const animateEl = (el, p, start, duration, offset) => {
+        if (!el) return;
+        if (p < start) {
+            el.style.opacity = '0';
+            el.style.transform = `translateY(${offset}px)`;
+        } else if (p > start + duration) {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0px)';
+        } else {
+            // Local progress (0 to 1) relative to its start and duration window
+            const localP = (p - start) / duration;
+            // Cubic ease-out algorithm for buttery smooth deceleration
+            const easeOut = 1 - Math.pow(1 - localP, 3);
+            
+            el.style.opacity = easeOut.toFixed(3);
+            el.style.transform = `translateY(${offset * (1 - easeOut)}px)`;
+        }
+    };
+
+    const title = document.getElementById('scroll-title');
+    // Title rises early (0% to 15%)
+    animateEl(title, progress, 0.05, 0.15, 60);
+    // Argument follows (30% to 45%)
+    animateEl(argument, progress, 0.30, 0.15, 60);
+    // Highlight crowns it at the end (70% to 90%)
+    animateEl(highlight, progress, 0.70, 0.20, 60);
+
+    // Fade out the scroll hint near the end
+    const hint = document.getElementById('video-scroll-indicator');
+    if (hint) {
+      // Começa a sumir em 80% do percurso
+      hint.style.opacity = progress >= 0.8 ? '0' : '1';
+    }
+
+    requestAnimationFrame(updateVideo);
+  };
+
+  // Wait for video metadata before starting animation loop
+  if (video.readyState >= 1) {
+    requestAnimationFrame(updateVideo);
+  } else {
+    video.addEventListener('loadedmetadata', () => {
+      requestAnimationFrame(updateVideo);
+    });
+  }
+})();
+</script>
+</body></html>
