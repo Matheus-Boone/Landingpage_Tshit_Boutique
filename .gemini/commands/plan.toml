@@ -1,0 +1,6 @@
+description = "Create project plan using project-planner agent. No code writing - only plan file generation."
+prompt = """Execute o workflow abaixo:
+@{.agent/workflows/plan.md}
+
+Argumentos do usuário: {{args}}
+"""

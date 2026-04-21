@@ -101,6 +101,13 @@
         /* Hide scrollbar for marquee */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .noise-texture {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            opacity: 0.03;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="bg-surface text-on-surface antialiased overflow-x-hidden min-h-screen flex flex-col" style="scroll-behavior: smooth;">
@@ -112,9 +119,10 @@
         </a>
 <div class="hidden md:flex gap-8 items-center">
 <a class="text-pink-400 font-bold border-b-2 border-pink-500 pb-1 hover:bg-neutral-800/50 hover:text-pink-300 transition-all duration-300 scale-95 active:scale-90 font-serif text-lg tracking-tight" href="#curadoria">CURADORIA</a>
+<a class="text-neutral-400 font-medium hover:text-neutral-100 transition-colors hover:bg-neutral-800/50 hover:text-pink-300 duration-300 scale-95 active:scale-90 font-serif text-lg tracking-tight" href="#masculino">MASCULINO</a>
+<a class="text-neutral-400 font-medium hover:text-neutral-100 transition-colors hover:bg-neutral-800/50 hover:text-pink-300 duration-300 scale-95 active:scale-90 font-serif text-lg tracking-tight" href="#feminino">FEMININO</a>
 <a class="text-neutral-400 font-medium hover:text-neutral-100 transition-colors hover:bg-neutral-800/50 hover:text-pink-300 duration-300 scale-95 active:scale-90 font-serif text-lg tracking-tight" href="#exclusivos">AUTENTICIDADE</a>
 <a class="text-neutral-400 font-medium hover:text-neutral-100 transition-colors hover:bg-neutral-800/50 hover:text-pink-300 duration-300 scale-95 active:scale-90 font-serif text-lg tracking-tight" href="#marcas">O PANTEÃO</a>
-<a class="text-neutral-400 font-medium hover:text-neutral-100 transition-colors hover:bg-neutral-800/50 hover:text-pink-300 duration-300 scale-95 active:scale-90 font-serif text-lg tracking-tight" href="#experiencia">EXPERIÊNCIA</a>
 </div>
 <div class="flex gap-3 md:gap-4 items-center">
 <a href="https://wa.me/556992762900?text=Ol%C3%A1%21%20Conheci%20a%20T-Shirt%20Boutique%20pelo%20site%20e%20gostaria%20de%20saber%20mais." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-transparent text-pink-400 border border-pink-500/50 hover:bg-[#FF1493] hover:text-white hover:border-[#FF1493] transition-all duration-300 font-label text-xs md:text-sm py-1.5 md:py-2 px-4 md:px-5 rounded-sm shadow-[0_0_10px_rgba(255,20,147,0.1)] hover:shadow-[0_0_20px_rgba(255,20,147,0.6)] whitespace-nowrap">
@@ -311,74 +319,227 @@ Quero Vestir as Melhores Marcas
 @keyframes marquee-reverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
 </style>
 </section>
-<!-- Section 4: Experiência e Prova Social -->
-<section id="experiencia" class="py-12 md:py-24 px-4 md:px-6 lg:px-12 bg-surface">
-<div class="max-w-7xl mx-auto space-y-8 md:space-y-16">
-<div class="text-center max-w-3xl mx-auto space-y-4 md:space-y-6">
-<h2 class="font-headline text-[1.75rem] leading-tight md:text-5xl text-on-surface tracking-tight">Uma Experiência Premium, Onde Quer Que Você Esteja.</h2>
-<p class="font-body text-secondary text-base md:text-lg">Nossa comunidade veste a atitude que vendemos. Do unboxing à rua.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-<!-- Card 1 -->
-<div class="bg-surface-container-lowest rounded ghost-border overflow-hidden flex flex-col group hover:bg-surface-container-low transition-colors duration-300">
-<div class="aspect-[4/3] md:aspect-square p-3 md:p-4">
-<img alt="" class="w-full h-full object-cover rounded opacity-80 group-hover:opacity-100 transition-opacity" data-alt="customer wearing a stylish urban outfit sitting on a concrete step in the city" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe-fh2c9XQmFeG0ngG5wjVWjTpn9-hPcq_QpEoApElXtFd8O4a0HBeJVbbLu76OgSQiGVrQuW-WvMnAAm7y9L6mNfXGa-Nf3xOFHqXonNaz5VJrGnDTXYAcaR0uDTqUeiNhlA05JXPaLywazEmpCF88hoLbi5cVtlPjv0_O2mMufQROwtP_64-8ALIAMloPx1NY2MCVqMyFkdRXalSvfTSlqwkf97ny6d4gr1W7n3o_NsIKBF1Ax-jpzDLP0JVYKUrcg70USLHxg"/>
-</div>
-<div class="p-4 md:p-6 space-y-3 bg-surface-container-low flex-grow">
-<div class="flex items-center gap-1 text-primary">
-<span class="material-symbols-outlined text-sm fill">star</span>
-<span class="material-symbols-outlined text-sm fill">star</span>
-<span class="material-symbols-outlined text-sm fill">star</span>
-<span class="material-symbols-outlined text-sm fill">star</span>
-<span class="material-symbols-outlined text-sm fill">star</span>
-</div>
-<p class="font-body text-sm text-on-surface-variant italic">"A entrega foi impecável. A caixa preta com selo de cera já mostra o nível da loja. A peça superou as expectativas."</p>
-<p class="font-label text-xs font-bold text-secondary uppercase pt-2">— Marcos V.</p>
-</div>
-</div>
-<!-- Card 2 -->
-<div class="bg-surface-container-lowest rounded ghost-border overflow-hidden flex flex-col group hover:bg-surface-container-low transition-colors duration-300">
-<div class="aspect-[4/3] md:aspect-square p-3 md:p-4">
-<img alt="" class="w-full h-full object-cover rounded opacity-80 group-hover:opacity-100 transition-opacity" data-alt="premium matte black unboxing experience with tissue paper and a sleek custom sticker" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9aGqTB2bPfQ0XVWriK7_w2tmVPunkQDHge6aSkFYjCteNc3O0k6xvj-WxQst3UZlh6wnl-vdDv9hQyttkgHh9-s2kvVR7uDBjtPk6wOpQLN4JU0TlYVD8KIBf-misylUU4KrVRlcKTWbyRAAbj4dfHmmD3Qvp5yrUyxbisE-CWxU_STm17jaiQ_563G1yeKf4YieTjUX0BToiba85dFaXC_7c1fSDbEdiA9GglBiXE7zJ2NheVwNq5Za0KCMzufccGmFMRft_9Q"/>
-</div>
-<div class="p-4 md:p-6 space-y-3 bg-surface-container-low flex-grow">
-<div class="flex items-center gap-1 text-primary">
-<span class="material-symbols-outlined text-sm fill">star</span>
-<span class="material-symbols-outlined text-sm fill">star</span>
-<span class="material-symbols-outlined text-sm fill">star</span>
-<span class="material-symbols-outlined text-sm fill">star</span>
-<span class="material-symbols-outlined text-sm fill">star</span>
-</div>
-<p class="font-body text-sm text-on-surface-variant italic">"Atendimento VIP no WhatsApp faz toda a diferença. O consultor me ajudou a escolher o tamanho exato da drop."</p>
-<p class="font-label text-xs font-bold text-secondary uppercase pt-2">— Thiago S.</p>
-</div>
-</div>
-<!-- Card 3 -->
-<div class="bg-surface-container-lowest rounded ghost-border overflow-hidden flex flex-col group hover:bg-surface-container-low transition-colors duration-300">
-<div class="aspect-[4/3] md:aspect-square p-3 md:p-4">
-<img alt="" class="w-full h-full object-cover rounded opacity-80 group-hover:opacity-100 transition-opacity" data-alt="streetwear fashion details showing layered dark clothing and metallic accessories" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChoPnhlApwpBNddMAmMm7xwuOHIm8bvrkVkbGhgpjjLG_H-l1I5UxbL3NMMM0KcNAz9PNGRGqpaD4lMt6l0xdDYt9d--d9zYxBm3Du-GVgF54mqgmr248lshhRHDoAxqF4Xp5M7l_pbY_QqIgZplp287WwejEAtnWfDXO4ECB011aveWtUca7ZijSbTH3vAlsRLou9rvhiM8BmS8xG6qivvtk8PcO0dmaJwU9Z_ljdP778Zc-lAiY2HehFLh1Ek7tdCBfbsL2bIg"/>
-</div>
-<div class="p-4 md:p-6 space-y-3 bg-surface-container-low flex-grow">
-<div class="flex items-center gap-1 text-primary">
-<span class="material-symbols-outlined text-sm fill">star</span>
-<span class="material-symbols-outlined text-sm fill">star</span>
-<span class="material-symbols-outlined text-sm fill">star</span>
-<span class="material-symbols-outlined text-sm fill">star</span>
-<span class="material-symbols-outlined text-sm fill">star</span>
-</div>
-<p class="font-body text-sm text-on-surface-variant italic">"A exclusividade é real. Ninguém na minha cidade tem essa peça da Kith. Cliente fiel agora."</p>
-<p class="font-label text-xs font-bold text-secondary uppercase pt-2">— Rafael C.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="pt-8 text-center">
-<a href="https://wa.me/556992762900?text=Ol%C3%A1%21%20Gostei%20muito%20do%20padr%C3%A3o%20e%20da%20estrutura%20da%20boutique.%20Poderiam%20me%20enviar%20o%20cat%C3%A1logo%20atualizado%20com%20as%20pe%C3%A7as%20exclusivas%3F" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto inline-flex items-center justify-center bg-[#FF1493] text-white font-bold text-sm md:text-base py-4 px-6 md:px-8 rounded neon-glow transition-all duration-300 hover:-translate-y-1">
-Receber Catálogo Exclusivo
-</a>
-</div>
-</div>
-</section>
+
+        <!-- Section 5: O Padrão Masculino -->
+        <section id="masculino" class="relative bg-surface-container-lowest overflow-hidden py-16 md:py-32 border-none">
+            <!-- Noise Texture Overlay -->
+            <div class="absolute inset-0 noise-texture z-0"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-12 relative z-10 space-y-16 md:space-y-32">
+                <!-- Bloco 1: Presença -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
+                    <div class="space-y-6 md:space-y-8 lg:order-1">
+                        <div class="inline-block px-3 py-1 border border-primary/30 rounded-full">
+                            <span class="text-[10px] md:text-xs font-bold tracking-[0.2em] text-primary uppercase italic">Premium Tailoring</span>
+                        </div>
+                        <h2 class="font-headline text-4xl md:text-6xl text-on-surface leading-tight tracking-tight">
+                            Presença Que Dispensa Apresentações.
+                        </h2>
+                        <p class="font-body text-secondary text-base md:text-lg max-w-lg leading-relaxed">
+                            Cortes precisos e marcas que definem autoridade. Para quem não precisa provar nada — só vestir.
+                        </p>
+                        <div class="pt-4">
+                            <a href="https://wa.me/556992762900?text=Ol%C3%A1!%20Gostaria%20de%20montar%20um%20look%20masculino%20exclusivo.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-[#FF1493] text-white font-bold text-sm md:text-base py-4 px-8 rounded neon-glow transition-all duration-300 hover:-translate-y-1">
+                                Montar Meu Look Masculino
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:order-2 group">
+                        <div class="aspect-[3/4] overflow-hidden rounded shadow-2xl relative">
+                            <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=800&auto=format&fit=crop" alt="Look Masculino Editorial" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-105 group-hover:scale-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/60 to-transparent opacity-60 group-hover:opacity-20 transition-opacity"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloco 2: Caimento -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
+                    <div class="lg:order-1 group">
+                        <div class="aspect-[3/4] overflow-hidden rounded shadow-2xl relative">
+                            <img src="https://images.unsplash.com/photo-1550246140-5119ae4790b8?q=80&w=800&auto=format&fit=crop" alt="Detalhe Tecido Masculino" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-105 group-hover:scale-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/60 to-transparent opacity-60 group-hover:opacity-20 transition-opacity"></div>
+                        </div>
+                    </div>
+                    <div class="space-y-6 md:space-y-8 lg:order-2">
+                        <h2 class="font-headline text-4xl md:text-6xl text-on-surface leading-tight tracking-tight">
+                            Caimento Sob Medida. Tecido Que Resiste.
+                        </h2>
+                        <p class="font-body text-secondary text-base md:text-lg max-w-lg leading-relaxed">
+                            Algodão pesado, costuras reforçadas e silhuetas que valorizam. Cada peça foi feita para durar e impressionar.
+                        </p>
+                        <div class="flex items-center gap-4 text-primary/60 italic font-body text-sm md:text-base">
+                            <span class="w-12 h-[1px] bg-primary/40"></span>
+                            <span>A definição de durabilidade urbana.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transição Sutil para Seção Feminina -->
+            <div class="h-24 md:h-48 w-full bg-gradient-to-b from-surface-container-lowest via-[#1a1a1a] to-[#1c1a1b]"></div>
+        </section>
+
+        <!-- Section 6: A Exclusividade Feminina -->
+        <section id="feminino" class="bg-[#1c1a1b] py-16 md:py-32 border-none">
+            <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-12 space-y-16 md:space-y-24 text-center">
+                <!-- Intro Bloco -->
+                <div class="max-w-3xl mx-auto space-y-6">
+                    <div class="flex justify-center items-center gap-4 text-primary/60 italic font-body text-sm tracking-widest uppercase">
+                        <span class="w-8 h-[1px] bg-primary/40"></span>
+                        <span>Seda & Sofisticação</span>
+                        <span class="w-8 h-[1px] bg-primary/40"></span>
+                    </div>
+                    <h2 class="font-headline text-4xl md:text-6xl text-on-surface leading-tight tracking-tight">
+                        A União Perfeita Entre Conforto Absoluto e <span class="text-primary italic">Design Global</span>.
+                    </h2>
+                    <p class="font-body text-secondary text-base md:text-lg leading-relaxed">
+                        Peças selecionadas para mulheres que ditam seu próprio estilo. Do toque do tecido à exclusividade do design — cada detalhe foi pensado para você.
+                    </p>
+                </div>
+
+                <!-- Galeria Assimétrica -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-stretch">
+                    <!-- Foto Alta -->
+                    <div class="md:col-span-5 group">
+                        <div class="h-full aspect-[3/5] md:aspect-auto overflow-hidden rounded shadow-2xl relative">
+                            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800&auto=format&fit=crop" alt="Editorial Feminino" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out">
+                            <div class="absolute inset-0 bg-pink-900/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                    </div>
+                    <!-- Fotos Empilhadas -->
+                    <div class="md:col-span-7 flex flex-col gap-4 md:gap-6">
+                        <div class="aspect-square md:flex-grow overflow-hidden rounded shadow-2xl group relative">
+                            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop" alt="Detalhe Look Feminino" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out">
+                            <div class="absolute inset-0 bg-pink-900/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                        <div class="aspect-square md:flex-grow overflow-hidden rounded shadow-2xl group relative">
+                            <img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?q=80&w=800&auto=format&fit=crop" alt="Textura Tecido Feminino" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out">
+                            <div class="absolute inset-0 bg-pink-900/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Final -->
+                <div class="pt-8 space-y-6">
+                    <p class="font-headline text-2xl md:text-3xl text-primary italic">"Exclusividade não se compra em qualquer lugar."</p>
+                    <a href="https://wa.me/556992762900?text=Ol%C3%A1!%20Adorei%20a%20cole%C3%A7%C3%A3o%20feminina.%20Gostaria%20de%20ver%20mais%20modelos." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-transparent border border-pink-500/50 text-pink-400 hover:bg-[#FF1493] hover:text-white font-bold text-sm md:text-base py-4 px-10 rounded transition-all duration-300">
+                        Explorar Coleção Feminina
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Prova Social com Prints Reais -->
+        <section id="experiencia" class="py-16 md:py-32 bg-surface overflow-hidden border-none">
+            <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-12 mb-12 md:mb-20">
+                <div class="text-center max-w-3xl mx-auto space-y-4 md:space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full">
+                        <span class="material-symbols-outlined text-sm text-primary fill">star</span>
+                        <span class="text-[10px] md:text-xs font-bold tracking-[0.2em] text-primary uppercase">150+ avaliações 5★</span>
+                    </div>
+                    <h2 class="font-headline text-4xl md:text-6xl text-on-surface leading-tight tracking-tight">Quem Veste, Aprova.</h2>
+                    <p class="font-body text-secondary text-base md:text-lg">Feedbacks reais de clientes reais. Sem filtro, sem edição.</p>
+                </div>
+            </div>
+
+            <!-- Marquee Container -->
+            <div class="space-y-6 md:space-y-10 group">
+                <!-- Linha 1: Esquerda para Direita -->
+                <div class="flex items-center min-w-max animate-[marquee_60s_linear_infinite] group-hover:[animation-play-state:paused]">
+                    <div class="flex gap-4 md:gap-8 px-4">
+                        <!-- Print 1 -->
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=600&auto=format&fit=crop" alt="Feedback WhatsApp 1" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <!-- Print 2 -->
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1512428559083-a401a30c9550?q=80&w=600&auto=format&fit=crop" alt="Feedback Instagram 1" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <!-- Print 3 -->
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1577563908411-5077b6ac7624?q=80&w=600&auto=format&fit=crop" alt="Feedback WhatsApp 2" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <!-- Print 4 -->
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=600&auto=format&fit=crop" alt="Feedback Instagram 2" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <!-- Print 5 -->
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=600&auto=format&fit=crop" alt="Feedback WhatsApp 3" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                    <!-- Duplicate for loop -->
+                    <div class="flex gap-4 md:gap-8 px-4">
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=600&auto=format&fit=crop" alt="Feedback WhatsApp 1" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1512428559083-a401a30c9550?q=80&w=600&auto=format&fit=crop" alt="Feedback Instagram 1" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1577563908411-5077b6ac7624?q=80&w=600&auto=format&fit=crop" alt="Feedback WhatsApp 2" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=600&auto=format&fit=crop" alt="Feedback Instagram 2" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=600&auto=format&fit=crop" alt="Feedback WhatsApp 3" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Linha 2: Direita para Esquerda -->
+                <div class="flex items-center min-w-max animate-[marquee-reverse_75s_linear_infinite] group-hover:[animation-play-state:paused]">
+                    <div class="flex gap-4 md:gap-8 px-4">
+                        <!-- Print 6 -->
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600&auto=format&fit=crop" alt="Feedback WhatsApp 4" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <!-- Print 7 -->
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600&auto=format&fit=crop" alt="Feedback Instagram 3" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <!-- Print 8 -->
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=600&auto=format&fit=crop" alt="Feedback WhatsApp 5" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <!-- Print 9 -->
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1552069334-a29283f5895c?q=80&w=600&auto=format&fit=crop" alt="Feedback Instagram 4" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <!-- Print 10 -->
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=600&auto=format&fit=crop" alt="Feedback WhatsApp 6" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                    <!-- Duplicate for loop -->
+                    <div class="flex gap-4 md:gap-8 px-4">
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600&auto=format&fit=crop" alt="Feedback WhatsApp 4" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600&auto=format&fit=crop" alt="Feedback Instagram 3" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=600&auto=format&fit=crop" alt="Feedback WhatsApp 5" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1552069334-a29283f5895c?q=80&w=600&auto=format&fit=crop" alt="Feedback Instagram 4" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="w-[240px] md:w-[320px] aspect-[9/16] bg-surface-container-high rounded overflow-hidden shadow-xl ghost-border transition-all duration-500 hover:scale-[1.03]">
+                            <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=600&auto=format&fit=crop" alt="Feedback WhatsApp 6" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Final -->
+            <div class="pt-16 md:pt-24 text-center px-4">
+                <a href="https://wa.me/556992762900?text=Ol%C3%A1!%20Vi%20os%20feedbacks%20e%20gostaria%20de%20fazer%20parte%20da%20comunidade.%20Quais%20s%C3%A3o%20as%20novidades?" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto inline-flex items-center justify-center bg-[#FF1493] text-white font-bold text-sm md:text-base py-4 px-10 rounded neon-glow transition-all duration-300 hover:-translate-y-1">
+                    Fazer Parte Desta Comunidade
+                </a>
+            </div>
+        </section>
 </main>
 <!-- Footer -->
 <footer class="w-full py-8 md:py-12 px-4 md:px-6 lg:px-12 border-none bg-surface-container-lowest">

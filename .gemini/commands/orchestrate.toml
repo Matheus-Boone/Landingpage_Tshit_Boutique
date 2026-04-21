@@ -1,0 +1,6 @@
+description = "Coordinate multiple agents for complex tasks. Use for multi-perspective analysis, comprehensive reviews, or tasks requiring different domain expertise."
+prompt = """Execute o workflow abaixo:
+@{.agent/workflows/orchestrate.md}
+
+Argumentos do usuário: {{args}}
+"""

@@ -1,0 +1,6 @@
+description = "Preview server start, stop, and status check. Local development server management."
+prompt = """Execute o workflow abaixo:
+@{.agent/workflows/preview.md}
+
+Argumentos do usuário: {{args}}
+"""
