@@ -154,9 +154,51 @@
         body.loading {
             overflow: hidden;
         }
+
+        /* Scroll-Driven Color Revival */
+        .scroll-colorize {
+            filter: grayscale(1) brightness(0.6) saturate(0);
+            transform: scale(1.03);
+            transition: filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: filter, transform;
+        }
+
+        .scroll-colorize.is-revealed {
+            filter: grayscale(0) brightness(1) saturate(1.1);
+            transform: scale(1);
+        }
+
+        @supports (animation-timeline: view()) {
+            @keyframes colorReveal {
+                from { filter: grayscale(1) brightness(0.6) saturate(0); transform: scale(1.04); }
+                to   { filter: grayscale(0) brightness(1) saturate(1.1); transform: scale(1);    }
+            }
+
+            .scroll-colorize {
+                animation: colorReveal linear both;
+                animation-timeline: view();
+                animation-range: entry 5% cover 55%;
+                transition: none;
+            }
+
+            .scroll-colorize:hover {
+                filter: grayscale(0) brightness(1.05) saturate(1.2);
+                transform: scale(1) !important;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .scroll-colorize {
+                filter: grayscale(0) brightness(1) saturate(1);
+                transform: scale(1);
+                animation: none;
+                transition: none;
+            }
+        }
     </style>
 </head>
-<body class="bg-surface text-on-surface antialiased overflow-x-hidden min-h-screen flex flex-col loading" style="scroll-behavior: smooth;">
+<body class="bg-surface text-on-surface antialiased overflow-x-clip min-h-screen flex flex-col loading" style="scroll-behavior: smooth;">
 <!-- Preloader -->
 <div id="preloader">
     <div class="loader-spinner"></div>
@@ -189,12 +231,13 @@
 <!-- Background Image Overlay -->
 <div class="absolute inset-0 z-0">
 <div class="absolute inset-0 bg-gradient-to-b from-surface-container-lowest/80 via-surface/60 to-surface-container-lowest z-10"></div>
-<img alt="" class="w-full h-full object-cover object-center opacity-40 mix-blend-luminosity" data-alt="high contrast editorial fashion photography of a model wearing dark urban streetwear standing in shadows with moody neon lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7HBOKbPgWopfYdYnyh48q8FO3bfq-kVLl6P2uxOHM6gun1A6uGeYavgfX2SMmPX4mYBXTu0V8m_x3lkDi85tCvGAOJQK2fXOKHskFNWkvqEUqRyzcjUHDNcHAfzzpgOt49uR1CG5gcIYZWq-u7TJ76eEa56ipUg4hhAllvN8_FKLshcFQQSt_QrJJA86rp6_8sW59QpcK7Hm_VoA6YB1_jCR6II9KxakdX95bwok6BkmjhN0mo51d-T9MfHRQR_bf0IHIwKJMMQ"/>
+<!-- Mobile hero (< 768px) -->
+        <img alt="Editorial fashion hero — T-Shirt Boutique" class="md:hidden w-full h-full object-cover object-center opacity-40 mix-blend-luminosity" src="assets/hero/hero mobile.png">
+        <!-- Desktop hero (>= 768px) -->
+        <img alt="Editorial fashion hero — T-Shirt Boutique" class="hidden md:block w-full h-full object-cover object-center opacity-40 mix-blend-luminosity" src="assets/hero/hero pc.png">
 </div>
 <div class="relative z-10 max-w-5xl mx-auto text-center space-y-6 md:space-y-8 px-2">
-<div class="flex justify-center">
-    <img src="logovetorizada.webp" alt="T-Shirt Boutique Logo" class="h-24 md:h-36 lg:h-40 w-auto object-contain drop-shadow-[0_0_30px_rgba(255,20,147,0.4)] hover:drop-shadow-[0_0_45px_rgba(255,20,147,0.7)] hover:-translate-y-2 transition-all duration-700 ease-out cursor-pointer" />
-</div>
+
 <h1 class="font-headline text-3xl sm:text-4xl leading-[1.2] md:text-5xl lg:text-6xl font-medium tracking-tight text-on-surface md:leading-tight drop-shadow-2xl">
                     O Seu Estilo Não Aceita Cópias.<br/>
 <span class="text-primary italic">Vista a Verdadeira Exclusividade.</span>
@@ -268,19 +311,19 @@ Marcas globais. 100% originais. Sem exceções.
 </div>
 <div class="grid grid-cols-2 gap-3 md:gap-4 order-1 lg:order-2">
 <div class="space-y-4">
-<div class="bg-surface-container-high rounded p-2 overflow-hidden aspect-[4/5] ghost-border group flex items-center justify-center">
-<img alt="Camiseta Aero For Men" class="w-full h-full object-contain rounded grayscale group-hover:grayscale-0 transition-all duration-700" src="assets/imagens-produtos/aero for man.webp"/>
+<div class="bg-surface-container-high rounded p-2 overflow-clip aspect-[4/5] ghost-border group flex items-center justify-center">
+<img alt="Camiseta Aero For Men" class="w-full h-full object-contain rounded scroll-colorize" src="assets/imagens-produtos/aero for man.webp"/>
 </div>
-<div class="bg-surface-container-high rounded p-2 overflow-hidden aspect-square ghost-border group flex items-center justify-center">
-<img alt="Camiseta Tripps" class="w-full h-full object-contain rounded grayscale group-hover:grayscale-0 transition-all duration-700" src="assets/imagens-produtos/tripps.webp"/>
+<div class="bg-surface-container-high rounded p-2 overflow-clip aspect-square ghost-border group flex items-center justify-center">
+<img alt="Camiseta Tripps" class="w-full h-full object-contain rounded scroll-colorize" src="assets/imagens-produtos/tripps.webp"/>
 </div>
 </div>
 <div class="space-y-3 md:space-y-4 pt-6 md:pt-12">
-<div class="bg-surface-container-high rounded p-2 overflow-hidden aspect-square ghost-border group flex items-center justify-center">
-<img alt="Camiseta Tommy Hilfiger" class="w-full h-full object-contain rounded grayscale group-hover:grayscale-0 transition-all duration-700" src="assets/imagens-produtos/tommy hilfiger.webp"/>
+<div class="bg-surface-container-high rounded p-2 overflow-clip aspect-square ghost-border group flex items-center justify-center">
+<img alt="Camiseta Tommy Hilfiger" class="w-full h-full object-contain rounded scroll-colorize" src="assets/imagens-produtos/tommy hilfiger.webp"/>
 </div>
-<div class="bg-surface-container-high rounded p-2 overflow-hidden aspect-[4/5] ghost-border group flex items-center justify-center">
-<img alt="Camiseta Lacoste" class="w-full h-full object-contain rounded grayscale group-hover:grayscale-0 transition-all duration-700" src="assets/imagens-produtos/lacoste.webp"/>
+<div class="bg-surface-container-high rounded p-2 overflow-clip aspect-[4/5] ghost-border group flex items-center justify-center">
+<img alt="Camiseta Lacoste" class="w-full h-full object-contain rounded scroll-colorize" src="assets/imagens-produtos/lacoste.webp"/>
 </div>
 </div>
 </div>
@@ -372,7 +415,7 @@ Quero Vestir as Melhores Marcas
 </section>
 
         <!-- Section 5: O Padrão Masculino -->
-        <section id="masculino" class="relative bg-surface-container-lowest overflow-hidden py-16 md:py-32 border-none">
+        <section id="masculino" class="relative bg-surface-container-lowest overflow-clip py-16 md:py-32 border-none">
             <!-- Noise Texture Overlay -->
             <div class="absolute inset-0 noise-texture z-0"></div>
             
@@ -396,8 +439,8 @@ Quero Vestir as Melhores Marcas
                         </div>
                     </div>
                     <div class="lg:order-2 group">
-                        <div class="aspect-[3/4] overflow-hidden rounded shadow-2xl relative">
-                            <img src="assets/sessao-masculina/WhatsApp Image 2026-04-20 at 10.05.10.jpeg" alt="Look Masculino Editorial" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-105 group-hover:scale-100">
+                        <div class="aspect-[3/4] overflow-clip rounded shadow-2xl relative">
+                            <img src="assets/sessao-masculina/WhatsApp Image 2026-04-20 at 10.05.10.jpeg" alt="Look Masculino Editorial" class="w-full h-full object-cover scroll-colorize">
                             <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/60 to-transparent opacity-60 group-hover:opacity-20 transition-opacity pointer-events-none"></div>
                         </div>
                     </div>
@@ -406,8 +449,8 @@ Quero Vestir as Melhores Marcas
                 <!-- Bloco 2: Caimento -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
                     <div class="lg:order-1 group">
-                        <div class="aspect-[3/4] overflow-hidden rounded shadow-2xl relative">
-                            <img src="assets/sessao-masculina/WhatsApp Image 2026-04-20 at 10.08.08 (1).jpeg" alt="Detalhe Tecido Masculino" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-105 group-hover:scale-100">
+                        <div class="aspect-[3/4] overflow-clip rounded shadow-2xl relative">
+                            <img src="assets/sessao-masculina/WhatsApp Image 2026-04-20 at 10.08.08 (1).jpeg" alt="Detalhe Tecido Masculino" class="w-full h-full object-cover scroll-colorize">
                             <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/60 to-transparent opacity-60 group-hover:opacity-20 transition-opacity pointer-events-none"></div>
                         </div>
                     </div>
@@ -459,19 +502,19 @@ Quero Vestir as Melhores Marcas
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-stretch">
                     <!-- Foto Alta -->
                     <div class="md:col-span-5 group">
-                        <div class="h-full aspect-[3/5] md:aspect-auto overflow-hidden rounded shadow-2xl relative">
-                            <img src="assets/sessao-feminina/WhatsApp Image 2026-04-21 at 18.41.25.jpeg" alt="Coleção Feminina" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out">
+                        <div class="h-full aspect-[3/5] md:aspect-auto overflow-clip rounded shadow-2xl relative">
+                            <img src="assets/sessao-feminina/WhatsApp Image 2026-04-21 at 18.41.25.jpeg" alt="Coleção Feminina" class="w-full h-full object-cover scroll-colorize">
                             <div class="absolute inset-0 bg-pink-900/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                         </div>
                     </div>
                     <!-- Fotos Empilhadas -->
                     <div class="md:col-span-7 flex flex-col gap-4 md:gap-6">
-                        <div class="aspect-square md:flex-grow overflow-hidden rounded shadow-2xl group relative">
-                            <img src="assets/sessao-feminina/SaveClip.App_670533534_18198517423353950_7090337916845249403_n.jpg" alt="Detalhe Look Feminino" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out">
+                        <div class="aspect-square md:flex-grow overflow-clip rounded shadow-2xl group relative">
+                            <img src="assets/sessao-feminina/SaveClip.App_670533534_18198517423353950_7090337916845249403_n.jpg" alt="Detalhe Look Feminino" class="w-full h-full object-cover scroll-colorize">
                             <div class="absolute inset-0 bg-pink-900/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                         </div>
-                        <div class="aspect-square md:flex-grow overflow-hidden rounded shadow-2xl group relative">
-                            <img src="assets/sessao-feminina/SaveClip.App_670158581_18198517381353950_3400376797698543319_n.jpg" alt="Look Premium Feminino" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out">
+                        <div class="aspect-square md:flex-grow overflow-clip rounded shadow-2xl group relative">
+                            <img src="assets/sessao-feminina/SaveClip.App_670158581_18198517381353950_3400376797698543319_n.jpg" alt="Look Premium Feminino" class="w-full h-full object-cover scroll-colorize">
                             <div class="absolute inset-0 bg-pink-900/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                         </div>
                     </div>
@@ -488,7 +531,7 @@ Quero Vestir as Melhores Marcas
         </section>
 
         <!-- Section 7: Prova Social com Prints Reais -->
-        <section id="experiencia" class="py-16 md:py-32 bg-surface overflow-hidden border-none">
+        <section id="experiencia" class="py-16 md:py-32 bg-surface overflow-clip border-none">
             <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-12 mb-12 md:mb-20">
                 <div class="text-center max-w-3xl mx-auto space-y-4 md:space-y-6">
                     <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full">
@@ -654,7 +697,7 @@ Quero Vestir as Melhores Marcas
 <div class="flex flex-col items-center gap-6 md:gap-8 md:flex-row md:justify-between max-w-7xl mx-auto w-full">
 <div class="text-sm font-bold text-neutral-500 font-headline uppercase tracking-widest text-center md:text-left">
                 T-SHIRT BOUTIQUE<br/>
-<span class="font-body text-[10px] font-normal tracking-[0.2em] opacity-70">URBAN NOIR &amp; NEON EDITORIAL.</span>
+<span class="font-body text-[10px] font-normal tracking-[0.2em] opacity-70">CURADORIA PREMIUM &amp; MARCAS GLOBAIS.</span>
 </div>
 <div class="flex flex-col items-center gap-4 w-full md:w-auto">
 <a class="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-surface-container hover:bg-surface-container-high text-primary-fixed-dim font-bold text-sm py-3 px-6 rounded ghost-border transition-all duration-300 animate-pulse hover:animate-none" href="https://wa.me/556992762900?text=Ol%C3%A1%21%20Terminei%20de%20ver%20o%20site%20e%20gostaria%20de%20falar%20com%20um%20consultor%20de%20estilo%20para%20me%20ajudar%20a%20escolher%20as%20melhores%20pe%C3%A7as." target="_blank" rel="noopener noreferrer">
@@ -670,7 +713,7 @@ Quero Vestir as Melhores Marcas
 </div>
 </div>
 <div class="mt-8 md:mt-12 text-center space-y-2">
-<p class="font-sans text-[10px] uppercase tracking-[0.2em] text-neutral-600">© 2024 T-SHIRT BOUTIQUE. URBAN NOIR &amp; NEON EDITORIAL.</p>
+<p class="font-sans text-[10px] uppercase tracking-[0.2em] text-neutral-600">© 2024 T-SHIRT BOUTIQUE. CURADORIA PREMIUM &amp; MARCAS GLOBAIS.</p>
 <p class="font-sans text-[10px] uppercase tracking-[0.2em] text-neutral-600">CNPJ: 41.451.082/0001-78</p>
 </div>
 </footer>
@@ -850,6 +893,31 @@ Quero Vestir as Melhores Marcas
   initVideoObserver();
   requestAnimationFrame(updateScrolly);
 
+})();
+
+// IntersectionObserver Fallback for Scroll-Driven Color Revival
+(function() {
+  if (CSS.supports('animation-timeline', 'view()')) return;
+
+  const images = document.querySelectorAll('.scroll-colorize');
+  if (!images.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: [0.15, 0.35],
+      rootMargin: '0px 0px -5% 0px'
+    }
+  );
+
+  images.forEach(img => observer.observe(img));
 })();
 </script>
 </body></html>

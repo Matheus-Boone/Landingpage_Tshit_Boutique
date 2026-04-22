@@ -1,4 +1,4 @@
-# Design System Strategy: Urban Noir & Neon Editorial
+# Design System Strategy: Curadoria Premium & Marcas Globais
 
 ## 1. Overview & Creative North Star
 **Creative North Star: "The Underground Gallery"**
