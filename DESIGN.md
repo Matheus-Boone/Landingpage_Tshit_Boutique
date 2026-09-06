@@ -1,76 +1,180 @@
-# Design System Strategy: Curadoria Premium & Marcas Globais
+# 🏛️ Design System: T-Shirt Boutique (Urban Premium)
 
-## 1. Overview & Creative North Star
-**Creative North Star: "The Underground Gallery"**
-This design system rejects the "standard e-commerce template" in favor of a high-end, editorial experience. It treats streetwear as fine art. The aesthetic is built on the tension between the raw, industrial nature of urban life (#000000) and the high-fashion sophistication of luxury retail (#FF1493). 
-
-By utilizing intentional asymmetry—such as staggered image grids and large-scale serif typography overlapping sleek sans-serif UI—we move away from "safe" layouts. This system creates a digital flagship store that feels exclusive, serious, and deeply intentional.
+> **Documento Oficial de Diretrizes de Design, Tokens e Componentes**  
+> **Conceito Criativo:** *"The Underground Gallery"*  
+> **Público & Estilo:** Moda urbana premium, curadoria de luxo, streetwear autêntico e marcas globais importadas.
 
 ---
 
-## 2. Colors & Tonal Depth
-The color palette is a study in "Dark Mode" sophistication. We do not use pure black for everything; we use layers of darkness to create a sense of physical space.
+## 1. Visão Criativa & North Star
 
-### The Palette
-- **Core Surface:** `surface` (#000000) – The foundation for all screens, reflecting the neutral base.
-- **Accent High-Contrast:** `primary` (#FF1493) – The brand's most distinctive chromatic color, used for key interactive elements.
-- **Metallic Neutral:** `secondary` (#D3D3D3) – Provides a silver, industrial sheen for supporting UI elements.
+### "The Underground Gallery"
+Este design system rejeita intencionalmente o modelo de e-commerce genérico e "seguro", adotando uma **experiência editorial imersiva**. Cada peça é tratada como uma obra de arte em exposição.
 
-### The Rules of Engagement
-- **The "No-Line" Rule:** Explicitly prohibit 1px solid borders for sectioning. Boundaries must be defined solely through background shifts.
-- **Surface Hierarchy & Nesting:** Use surface tiers to create depth. A "Cart" drawer should feel physically closer to the user than the product gallery.
-- **The "Glass & Gradient" Rule:** To avoid a flat, "matte" feel, floating navigation elements must use semi-transparent surface colors with a backdrop-blur. Main CTAs should utilize a subtle linear gradient to add "soul" and dimension.
+A identidade visual é fundamentada na **tensão estética** entre:
+- A **crueza industrial urbana** dos tons escuros profundos (`#0e0e0e` / `#131313`).
+- A **sofisticação de alta costura** representada pelo contraste do neon pink (`#FF1493` / `#ff479c`) e do brilho metálico (`#c6c6c6`).
 
 ---
 
-### 3. Typography: The High-Low Mix
-We pair the traditional authority of a serif with the modern utility of a geometric sans-serif.
+## 2. Paleta de Cores & Tokens de Superfície
 
-*   **Display & Headlines (Newsreader):** These are our "Editorial" voices. 
-    *   **Display-LG:** Reserved for hero messaging. Use tight letter-spacing and overlap images to break the grid.
-    *   **Headline-MD:** Used for collection titles.
-*   **UI & Body (Manrope):** These are our "Functional" voices.
-    *   **Title-SM:** Bold weight for product names and button text.
-    *   **Body-MD:** For descriptions. Set with generous line-height to ensure readability against the dark background.
-    *   **Label-SM:** All-caps for metadata, price points, and tags.
+O sistema adota uma escala refinada de *Dark Mode* (*Surface Hierarchy*), criando profundidade física e hierarquia sem depender de linhas divisórias duras.
 
----
+### 🎨 Tabela de Cores & Tokens
 
-## 4. Elevation & Depth
-In this system, depth is felt, not seen. We move away from heavy drop shadows toward "Tonal Layering."
-
-- **The Layering Principle:** Stack darker cards on slightly lighter sections to create a "recessed" look, making the product photography pop forward.
-- **Ambient Shadows:** For floating modals, use custom soft shadows. Never use harsh, high-opacity shadows.
-- **The "Ghost Border" Fallback:** If a border is required for input fields, use a low-opacity variant. 100% opaque borders are forbidden as they "trap" the design.
-- **Subtle Glow:** Primary buttons should emit a soft glow using the primary color to mimic a neon sign in a dark alley.
-
----
-
-## 5. Components
-
-### Buttons (The "Neon Tactile" Style)
-- **Primary:** Background: `primary` (#FF1493). Shape: Moderate Roundedness (Level 2). Add a subtle glow on hover.
-- **Secondary:** Background: Transparent. Border: Ghost Border. Text: `on_surface`.
-- **Tertiary:** Text only, bold label style, using `secondary` (#D3D3D3) with an underline that expands on hover.
-
-### Cards & Lists (The "Frameless" Style)
-- **Product Cards:** Forbid the use of divider lines. Separate product info from the image using consistent vertical white space (Spacing Level 2). 
-- **Input Fields:** Use "Underline" style rather than boxed. A 1px line that turns into the primary color on focus.
-
-### Boutique-Specific Components
-- **The "Drop" Countdown:** Large headline numbers in a secondary tone with a faint primary outer glow.
-- **Exclusive Access Chip:** A container-based chip with a primary dot indicator to signal limited stock.
+| Categoria | Token Tailwind | Código HEX | Aplicação & Propósito |
+| :--- | :--- | :--- | :--- |
+| **Acento Primário** | `primary` | `#ffb0ca` / `#FF1493` | Chamadas de ação (CTAs), destaques interativos e links ativos |
+| **Container Primário**| `primary-container` | `#ff479c` | Fundo de destaque vibrante e fonte do efeito neon |
+| **Texto em Primário** | `on-primary` | `#640036` | Contraste de texto sobre o fundo primário |
+| **Base de Fundo** | `background` / `surface` | `#131313` | Cor padrão de fundo do corpo da página |
+| **Superfície Nível 0**| `surface-container-lowest` | `#0e0e0e` | Camada mais profunda (Hero, Preloader e Rodapé) |
+| **Superfície Nível 1**| `surface-container-low` | `#1b1b1b` | Cards de produtos e blocos de conteúdo |
+| **Superfície Nível 2**| `surface-container` | `#1f1f1f` | Containers intermediários e seções agrupadas |
+| **Superfície Nível 3**| `surface-container-high` | `#2a2a2a` | Gavetas, modais e elementos flutuantes |
+| **Superfície Nível 4**| `surface-container-highest`| `#353535` | Elementos de apoio e tags neutras |
+| **Tipografia Principal**| `on-surface` | `#e2e2e2` | Textos de leitura principal e títulos |
+| **Tipografia Secundária**| `secondary` / `on-secondary`| `#c6c6c6` / `#b5b5b5`| Textos de suporte, legendas e metadados |
+| **Bordas Fantasma** | `outline-variant` | `#5b3f48` / `rgba(91,63,72,0.2)` | Delimitação sutil sem fechamento visual pesado |
+| **Sucesso / WhatsApp** | `tertiary` | `#6ae04d` / `#2fa714` | Badges de estoque, autenticidade e status ativo |
 
 ---
 
-## 6. Do's and Don'ts
+## 3. Tipografia: O Emparelhamento "High-Low"
 
-### Do:
-- **Use "Extreme" White Space:** Follow the Normal (Level 2) spacing scale to allow elements to breathe.
-- **Layer Text Over Images:** Use high-contrast text over darkened image overlays to create an editorial feel.
-- **Stick to Moderate Curves:** Every corner (cards, buttons, inputs) must use Moderate (Level 2) roundedness. This maintains a sophisticated, balanced brand persona.
+Combinação da autoridade clássica editorial de uma fonte com serifa com a legibilidade moderna de uma geométrica sem serifa.
 
-### Don't:
-- **Don't Use Dividers:** Never use a horizontal rule to separate content. Use background color shifts.
-- **Don't Use Sharp or Pill Edges:** The brand is "Urban/High-End." Avoid Level 0 (sharp) or Level 3 (pill) shapes; keep to the defined Moderate roundedness.
-- **Don't Overcrowd:** Avoid Level 0 or 1 spacing; the editorial feel requires the breathing room of Level 2.
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Newsreader (Serif)   → Editorial, Expressivo, Exclusivo    │
+│  Manrope (Sans-serif) → Funcional, Técnico, Legível         │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Escala Tipográfica
+
+| Função | Família | Tamanhos Usuais | Peso / Estilo | Uso |
+| :--- | :--- | :--- | :--- | :--- |
+| **Display Hero** | `Newsreader` (`font-headline`) | `3rem` a `4rem` (48px–64px) | `500 Medium`, `italic` em destaque | Título de abertura com sobreposição |
+| **Headline / Seções**| `Newsreader` (`font-headline`) | `1.75rem` a `2.5rem` (28px–40px)| `500 Medium` / `600 Semi-bold` | Títulos das seções principais |
+| **Subtítulos & Nomes**| `Manrope` (`font-body`) | `1.125rem` a `1.25rem` (18px–20px)| `600 Semi-bold` / `700 Bold` | Nomes de peças e marcas |
+| **Corpo de Texto** | `Manrope` (`font-body`) | `0.875rem` a `1rem` (14px–16px) | `400 Regular`, entrelinha `relaxed` | Descrições e parágrafos |
+| **Labels & Tags** | `Manrope` (`font-label`) | `0.625rem` a `0.75rem` (10px–12px)| `700 Bold`, `uppercase`, `tracking-widest` | Preços, status de estoque e categorias |
+
+* **Ícones:** `Material Symbols Outlined` (Google Fonts), configurado com `font-variation-settings: 'FILL' 0|1, 'wght' 400, 'opsz' 24`.
+
+---
+
+## 4. Elevação, Iluminação & Efeitos Visuais
+
+### 1. A Regra do "No-Line"
+É proibido o uso de linhas sólidas horizontais (`<hr>` ou `border-b`) para separar seções. A transição deve ser orgânica, feita puramente pela variação tonal do fundo (`#0e0e0e` → `#131313` → `#1b1b1b`).
+
+### 2. Efeito Neon Glow (`.neon-glow`)
+Simula a iluminação tátil de letreiros neon urbanos em ambientes escuros:
+```css
+.neon-glow {
+    box-shadow: 0 0 15px rgba(255, 71, 156, 0.3);
+}
+.neon-glow:hover {
+    box-shadow: 0 0 25px rgba(255, 71, 156, 0.5);
+}
+```
+
+### 3. Ghost Border (`.ghost-border`)
+Borda de baixa opacidade para campos de entrada ou botões secundários, evitando fechar rigidamente os elementos:
+```css
+.ghost-border {
+    border: 1px solid rgba(91, 63, 72, 0.2);
+}
+```
+
+### 4. Glassmorphism na Navegação
+Barra de topo flutuante com desfoque e transparência:
+```html
+<nav class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+```
+
+### 5. Textura de Ruído Analógico (`.noise-texture`)
+Camada SVG imperceptível (`opacity: 0.03`) que elimina a sensação de "plástico digital" e confere textura de papel fotográfico editorial.
+
+### 6. Scroll-Driven Color Revival
+Técnica onde as fotografias das peças iniciam em preto-e-branco granulado (`grayscale(1) brightness(0.6)`) e revelam sua cor e nitidez reais à medida que entram na visão do usuário através do scroll.
+
+---
+
+## 5. Biblioteca de Componentes
+
+### 🔘 Botões
+- **Primário (CTA Master):** Fundo `#FF1493`, texto de alto contraste, bordas sutis (`rounded-sm`), acompanhado de `.neon-glow`.
+- **Secundário (Consultor / Outline):** Fundo transparente, borda `border-pink-500/50`, texto rosa e transição suave para preenchimento no hover.
+- **Terciário (Texto Editorial):** Texto `Newsreader` ou `Manrope` com sublinhado expansivo e micro-interação.
+
+### 🖼️ Vitrine & Cards de Produtos (Frameless Style)
+- Sem bordas pesadas de contorno;
+- Imagens em proporção vertical editorial (`aspect-[3/4]` ou `aspect-[4/5]`);
+- Tipografia de preço em destaque limpo;
+- Selo de autenticidade integrado.
+
+### 🏷️ Badges & Chips de Escassez
+- Pílula translúcida com indicador pulsante (`bg-pink-500 animate-ping` / `animate-pulse`) sinalizando estoque ultralimitado e exclusividade de importação.
+
+### ⏳ Preloader de Experiência
+- Animação circular rosa neon com contador percentual e efeito de transição `opacity` ao término do carregamento.
+
+---
+
+## 6. Diretrizes de Espaçamento e Formas
+
+- **Bordas e Cantos:** Moderados (`0.25rem` / `rounded-sm` / `rounded`). Proibido o uso de cantos 100% pontiagudos ou formato de pílula excessivo em cartões estruturais.
+- **Espaço em Branco:** Generoso (escala de 4px, 8px, 16px, 24px, 32px, 48px, 64px, 96px) para garantir respiro e atmosfera de luxo.
+
+---
+
+## 7. Regras de Ouro (Do's & Don'ts)
+
+| Fazer (Do) ✅ | Não Fazer (Don't) ❌ |
+| :--- | :--- |
+| **Utilizar contraste tonal** para criar hierarquia entre seções | **Não usar réguas sólidas (`<hr>`)** ou linhas de 1px como divisores de tela |
+| **Harmonizar serifa e sem serifa** (Newsreader nos títulos e Manrope no corpo) | **Não misturar mais de 2 famílias tipográficas** para manter a elegância |
+| **Aplicar brilho neon com moderação** em botões principais e estados de foco | **Não usar cores aleatórias** fora da paleta (manter a trinca Preto/Prata/Rosa) |
+| **Manter fotos com proporção vertical** e efeito suave de hover | **Não usar cantos excessivamente redondos** em cards de produtos |
+| **Dar destaque aos diferenciais de originalidade** com metadados claros | **Não poluir o layout** com excesso de elementos concorrentes |
+
+---
+
+## 8. Código de Configuração (Tailwind CSS)
+
+```javascript
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface": "#131313",
+        "surface-container-lowest": "#0e0e0e",
+        "surface-container-low": "#1b1b1b",
+        "surface-container": "#1f1f1f",
+        "surface-container-high": "#2a2a2a",
+        "primary": "#ffb0ca",
+        "primary-container": "#ff479c",
+        "secondary": "#c6c6c6",
+        "on-surface": "#e2e2e2",
+        "outline-variant": "#5b3f48",
+        "tertiary": "#6ae04d"
+      },
+      borderRadius: {
+        DEFAULT: "0.25rem",
+        lg: "0.25rem",
+        xl: "0.25rem"
+      },
+      fontFamily: {
+        headline: ["Newsreader", "serif"],
+        body: ["Manrope", "sans-serif"],
+        label: ["Manrope", "sans-serif"]
+      }
+    }
+  }
+}
+```

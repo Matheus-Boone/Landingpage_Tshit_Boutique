@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Cadastro de peça · Painel T-Shirt Boutique</title>
+  <meta name="description" content="Cadastro e edição de peças do catálogo da T-Shirt Boutique." />
+  <meta name="theme-color" content="#0e0e0e" />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#131313; --surface:#1b1b1b; --fg:#e2e2e2; --muted:#b5b5b5;
+      --border:rgba(91,63,72,0.26); --accent:#ff1493;
+      --surface-0:#0e0e0e; --surface-1:#1b1b1b; --surface-2:#1f1f1f; --surface-3:#2a2a2a; --surface-4:#353535;
+      --on-accent:#fff; --metal:#c6c6c6; --success:#6ae04d; --danger:#ff6b6b; --danger-fg:#ffd7d7; --warn:#ffb020;
+      --stroke:color-mix(in oklch, var(--metal) 24%, transparent);
+      --accent-soft:color-mix(in oklch, var(--accent) 16%, transparent);
+      --accent-line:color-mix(in oklch, var(--accent) 45%, transparent);
+      --fg-soft:color-mix(in oklch, var(--fg) 6%, transparent);
+      --glow:0 0 15px rgba(255,71,156,.30); --glow-strong:0 0 26px rgba(255,71,156,.5);
+      --font-display:'Newsreader',Georgia,'Times New Roman',serif;
+      --font-body:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+      --radius:4px; --radius-lg:8px; --nav-h:60px;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    svg{display:block;max-width:100%} img{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+    input,select,textarea{font:inherit}
+    h1,h2,h3{margin:0}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+    ::selection{background:var(--accent);color:var(--on-accent)}
+    input[type=number]{-moz-appearance:textfield;appearance:textfield}
+    input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:11px 16px;border-radius:var(--radius);border:1px solid transparent;font:600 14px/1 var(--font-body);letter-spacing:.01em;cursor:pointer;transition:background .16s ease,border-color .16s ease,color .16s ease,box-shadow .16s ease,transform .06s ease;white-space:nowrap}
+    .btn:active{transform:translateY(1px)}
+    .btn svg{width:16px;height:16px;flex:none}
+    .btn-primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+    .btn-primary:hover{background:color-mix(in oklch, var(--accent) 88%, white);border-color:color-mix(in oklch, var(--accent) 88%, white)}
+    .btn-secondary{background:transparent;color:var(--fg);border-color:var(--accent-line)}
+    .btn-secondary:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--on-accent)}
+    .btn-ghost{background:transparent;color:var(--fg);border-color:var(--stroke)}
+    .btn-ghost:hover{background:var(--surface-3);border-color:var(--metal)}
+
+    .ad-top{position:sticky;top:0;z-index:30;background:color-mix(in oklch, var(--surface-0) 88%, transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 4px 30px rgba(0,0,0,.5)}
+    .ad-top-in{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:var(--nav-h);max-width:1320px;margin-inline:auto;padding:10px 20px}
+    .ad-brand{font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.01em;line-height:1.1}
+    .ad-brand em{color:var(--accent);font-style:italic}
+    .ad-brand span{display:block;font:700 9px/1 var(--font-body);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+    .ad-top-actions{display:flex;gap:10px;align-items:center}
+    .ad-top-actions .btn{min-height:40px;padding:9px 13px;font-size:13px}
+    .ad-top-actions .lbl-full{display:none}
+    @media(min-width:560px){ .ad-top-actions .lbl-full{display:inline} }
+
+    .ad-shell{display:grid;grid-template-columns:1fr;max-width:1320px;margin-inline:auto;position:relative;z-index:1}
+    @media(min-width:960px){ .ad-shell{grid-template-columns:236px 1fr} }
+    .ad-side{display:none}
+    @media(min-width:960px){ .ad-side{display:flex;flex-direction:column;gap:2px;padding:26px 14px;border-right:1px solid var(--border);min-height:calc(100vh - var(--nav-h))} }
+    .ad-side a{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:var(--radius);font-size:14px;font-weight:600;color:var(--muted);min-height:44px;transition:color .14s ease,background .14s ease}
+    .ad-side a svg{width:17px;height:17px;flex:none}
+    .ad-side a:hover{color:var(--fg);background:var(--surface-2)}
+    .ad-side a[aria-current=page]{color:var(--fg);background:var(--accent-soft);box-shadow:inset 2px 0 0 var(--accent)}
+    .ad-side .sep{height:1px;background:var(--border);margin:12px 6px}
+
+    .ad-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 20px;border-bottom:1px solid var(--border);position:sticky;top:var(--nav-h);z-index:20;background:color-mix(in oklch, var(--bg) 92%, transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+    .ad-tabs::-webkit-scrollbar{display:none}
+    .ad-tabs a{flex:none;display:inline-flex;align-items:center;padding:9px 14px;border-radius:999px;border:1px solid var(--border);font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap;min-height:40px}
+    .ad-tabs a[aria-current=page]{color:var(--fg);border-color:var(--accent);background:var(--accent-soft)}
+    @media(min-width:960px){ .ad-tabs{display:none} }
+
+    .ad-main{padding:22px 20px 108px;min-width:0}
+    @media(min-width:960px){ .ad-main{padding:32px 32px 64px} }
+    .crumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-bottom:14px}
+    .crumb a{color:var(--metal)} .crumb a:hover{color:var(--fg)}
+    .ad-h1{font-family:var(--font-display);font-weight:500;font-size:clamp(24px,4vw,32px);letter-spacing:-.015em;margin:0 0 4px}
+    .ad-sub{color:var(--muted);font-size:14px;margin:0 0 26px}
+
+    .form{max-width:760px}
+    .form-sec{margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid var(--border)}
+    .form-sec:last-of-type{border-bottom:0}
+    .form-sec > h2{font-family:var(--font-display);font-weight:500;font-size:19px;letter-spacing:-.01em;margin:0 0 4px}
+    .form-sec > .sec-hint{color:var(--muted);font-size:13px;margin:0 0 18px}
+
+    .field{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+    .flabel{font:700 11px/1.3 var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--metal)}
+    .flabel .opt{color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:none}
+    .field .hint{font-size:12px;color:var(--muted)}
+    .field .err{font-size:12px;color:var(--danger);display:none}
+    .field.invalid .err{display:block}
+    .input,.textarea{width:100%;min-height:48px;padding:13px 14px;background:var(--surface-1);border:1px solid var(--stroke);border-radius:var(--radius);color:var(--fg);font:400 15px/1.4 var(--font-body);transition:border-color .16s ease,box-shadow .16s ease}
+    .input::placeholder,.textarea::placeholder{color:var(--muted)}
+    .input:focus-visible,.textarea:focus-visible{outline:none;border-color:var(--accent);box-shadow:var(--glow)}
+    .field.invalid .input,.field.invalid .textarea{border-color:var(--danger)}
+    .textarea{min-height:112px;resize:vertical;line-height:1.55}
+    .grid-2{display:grid;grid-template-columns:1fr;gap:0 18px}
+    @media(min-width:620px){ .grid-2{grid-template-columns:1fr 1fr} }
+    .money{position:relative;display:flex;align-items:center}
+    .money .cur{position:absolute;left:14px;font-size:15px;color:var(--muted);pointer-events:none}
+    .money .input{padding-left:40px}
+    .money .input:disabled{opacity:.45;cursor:not-allowed}
+    .link-inline{align-self:flex-start;font-size:12px;color:var(--metal);text-decoration:underline;text-underline-offset:3px;min-height:32px;display:inline-flex;align-items:center}
+    .link-inline:hover{color:var(--fg)}
+
+    .dropzone{border:1.5px dashed var(--stroke);border-radius:var(--radius-lg);padding:26px 18px;text-align:center;color:var(--muted);transition:border-color .16s ease,background .16s ease;cursor:pointer}
+    .dropzone:hover,.dropzone.drag{border-color:var(--accent);background:var(--accent-soft)}
+    .dropzone svg{width:26px;height:26px;margin:0 auto 10px;color:var(--metal)}
+    .dropzone b{color:var(--fg);font-weight:600}
+    .dz-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+    .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:10px;margin-top:16px}
+    .photo{position:relative;aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);background:linear-gradient(150deg,var(--surface-3),var(--surface-0))}
+    .photo[data-tone="3"]{background:radial-gradient(120% 90% at 70% 15%,var(--accent-soft),transparent 60%),linear-gradient(150deg,var(--surface-3),var(--surface-0))}
+    .photo[data-tone="5"]{background:radial-gradient(120% 90% at 20% 20%,var(--accent-soft),transparent 55%),linear-gradient(220deg,var(--surface-2),var(--surface-0))}
+    .photo img{width:100%;height:100%;object-fit:cover}
+    .photo .ph-cap{position:absolute;left:6px;top:6px;font:700 8px/1 var(--font-body);letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:var(--on-accent);padding:4px 6px;border-radius:3px}
+    .photo .ph-x{position:absolute;right:5px;top:5px;width:28px;height:28px;display:grid;place-items:center;border-radius:999px;background:color-mix(in oklch,var(--surface-0) 82%,transparent);color:var(--fg)}
+    .photo .ph-x:hover{background:var(--danger);color:var(--on-accent)}
+    .photo .ph-x svg{width:14px;height:14px}
+    .photo .ph-cover{position:absolute;left:0;right:0;bottom:0;padding:7px 6px;font:600 10px/1 var(--font-body);background:color-mix(in oklch,var(--surface-0) 80%,transparent);color:var(--fg);text-align:center}
+    .photo .ph-cover:hover{color:var(--accent)}
+    .photo.is-cover .ph-cover{display:none}
+
+    .sz-list{display:flex;flex-direction:column;gap:8px}
+    .sz-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface-1)}
+    .sz-row .cbx{display:flex;align-items:center;gap:10px;min-width:58px;cursor:pointer;font-weight:600}
+    .sz-row .qty{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px}
+    .sz-row .qty input{width:78px;min-height:40px;padding:8px 10px;background:var(--surface-2);border:1px solid var(--stroke);border-radius:var(--radius);color:var(--fg);text-align:right;font-variant-numeric:tabular-nums}
+    .sz-row .qty input:focus-visible{outline:none;border-color:var(--accent)}
+    .sz-row.off{opacity:.72}
+    .sz-row.off .qty{opacity:.3;pointer-events:none}
+    input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent);flex:none}
+
+    .checks{display:flex;flex-direction:column;gap:2px}
+    .check{display:flex;align-items:flex-start;gap:12px;padding:11px 12px;border-radius:var(--radius);cursor:pointer}
+    .check:hover{background:var(--surface-2)}
+    .check .c-txt{font-size:14px}
+    .check .c-sub{display:block;color:var(--muted);font-size:12px;margin-top:3px;line-height:1.45}
+
+    .err-summary{display:none;background:color-mix(in oklch,var(--danger) 12%,transparent);border:1px solid color-mix(in oklch,var(--danger) 40%,transparent);border-radius:var(--radius);padding:14px 16px;margin-bottom:24px;font-size:13px}
+    .err-summary.show{display:block}
+    .err-summary strong{color:var(--danger-fg);display:block;margin-bottom:6px}
+    .err-summary a{color:var(--danger-fg);text-decoration:underline;text-underline-offset:2px;display:inline-block;padding:3px 10px 3px 0}
+
+    .form-foot{position:sticky;bottom:0;display:flex;gap:10px;justify-content:flex-end;padding:16px 0;margin-top:8px;background:linear-gradient(to top,var(--bg) 72%,transparent)}
+    @media(max-width:959px){
+      .form-foot{position:fixed;left:0;right:0;bottom:0;z-index:35;padding:10px 20px calc(10px + env(safe-area-inset-bottom));background:color-mix(in oklch,var(--surface-0) 92%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 -4px 30px rgba(0,0,0,.5);margin:0}
+      .form-foot .btn{flex:1}
+    }
+
+    .toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));z-index:70;transform:translate(-50%,16px);background:var(--surface-4);color:var(--fg);padding:12px 18px;border-radius:var(--radius);font:600 13px var(--font-body);box-shadow:0 12px 40px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;max-width:calc(100vw - 40px);text-align:center}
+    .toast.is-open{opacity:1;transform:translate(-50%,0)}
+    @media(min-width:960px){ .toast{bottom:28px} }
+    @media (prefers-reduced-motion: reduce){ *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important} }
+  </style>
+</head>
+<body>
+  <header class="ad-top" data-od-id="admin-header">
+    <div class="ad-top-in">
+      <a class="ad-brand" href="admin-produtos.html" aria-label="Painel T-Shirt Boutique">
+        T&#8209;Shirt <em>Boutique</em><span>Painel · Cadastro</span>
+      </a>
+      <div class="ad-top-actions">
+        <a class="btn btn-ghost" href="catalogo.html" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          <span class="lbl-full">Ver catálogo</span>
+        </a>
+        <button class="btn btn-ghost" id="logoutBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+          <span class="lbl-full">Sair</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="ad-tabs" aria-label="Seções do painel">
+    <a href="admin-produtos.html" aria-current="page">Produtos</a>
+    <a href="admin-marcas.html">Marcas &amp; Categorias</a>
+    <a href="catalogo.html" target="_blank" rel="noopener">Catálogo público</a>
+  </nav>
+
+  <div class="ad-shell">
+    <aside class="ad-side" data-od-id="admin-sidebar">
+      <a href="admin-produtos.html" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+        Produtos
+      </a>
+      <a href="admin-marcas.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7-7A2 2 0 0 1 3 12V4h8a2 2 0 0 1 1.4.6l8.2 8.2a2 2 0 0 1 0 2.6Z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+        Marcas &amp; Categorias
+      </a>
+      <div class="sep" role="separator"></div>
+      <a href="catalogo.html" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        Abrir catálogo público
+      </a>
+    </aside>
+
+    <main class="ad-main" id="main">
+      <nav class="crumb" aria-label="Trilha"><a href="admin-produtos.html">Produtos</a><span aria-hidden="true">/</span><span id="crumbLeaf">Nova peça</span></nav>
+      <h1 class="ad-h1" id="formTitle">Nova peça</h1>
+      <p class="ad-sub" id="formSub">Cadastre uma camiseta importada para publicar na vitrine.</p>
+
+      <div class="err-summary" id="errSummary" role="alert" tabindex="-1">
+        <strong>Revise os campos destacados:</strong>
+        <span id="errLinks"></span>
+      </div>
+
+      <form class="form" id="pForm" novalidate>
+        <section class="form-sec" data-od-id="sec-fotos">
+          <h2>Fotos</h2>
+          <p class="sec-hint">Foto de capa + até 4 fotos secundárias. As pré-visualizações valem só nesta sessão (o upload real depende do backend).</p>
+          <div class="dropzone" id="dropzone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg>
+            <div><b>Arraste as fotos</b> ou use os botões abaixo</div>
+            <div class="dz-actions">
+              <button type="button" class="btn btn-ghost" id="pickBtn">Escolher do dispositivo</button>
+              <button type="button" class="btn btn-ghost" id="camBtn">Usar a câmera</button>
+            </div>
+          </div>
+          <input type="file" id="fileInput" accept="image/*" multiple hidden />
+          <input type="file" id="camInput" accept="image/*" capture="environment" hidden />
+          <div class="photo-grid" id="photoGrid"></div>
+        </section>
+
+        <section class="form-sec" data-od-id="sec-basico">
+          <h2>Informações básicas</h2>
+          <p class="sec-hint">O que aparece em destaque no card do catálogo.</p>
+
+          <div class="field" id="fMarca">
+            <label class="flabel" for="marca">Marca</label>
+            <input class="input" id="marca" name="marca" list="brandsList" autocomplete="off"
+                   placeholder="Lacoste, Tommy Hilfiger, Tripps…" aria-describedby="marca-err" />
+            <datalist id="brandsList"></datalist>
+            <a class="link-inline" href="admin-marcas.html">+ Cadastrar nova marca</a>
+            <span class="err" id="marca-err">Selecione ou digite a marca.</span>
+          </div>
+
+          <div class="field" id="fNome">
+            <label class="flabel" for="nome">Nome do modelo</label>
+            <input class="input" id="nome" name="nome" autocomplete="off"
+                   placeholder="Ex.: Camiseta Piquet Crocodilo Classic Verde Militar" aria-describedby="nome-err" />
+            <span class="err" id="nome-err">Informe o nome do modelo.</span>
+          </div>
+
+          <div class="field" id="fPreco">
+            <label class="flabel" for="preco">Preço</label>
+            <div class="money">
+              <span class="cur" aria-hidden="true">R$</span>
+              <input class="input" id="preco" name="preco" inputmode="decimal" autocomplete="off"
+                     placeholder="0,00" aria-describedby="preco-err" />
+            </div>
+            <label class="check" style="padding-left:0" for="semPreco">
+              <input type="checkbox" id="semPreco" />
+              <span class="c-txt">Preço sob consulta <span class="c-sub">Exibe “Consulte condição especial” no lugar do valor.</span></span>
+            </label>
+            <span class="err" id="preco-err">Informe um preço válido (maior que zero) ou marque “sob consulta”.</span>
+          </div>
+        </section>
+
+        <section class="form-sec" data-od-id="sec-tamanhos">
+          <h2>Grade de tamanhos &amp; estoque</h2>
+          <p class="sec-hint">Marque os tamanhos disponíveis. A quantidade é opcional e ajuda no alerta de estoque baixo.</p>
+          <div class="sz-list" id="szList" tabindex="-1"></div>
+          <div class="field" style="margin:12px 0 0"><span class="err" id="sz-err">Selecione ao menos um tamanho.</span></div>
+        </section>
+
+        <section class="form-sec" data-od-id="sec-etiquetas">
+          <h2>Etiquetas &amp; destaques</h2>
+          <p class="sec-hint">Selos que aparecem sobre a foto e nos filtros da vitrine.</p>
+          <div class="checks">
+            <label class="check" for="tgLancamento"><input type="checkbox" id="tgLancamento" /><span class="c-txt">Marcar como Lançamento<span class="c-sub">Entra no filtro “Lançamentos” do catálogo.</span></span></label>
+            <label class="check" for="tgUltimas"><input type="checkbox" id="tgUltimas" /><span class="c-txt">Marcar como Últimas unidades<span class="c-sub">Mostra selo pulsante e conta como estoque baixo.</span></span></label>
+            <label class="check" for="tgOriginal"><input type="checkbox" id="tgOriginal" /><span class="c-txt">Peça 100% original importada (selo)<span class="c-sub">Badge “100% Original” no card.</span></span></label>
+            <label class="check" for="tgDestaque"><input type="checkbox" id="tgDestaque" /><span class="c-txt">Fixar em destaque no painel<span class="c-sub">Aparece no filtro “Em destaque” da gestão.</span></span></label>
+          </div>
+        </section>
+
+        <section class="form-sec" data-od-id="sec-descricao">
+          <h2>Descrição editorial <span class="flabel opt" style="font-size:11px">(opcional)</span></h2>
+          <p class="sec-hint">Composição, caimento e toque — o texto que aparece no lookbook.</p>
+          <div class="field">
+            <label class="flabel" for="desc">Descrição</label>
+            <textarea class="textarea" id="desc" name="desc" placeholder="Ex.: 100% algodão Pima, caimento slim fit, toque macio e gola canelada com friso."></textarea>
+          </div>
+        </section>
+
+        <div class="form-foot" data-od-id="form-actions">
+          <a class="btn btn-ghost" href="admin-produtos.html">Cancelar</a>
+          <button class="btn btn-primary" type="submit" id="saveBtn">Salvar e publicar no catálogo</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+  (function(){
+    'use strict';
+    var $=function(s,c){return (c||document).querySelector(s)};
+    var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+    var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})};
+    var _t; function toast(m){var e=$('#toast');e.textContent=m;e.classList.add('is-open');clearTimeout(_t);_t=setTimeout(function(){e.classList.remove('is-open')},2400);}
+
+    if(sessionStorage.getItem('tsb:admin:auth')!=='1'){ try{ sessionStorage.setItem('tsb:admin:auth','1'); }catch(e){} }
+    $('#logoutBtn').addEventListener('click',function(){ try{ sessionStorage.removeItem('tsb:admin:auth'); }catch(e){} location.href='admin-login.html'; });
+
+    /* stores */
+    var PK='tsb:admin:products:v1', BK='tsb:admin:brands:v1';
+    var seedP=[
+      {id:'lac-piquet-classic',brand:'Lacoste',name:'Piquet Crocodilo Classic Fit',price:289,sizes:['P','M','G','GG'],active:true,featured:true,status:'ativo',tags:['original'],tone:0,desc:'100% algodão Pima, caimento classic fit.'},
+      {id:'lac-ultradry',brand:'Lacoste',name:'Sport Ultra-Dry Color Block',price:319,sizes:['M','G','GG'],active:true,featured:false,status:'baixo',tags:['ultimas'],tone:3,desc:'Piquet técnico Ultra-Dry de secagem rápida.'},
+      {id:'tom-flag',brand:'Tommy Hilfiger',name:'Essential Flag Bordada',price:279,sizes:['P','M','G'],active:true,featured:false,status:'ativo',tags:['original'],tone:2,desc:'Jersey premium com bandeira bordada no peito.'},
+      {id:'tom-varsity',brand:'Tommy Hilfiger',name:'Varsity Stripe Heritage',price:299,sizes:['M','G','GG'],active:true,featured:true,status:'ativo',tags:['lancamento'],tone:4,desc:'Algodão penteado, gola e punhos em tricô listrado.'},
+      {id:'tri-nightshift',brand:'Tripps',name:'Oversized Graphic "Night Shift"',price:249,sizes:['P','M','G','GG'],active:true,featured:false,status:'ativo',tags:['lancamento'],tone:5,desc:'Malha pesada 240g, corte oversized.'},
+      {id:'tri-acid',brand:'Tripps',name:'Boxy Acid Wash',price:259,sizes:['M','G'],active:false,featured:false,status:'baixo',tags:['ultimas'],tone:1,desc:'Estonado artesanal, modelagem boxy.'},
+      {id:'aero-biglogo',brand:'Aero For Men',name:'Big Logo Vintage',price:199,sizes:['P','M','G','GG'],active:true,featured:false,status:'ativo',tags:['original'],tone:0,desc:'Algodão macio com estampa emborrachada.'},
+      {id:'aero-pocket',brand:'Aero For Men',name:'Pocket Tee Washed Navy',price:189,sizes:['M','G','GG'],active:true,featured:false,status:'ativo',tags:[],tone:2,desc:'Jersey 30/1 com bolso frontal.'},
+      {id:'lac-colorblock',brand:'Lacoste',name:'Live Colorblock Slim',price:null,sizes:['P','M'],active:false,featured:false,status:'esgotado',tags:['ultimas'],tone:3,desc:'Piquet leve, modelagem slim.'},
+      {id:'tom-monotype',brand:'Tommy Hilfiger',name:'Monotype Print Relaxed',price:289,sizes:['P','M','G','GG'],active:true,featured:true,status:'ativo',tags:['lancamento'],tone:4,desc:'Algodão orgânico com estampa monograma.'}
+    ];
+    var seedB=[
+      {id:'lacoste',name:'Lacoste',desc:'Piquet francês e ícones esportivos.'},
+      {id:'tommy',name:'Tommy Hilfiger',desc:'Preppy americano com bordados e bandeiras.'},
+      {id:'tripps',name:'Tripps',desc:'Streetwear oversized e lavagens especiais.'},
+      {id:'aero',name:'Aero For Men',desc:'Básicos com logo e caimento confortável.'}
+    ];
+    function lget(k,s){ try{ var v=JSON.parse(localStorage.getItem(k)); return (v&&v.length!=null)?v:s.slice(); }catch(e){ return s.slice(); } }
+    function lset(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+    var products=lget(PK,seedP);
+    var brands=lget(BK,seedB);
+
+    /* edit mode */
+    var params=new URLSearchParams(location.search);
+    var editId=params.get('id');
+    var editing=editId?products.filter(function(p){return p.id===editId})[0]:null;
+    if(editId && !editing){ toast('Peça não encontrada — abrindo novo cadastro'); }
+
+    /* brands datalist */
+    $('#brandsList').innerHTML=brands.map(function(b){return '<option value="'+esc(b.name)+'"></option>';}).join('');
+
+    /* size rows */
+    var ALLSZ=['P','M','G','GG'];
+    $('#szList').innerHTML=ALLSZ.map(function(s){
+      return '<div class="sz-row off" data-sz="'+s+'">'+
+        '<label class="cbx"><input type="checkbox" data-szc="'+s+'"><span>'+s+'</span></label>'+
+        '<span class="qty"><span>Estoque</span><input type="number" min="0" inputmode="numeric" data-szq="'+s+'" aria-label="Estoque do tamanho '+s+'" placeholder="0"></span>'+
+      '</div>';
+    }).join('');
+    $('#szList').addEventListener('change',function(e){
+      var c=e.target.closest('[data-szc]'); if(!c) return;
+      c.closest('.sz-row').classList.toggle('off', !c.checked);
+      clearErr($('#szList').closest('.form-sec').querySelector('#sz-err').parentNode);
+      $('#sz-err').parentNode.classList.remove('invalid');
+    });
+
+    /* price sob consulta */
+    var precoEl=$('#preco'), semPrecoEl=$('#semPreco');
+    semPrecoEl.addEventListener('change',function(){
+      precoEl.disabled=this.checked;
+      if(this.checked){ precoEl.value=''; }
+      $('#fPreco').classList.remove('invalid');
+    });
+    precoEl.addEventListener('blur',function(){
+      var n=parseMoney(this.value);
+      if(n!=null) this.value=n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+    });
+    function parseMoney(v){
+      if(v==null) return null;
+      var s=String(v).replace(/[^\d,.-]/g,'').replace(/\.(?=\d{3}(\D|$))/g,'').replace(',', '.');
+      if(s==='') return null;
+      var n=parseFloat(s);
+      return isNaN(n)?null:n;
+    }
+
+    /* photo upload (session-only previews) */
+    var photos=[]; // {url}
+    var MAXP=5;
+    var grid=$('#photoGrid'), dz=$('#dropzone');
+    function renderPhotos(){
+      if(!photos.length && editing){
+        grid.innerHTML='<div class="photo is-cover" data-tone="'+editing.tone+'"><span class="ph-cap">Capa atual</span></div>';
+        return;
+      }
+      grid.innerHTML=photos.map(function(p,i){
+        return '<div class="photo'+(i===0?' is-cover':'')+'">'+
+          '<img src="'+p.url+'" alt="Pré-visualização '+(i+1)+'">'+
+          (i===0?'<span class="ph-cap">Capa</span>':'<button type="button" class="ph-cover" data-cover="'+i+'">Tornar capa</button>')+
+          '<button type="button" class="ph-x" data-rm="'+i+'" aria-label="Remover foto '+(i+1)+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>'+
+        '</div>';
+      }).join('');
+    }
+    function addFiles(list){
+      var arr=Array.prototype.slice.call(list||[]).filter(function(f){return /^image\//.test(f.type)});
+      if(!arr.length) return;
+      arr.forEach(function(f){
+        if(photos.length>=MAXP) return;
+        photos.push({url:URL.createObjectURL(f)});
+      });
+      if(arr.length && photos.length>=MAXP) toast('Máximo de '+MAXP+' fotos');
+      renderPhotos();
+    }
+    grid.addEventListener('click',function(e){
+      var rm=e.target.closest('[data-rm]'); var cv=e.target.closest('[data-cover]');
+      if(rm){ var i=+rm.getAttribute('data-rm'); try{URL.revokeObjectURL(photos[i].url)}catch(_){} photos.splice(i,1); renderPhotos(); }
+      else if(cv){ var j=+cv.getAttribute('data-cover'); var it=photos.splice(j,1)[0]; photos.unshift(it); renderPhotos(); }
+    });
+    $('#pickBtn').addEventListener('click',function(e){ e.stopPropagation(); $('#fileInput').click(); });
+    $('#camBtn').addEventListener('click',function(e){ e.stopPropagation(); $('#camInput').click(); });
+    dz.addEventListener('click',function(e){ if(!e.target.closest('button')) $('#fileInput').click(); });
+    $('#fileInput').addEventListener('change',function(){ addFiles(this.files); this.value=''; });
+    $('#camInput').addEventListener('change',function(){ addFiles(this.files); this.value=''; });
+    ['dragenter','dragover'].forEach(function(ev){ dz.addEventListener(ev,function(e){ e.preventDefault(); dz.classList.add('drag'); }); });
+    ['dragleave','drop'].forEach(function(ev){ dz.addEventListener(ev,function(e){ e.preventDefault(); dz.classList.remove('drag'); }); });
+    dz.addEventListener('drop',function(e){ if(e.dataTransfer) addFiles(e.dataTransfer.files); });
+
+    /* validation helpers */
+    function setErr(field,on){ field.classList.toggle('invalid', !!on); }
+    function clearErr(field){ if(field) field.classList.remove('invalid'); }
+    ['marca','nome'].forEach(function(id){ $('#'+id).addEventListener('input',function(){ clearErr($('#f'+id.charAt(0).toUpperCase()+id.slice(1))); }); });
+    precoEl.addEventListener('input',function(){ clearErr($('#fPreco')); });
+
+    /* prefill on edit */
+    if(editing){
+      $('#formTitle').textContent='Editar peça';
+      $('#crumbLeaf').textContent='Editar';
+      $('#formSub').textContent='Atualize os dados de “'+editing.name+'”.';
+      document.title='Editar '+editing.name+' · Painel T-Shirt Boutique';
+      $('#saveBtn').textContent='Salvar alterações';
+      $('#marca').value=editing.brand||'';
+      $('#nome').value=editing.name||'';
+      if(editing.price==null){ semPrecoEl.checked=true; precoEl.disabled=true; }
+      else{ precoEl.value=editing.price.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+      (editing.sizes||[]).forEach(function(s){
+        var c=$('#szList [data-szc="'+s+'"]'); if(c){ c.checked=true; c.closest('.sz-row').classList.remove('off'); }
+      });
+      var tg=editing.tags||[];
+      $('#tgLancamento').checked=tg.indexOf('lancamento')>-1;
+      $('#tgUltimas').checked=tg.indexOf('ultimas')>-1;
+      $('#tgOriginal').checked=tg.indexOf('original')>-1;
+      $('#tgDestaque').checked=!!editing.featured;
+      $('#desc').value=editing.desc||'';
+    }
+    renderPhotos();
+
+    function slug(str){
+      return String(str).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
+        .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,42) || 'peca';
+    }
+
+    $('#pForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      var errs=[];
+      var marca=$('#marca').value.trim();
+      var nome=$('#nome').value.trim();
+      var sizes=$$('#szList [data-szc]').filter(function(c){return c.checked}).map(function(c){return c.getAttribute('data-szc')});
+      var semPreco=semPrecoEl.checked;
+      var preco=semPreco?null:parseMoney(precoEl.value);
+
+      if(!marca){ setErr($('#fMarca'),true); errs.push(['fMarca','marca','Marca']); } else setErr($('#fMarca'),false);
+      if(!nome){ setErr($('#fNome'),true); errs.push(['fNome','nome','Nome do modelo']); } else setErr($('#fNome'),false);
+      if(!semPreco && (preco==null || preco<=0)){ setErr($('#fPreco'),true); errs.push(['fPreco','preco','Preço']); } else setErr($('#fPreco'),false);
+      if(!sizes.length){ $('#sz-err').parentNode.classList.add('invalid'); errs.push(['szList','','Grade de tamanhos']); }
+      else $('#sz-err').parentNode.classList.remove('invalid');
+
+      var sum=$('#errSummary');
+      if(errs.length){
+        $('#errLinks').innerHTML=errs.map(function(x){ return '<a href="#'+ (x[1]|| 'szList') +'">'+esc(x[2])+'</a>'; }).join('');
+        sum.classList.add('show');
+        sum.focus();
+        var first=document.getElementById(errs[0][1]||'szList');
+        if(first) first.focus();
+        return;
+      }
+      sum.classList.remove('show');
+
+      var tags=[];
+      if($('#tgLancamento').checked) tags.push('lancamento');
+      if($('#tgUltimas').checked) tags.push('ultimas');
+      if($('#tgOriginal').checked) tags.push('original');
+      var status = $('#tgUltimas').checked ? 'baixo' : 'ativo';
+
+      var rec;
+      if(editing){
+        rec=editing;
+        rec.brand=marca; rec.name=nome; rec.price=preco; rec.sizes=sizes;
+        rec.tags=tags; rec.featured=$('#tgDestaque').checked;
+        rec.status = (rec.status==='esgotado' && !$('#tgUltimas').checked && !sizes.length) ? 'esgotado' : status;
+        rec.desc=$('#desc').value.trim();
+        rec.active = rec.active!==false;
+      }else{
+        var id=slug(marca+'-'+nome)+'-'+Date.now().toString(36).slice(-4);
+        rec={ id:id, brand:marca, name:nome, price:preco, sizes:sizes, active:true,
+              featured:$('#tgDestaque').checked, status:status, tags:tags,
+              tone:Math.floor(Math.random()*6), desc:$('#desc').value.trim() };
+        products.push(rec);
+      }
+      lset(PK,products);
+
+      /* register brand if new */
+      if(marca && !brands.some(function(b){return b.name.toLowerCase()===marca.toLowerCase()})){
+        brands.push({ id:slug(marca), name:marca, desc:'' });
+        lset(BK,brands);
+      }
+
+      photos.forEach(function(p){ try{URL.revokeObjectURL(p.url)}catch(_){} });
+      try{ sessionStorage.setItem('tsb:admin:flash', (editing?'“'+nome+'” atualizada':'“'+nome+'” publicada no catálogo')); }catch(_){}
+      $('#saveBtn').disabled=true; $('#saveBtn').textContent='Salvando…';
+      toast(editing?'Alterações salvas':'Peça publicada');
+      setTimeout(function(){ location.href='admin-produtos.html'; }, 450);
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1497 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Catálogo · T-Shirt Boutique</title>
+  <meta name="description" content="Catálogo da T-Shirt Boutique — camisetas importadas 100% originais (Lacoste, Tommy Hilfiger, Tripps, Aero For Men) com estoque ultralimitado e pedido direto no WhatsApp." />
+  <meta name="theme-color" content="#0e0e0e" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── tokens: bind DESIGN.md "The Underground Gallery" ───────────── */
+    :root {
+      --bg:      #131313;   /* corpo da página */
+      --surface: #1b1b1b;   /* cards / blocos de conteúdo */
+      --fg:      #e2e2e2;   /* texto de leitura principal */
+      --muted:   #b5b5b5;   /* texto de suporte / legendas */
+      --border:  rgba(91, 63, 72, 0.24);  /* ghost border */
+      --accent:  #ff1493;   /* CTA master neon — no máx. 2×/tela fora do grid */
+
+      /* hierarquia de superfície (regra "No-Line") */
+      --surface-0: #0e0e0e;
+      --surface-1: #1b1b1b;
+      --surface-2: #1f1f1f;
+      --surface-3: #2a2a2a;
+      --surface-4: #353535;
+
+      --accent-container: #ff479c;
+      --on-accent: #fff;
+      --metal:   #c6c6c6;
+      --success: #6ae04d;
+
+      --accent-soft: color-mix(in oklch, var(--accent) 16%, transparent);
+      --accent-line: color-mix(in oklch, var(--accent) 45%, transparent);
+      --fg-soft:     color-mix(in oklch, var(--fg) 8%, transparent);
+
+      --glow:        0 0 15px rgba(255, 71, 156, 0.30);
+      --glow-strong: 0 0 26px rgba(255, 71, 156, 0.52);
+
+      --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+      --font-body:    'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+      --fs-h1: clamp(30px, 6vw, 52px);
+      --fs-h2: clamp(22px, 3.4vw, 34px);
+      --fs-lead: clamp(15px, 2.2vw, 18px);
+
+      --gap-xs: 8px; --gap-sm: 12px; --gap-md: 16px; --gap-lg: 24px;
+      --gap-xl: 48px; --gap-2xl: 88px;
+      --container: 1240px;
+      --gutter: 20px;
+      --radius: 4px;
+      --radius-lg: 6px;
+      --nav-h: 60px;
+    }
+
+    /* ─── reset & base ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.55;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    /* textura de ruído analógico */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; }
+    input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    p { text-wrap: pretty; }
+    h1, h2, h3, h4 { text-wrap: balance; }
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 3px;
+    }
+    ::selection { background: var(--accent); color: var(--on-accent); }
+    main, header, footer { position: relative; z-index: 1; }
+
+    /* ─── layout primitives ─────────────────────────────────────────── */
+    .container { max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+    .stack { display: flex; flex-direction: column; }
+    .row { display: flex; align-items: center; gap: var(--gap-md); }
+    .row-between { display: flex; align-items: center; justify-content: space-between; gap: var(--gap-md); }
+    .label {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .eyebrow { color: var(--metal); margin: 0 0 var(--gap-md); }
+
+    /* ─── type ──────────────────────────────────────────────────────── */
+    h1, .h1 { font-family: var(--font-display); font-size: var(--fs-h1); font-weight: 500; line-height: 1.06; letter-spacing: -0.02em; margin: 0; }
+    h2, .h2 { font-family: var(--font-display); font-size: var(--fs-h2); font-weight: 500; line-height: 1.15; letter-spacing: -0.012em; margin: 0; }
+    h3 { font-size: 16px; font-weight: 600; line-height: 1.3; margin: 0; }
+    .lead { font-size: var(--fs-lead); line-height: 1.6; color: var(--muted); max-width: 52ch; margin: 0; }
+
+    /* ─── buttons ───────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 44px;
+      padding: 11px 18px;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: transform 0.06s ease, background 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn svg { width: 17px; height: 17px; flex: none; }
+    .btn-primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+    .btn-primary:hover { background: color-mix(in oklch, var(--accent) 88%, white); border-color: color-mix(in oklch, var(--accent) 88%, white); }
+    .btn-secondary { background: transparent; color: var(--fg); border-color: var(--accent-line); }
+    .btn-secondary:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--on-accent); }
+    .btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+    .btn-ghost:hover { background: var(--surface-3); border-color: var(--metal); }
+    .btn-block { width: 100%; }
+    .neon-glow { box-shadow: var(--glow); }
+    .neon-glow:hover { box-shadow: var(--glow-strong); }
+
+    /* ─── chrome: header glass ──────────────────────────────────────── */
+    .topnav {
+      position: sticky; top: 0; z-index: 40;
+      background: color-mix(in oklch, var(--surface-0) 82%, transparent);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+    .topnav-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--gap-md); min-height: var(--nav-h); }
+    .brand-lockup { display: flex; align-items: baseline; gap: 8px; }
+    .brand-lockup .mark { font-family: var(--font-display); font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+    .brand-lockup .mark em { color: var(--accent); font-style: italic; }
+    .brand-lockup .sub { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .nav-actions { display: flex; align-items: center; gap: var(--gap-sm); }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      min-height: 44px;
+      font-size: 13px; color: var(--muted);
+      padding: 8px 6px;
+      transition: color 0.18s ease;
+    }
+    .back-link:hover { color: var(--fg); }
+    .back-link svg { width: 15px; height: 15px; flex: none; }
+
+    .bag-btn {
+      position: relative;
+      display: inline-flex; align-items: center; gap: 8px;
+      min-height: 44px;
+      padding: 8px 14px 8px 12px;
+      border: 1px solid var(--accent-line);
+      border-radius: var(--radius);
+      font-size: 13px; font-weight: 600;
+      transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    .bag-btn:hover { background: var(--accent-soft); border-color: var(--accent); box-shadow: var(--glow); }
+    .bag-btn svg { width: 18px; height: 18px; }
+    .bag-btn .txt { display: none; }
+    .bag-badge {
+      min-width: 20px; height: 20px; padding: 0 5px;
+      display: grid; place-items: center;
+      background: var(--accent); color: var(--on-accent);
+      border-radius: 999px;
+      font-size: 11px; font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    /* atalho de suporte da loja (só no mobile, onde a sacola vive na barra inferior) */
+    .header-wa {
+      display: none;
+      align-items: center; gap: 8px;
+      min-height: 44px; padding: 8px 14px;
+      border: 1px solid var(--accent-line);
+      border-radius: var(--radius);
+      font-size: 13px; font-weight: 600; color: var(--fg);
+      transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    .header-wa:hover { background: var(--accent-soft); border-color: var(--accent); box-shadow: var(--glow); }
+    .header-wa svg { width: 18px; height: 18px; }
+    .header-wa .txt { display: none; }
+
+    /* ─── hero editorial compacto ───────────────────────────────────── */
+    .hero {
+      background: var(--surface-0);
+      padding-block: clamp(28px, 6vw, 56px);
+    }
+    .hero h1 { margin-bottom: 14px; max-width: 16ch; }
+    .hero h1 em { font-style: italic; color: var(--metal); }
+    .hero .lead { margin-bottom: 0; }
+
+    /* ─── barra de controle sticky ─────────────────────────────────── */
+    .controls {
+      position: sticky; top: var(--nav-h); z-index: 30;
+      background: color-mix(in oklch, var(--bg) 92%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-block: 1px solid var(--border);
+    }
+    .controls-inner { padding-block: 12px; display: flex; flex-direction: column; gap: 10px; }
+
+    .search {
+      position: relative;
+      display: flex; align-items: center;
+    }
+    .search svg.lupa { position: absolute; left: 14px; width: 17px; height: 17px; color: var(--muted); pointer-events: none; }
+    .search input {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 44px 10px 40px;
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--fg);
+      font: inherit; font-size: 14px;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    .search input::placeholder { color: var(--muted); }
+    .search input:focus-visible { outline: none; border-color: var(--accent); box-shadow: var(--glow); }
+    .search .clear {
+      position: absolute; right: 5px;
+      width: 38px; height: 38px;
+      display: none; place-items: center;
+      border-radius: 999px; color: var(--muted);
+    }
+    .search .clear:hover { color: var(--fg); background: var(--surface-3); }
+    .search.has-value .clear { display: grid; }
+
+    /* linha de tamanho + ordenação: só no desktop; no mobile vai para a gaveta "Filtros" */
+    .filter-row { display: none; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+    .pill-scroll {
+      display: flex; gap: 8px;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 2px;
+      margin-inline: calc(var(--gutter) * -1);
+      padding-inline: var(--gutter);
+      flex: 1 1 100%;
+    }
+    .pill-scroll::-webkit-scrollbar { display: none; }
+    .pill {
+      scroll-snap-align: start;
+      flex: none;
+      min-height: 44px;
+      padding: 10px 15px;
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px; font-weight: 600;
+      white-space: nowrap;
+      transition: color 0.16s ease, border-color 0.16s ease, background 0.16s ease, box-shadow 0.16s ease;
+    }
+    .pill:hover { color: var(--fg); border-color: var(--accent-line); }
+    .pill[aria-pressed="true"] {
+      color: var(--on-accent);
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      box-shadow: var(--glow);
+    }
+    .pill .fire { color: var(--accent); }
+
+    .size-chips { display: flex; gap: 6px; }
+    .chip {
+      width: 44px; height: 44px;
+      display: grid; place-items: center;
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
+      transition: color 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+    }
+    .chip:hover { color: var(--fg); border-color: var(--accent-line); }
+    .chip[aria-pressed="true"] { color: var(--on-accent); border-color: var(--accent); background: var(--accent-soft); }
+
+    .sort-wrap { position: relative; display: inline-flex; align-items: center; margin-left: auto; }
+    .sort-wrap svg { position: absolute; right: 10px; width: 15px; height: 15px; color: var(--muted); pointer-events: none; }
+    .sort-wrap select {
+      appearance: none; -webkit-appearance: none;
+      min-height: 44px;
+      padding: 10px 30px 10px 12px;
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--fg);
+      font: inherit; font-size: 13px; font-weight: 600;
+    }
+    .sort-wrap select:focus-visible { outline: none; border-color: var(--accent); }
+    .adv-btn { display: inline-flex; }
+
+    /* ─── grid de produtos ─────────────────────────────────────────── */
+    .catalog { padding-block: 28px 96px; }
+    .results-meta {
+      font-size: 12px; color: var(--muted);
+      letter-spacing: 0.02em;
+      margin: 0 0 18px;
+    }
+    .results-meta strong { color: var(--fg); font-variant-numeric: tabular-nums; }
+    .catalog-title {
+      font-family: var(--font-body);
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--metal);
+      margin: 0 0 8px;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px 16px;
+    }
+    @media (min-width: 768px) { .catalog-grid { grid-template-columns: repeat(3, 1fr); gap: 40px 24px; } }
+    @media (min-width: 1024px) { .catalog-grid { grid-template-columns: repeat(4, 1fr); gap: 52px 28px; } }
+
+    .product-card { display: flex; flex-direction: column; }
+    .pc-media {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--surface-1);
+      cursor: pointer;
+    }
+    .ph {
+      position: absolute; inset: 0;
+      display: grid; place-items: center;
+      background:
+        radial-gradient(120% 90% at 30% 15%, var(--accent-soft), transparent 55%),
+        linear-gradient(150deg, var(--surface-3), var(--surface-0));
+      color: color-mix(in oklch, var(--metal) 55%, transparent);
+      filter: grayscale(1) brightness(0.62) contrast(1.05);
+      transition: filter 0.8s ease, transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .ph[data-tone="1"] { background: radial-gradient(120% 90% at 70% 10%, var(--accent-soft), transparent 50%), linear-gradient(200deg, var(--surface-4), var(--surface-0)); }
+    .ph[data-tone="2"] { background: radial-gradient(110% 80% at 20% 80%, color-mix(in oklch, var(--metal) 14%, transparent), transparent 55%), linear-gradient(160deg, var(--surface-2), var(--surface-0)); }
+    .ph[data-tone="3"] { background: radial-gradient(120% 90% at 80% 80%, var(--accent-soft), transparent 55%), linear-gradient(120deg, var(--surface-3), var(--surface-0)); }
+    .ph[data-tone="4"] { background: radial-gradient(120% 100% at 50% 0%, color-mix(in oklch, var(--metal) 12%, transparent), transparent 50%), linear-gradient(180deg, var(--surface-4), var(--surface-1)); }
+    .ph[data-tone="5"] { background: radial-gradient(130% 90% at 15% 20%, var(--accent-soft), transparent 45%), linear-gradient(220deg, var(--surface-2), var(--surface-0)); }
+    .ph.revealed { filter: none; }
+    .ph .garment { width: 58%; opacity: 0.9; }
+    .ph .garment path { stroke: currentColor; stroke-width: 2.2; fill: none; }
+    .ph .ph-brand {
+      position: absolute; left: 12px; bottom: 12px;
+      font-family: var(--font-display); font-style: italic;
+      font-size: 13px; letter-spacing: 0.02em;
+      color: color-mix(in oklch, var(--metal) 60%, transparent);
+    }
+    .pc-media:hover .ph { transform: scale(1.045); }
+
+    .badge-float {
+      position: absolute; top: 12px; left: 12px;
+      max-width: calc(100% - 66px); /* nunca alcança o botão de sacola no canto oposto */
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 10px;
+      background: color-mix(in oklch, var(--surface-0) 78%, transparent);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      line-height: 1.2;
+      color: var(--fg);
+    }
+    .badge-float .dot { width: 6px; height: 6px; border-radius: 999px; flex: none; }
+    .badge-original .dot { background: var(--success); }
+    .badge-lancamento .dot { background: var(--metal); }
+    .badge-ultimas { color: var(--on-accent); }
+    .badge-ultimas .dot { position: relative; background: var(--accent); }
+    .badge-ultimas .dot::after {
+      content: ""; position: absolute; inset: -3px;
+      border-radius: 999px; background: var(--accent);
+      opacity: 0.6; animation: ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+    @keyframes ping { 75%, 100% { transform: scale(2.4); opacity: 0; } }
+
+    /* botão flutuante de sacola no canto da foto */
+    .pc-fav {
+      position: absolute; top: 10px; right: 10px;
+      width: 44px; height: 44px;
+      display: grid; place-items: center;
+      border-radius: 999px;
+      background: color-mix(in oklch, var(--surface-0) 78%, transparent);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      color: var(--fg);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+      transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    }
+    .pc-fav svg { width: 18px; height: 18px; }
+    .pc-fav .pc-fav-plus {
+      position: absolute; right: 4px; bottom: 4px;
+      width: 15px; height: 15px;
+      display: grid; place-items: center;
+      border-radius: 999px;
+      background: var(--surface-4); color: var(--fg);
+      font-size: 11px; font-weight: 700; line-height: 1;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .pc-fav:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); box-shadow: var(--glow); }
+    .pc-fav:hover .pc-fav-plus { background: var(--on-accent); color: var(--accent); }
+    .pc-fav.added { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+    .pc-fav.added .pc-fav-plus { background: var(--on-accent); color: var(--accent); font-size: 0; }
+    .pc-fav.added .pc-fav-plus::before { content: "\2713"; font-size: 10px; }
+
+    .pc-quick {
+      position: absolute; left: 12px; right: 12px; bottom: 12px;
+      min-height: 44px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      background: color-mix(in oklch, var(--surface-0) 84%, transparent);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+      color: var(--fg);
+      font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.18s ease;
+    }
+    .pc-media:hover .pc-quick, .pc-media:focus-within .pc-quick,
+    .pc-quick:focus-visible { opacity: 1; transform: none; }
+    .pc-quick:hover { border-color: var(--accent); }
+    @media (hover: none) { .pc-quick { opacity: 1; transform: none; } }
+
+    .pc-body { display: flex; flex-direction: column; gap: 5px; padding-top: 14px; }
+    .pc-brand { color: var(--metal); }
+    .pc-name { font-size: 14px; font-weight: 600; line-height: 1.35; color: var(--fg); margin-top: 1px; }
+    .pc-sizes { color: var(--muted); font-size: 11px; letter-spacing: 0.08em; margin-top: 3px; }
+    .pc-price {
+      font-weight: 700; font-size: 14px; letter-spacing: 0.03em;
+      color: var(--fg);
+      font-variant-numeric: tabular-nums;
+      margin-top: 7px;
+    }
+    .pc-price.special { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--metal); }
+    .pc-wa { margin-top: 12px; font-size: 13px; padding-inline: 12px; }
+    .pc-wa svg { width: 15px; height: 15px; }
+
+    /* ─── empty state ──────────────────────────────────────────────── */
+    .empty {
+      text-align: center;
+      padding: 64px 20px;
+      max-width: 42ch; margin-inline: auto;
+    }
+    .empty h2 { margin-bottom: 12px; }
+    .empty p { color: var(--muted); margin: 0 0 24px; }
+    .empty-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── footer ───────────────────────────────────────────────────── */
+    .pagefoot {
+      background: var(--surface-0);
+      padding-block: 40px;
+      margin-top: 40px;
+      font-size: 12px; color: var(--muted);
+    }
+    .pagefoot .row-between { flex-wrap: wrap; gap: 12px; }
+    .pagefoot a:hover { color: var(--fg); }
+    .to-top { display: inline-flex; align-items: center; gap: 6px; }
+    .to-top svg { width: 14px; height: 14px; }
+
+    /* ─── overlays: scrim + drawer + sheet + modal ────────────────── */
+    .scrim {
+      position: fixed; inset: 0; z-index: 50;
+      background: rgba(0, 0, 0, 0.62);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    .scrim.is-open { opacity: 1; pointer-events: auto; }
+
+    .drawer {
+      position: fixed; top: 0; right: 0; z-index: 60;
+      height: 100%; width: min(440px, 92vw);
+      display: flex; flex-direction: column;
+      background: var(--surface-2);
+      box-shadow: -24px 0 70px rgba(0, 0, 0, 0.55);
+      transform: translateX(100%);
+      visibility: hidden;
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.38s;
+    }
+    .drawer.is-open { transform: none; visibility: visible; transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s; }
+
+    .sheet {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+      max-height: 88vh;
+      display: flex; flex-direction: column;
+      background: var(--surface-2);
+      border-radius: 14px 14px 0 0;
+      box-shadow: 0 -24px 70px rgba(0, 0, 0, 0.55);
+      transform: translateY(100%);
+      visibility: hidden;
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.38s;
+    }
+    .sheet.is-open { transform: none; visibility: visible; transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s; }
+
+    .drag-handle {
+      width: 40px; height: 4px; border-radius: 999px;
+      background: var(--surface-4);
+      margin: 10px auto 4px;
+      flex: none;
+    }
+    .ov-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+      flex: none;
+    }
+    .ov-head h2 { font-size: 18px; }
+    .ov-body { padding: 18px; overflow-y: auto; flex: 1; }
+    .ov-foot {
+      padding: 16px 18px calc(16px + env(safe-area-inset-bottom));
+      border-top: 1px solid var(--border);
+      background: var(--surface-2);
+      flex: none;
+    }
+    .close-btn {
+      width: 44px; height: 44px;
+      display: grid; place-items: center;
+      border-radius: 999px; color: var(--muted);
+      transition: color 0.16s ease, background 0.16s ease;
+    }
+    .close-btn:hover { color: var(--fg); background: var(--surface-3); }
+
+    /* modal lookbook */
+    .modal {
+      position: fixed; inset: 0; z-index: 60;
+      display: grid; place-items: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+    }
+    .modal.is-open { opacity: 1; pointer-events: auto; visibility: visible; transition: opacity 0.25s ease, visibility 0s; }
+    .modal-card {
+      width: 100%; max-width: 900px; max-height: 88vh;
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .lb-gallery { background: var(--surface-0); padding: 20px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto; }
+    .lb-main { position: relative; aspect-ratio: 3 / 4; border-radius: var(--radius-lg); overflow: hidden; }
+    .lb-thumbs { display: flex; gap: 10px; }
+    .lb-thumbs .lb-thumb { position: relative; width: 64px; aspect-ratio: 3 / 4; border-radius: 4px; overflow: hidden; border: 1px solid var(--border); flex: none; }
+    .lb-thumbs .lb-thumb[aria-pressed="true"] { border-color: var(--accent); }
+    .lb-info { padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+    .seal {
+      display: inline-flex; align-items: center; gap: 7px;
+      align-self: flex-start;
+      padding: 6px 11px;
+      border: 1px solid color-mix(in oklch, var(--success) 40%, transparent);
+      border-radius: 999px;
+      color: var(--success);
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .seal svg { width: 13px; height: 13px; }
+    .lb-info h2 { font-size: 24px; }
+    .lb-brand { color: var(--metal); }
+    .lb-price { font-weight: 700; letter-spacing: 0.04em; font-size: 17px; font-variant-numeric: tabular-nums; }
+    .size-select { display: flex; flex-direction: column; gap: 8px; }
+    .size-select .label { color: var(--muted); }
+    .size-opts { display: flex; gap: 8px; flex-wrap: wrap; }
+    .size-opt {
+      min-width: 46px; height: 44px; padding-inline: 10px;
+      display: grid; place-items: center;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--surface-1);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: var(--fg);
+      transition: border-color 0.16s ease, background 0.16s ease;
+    }
+    .size-opt:hover { border-color: var(--accent-line); }
+    .size-opt[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--on-accent); }
+    .size-opt[disabled] { opacity: 0.3; cursor: not-allowed; }
+    .link-quiet { font-size: 12px; color: var(--metal); text-decoration: underline; text-underline-offset: 3px; align-self: flex-start; }
+    .link-quiet:hover { color: var(--fg); }
+    .measures { font-size: 12px; color: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; }
+    .measures table { width: 100%; border-collapse: collapse; }
+    .measures th, .measures td { padding: 5px 4px; text-align: left; border-bottom: 1px solid var(--border); }
+    .measures th { color: var(--metal); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; font-size: 10px; }
+    .measures tr:last-child td { border-bottom: 0; }
+    .fabric-note { font-size: 13px; color: var(--muted); }
+    .lb-ctas { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+
+    /* sacola items */
+    .bag-list { display: flex; flex-direction: column; gap: 16px; }
+    .bag-item { display: grid; grid-template-columns: 58px 1fr auto; gap: 12px; align-items: start; }
+    .bag-thumb { position: relative; width: 58px; aspect-ratio: 3 / 4; border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
+    .bag-meta { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .bag-meta .bi-brand { color: var(--metal); font-size: 10px; }
+    .bag-meta .bi-name { font-size: 13px; font-weight: 600; line-height: 1.3; }
+    .bag-meta .bi-price { font-size: 12px; font-weight: 700; letter-spacing: 0.03em; font-variant-numeric: tabular-nums; }
+    .bi-size {
+      appearance: none; -webkit-appearance: none;
+      margin-top: 4px; min-height: 34px;
+      padding: 7px 24px 7px 10px;
+      background: var(--surface-1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%23b5b5b5' stroke-width='1.6'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 8px center;
+      border: 1px solid var(--border); border-radius: 3px;
+      color: var(--fg); font: inherit; font-size: 11px;
+      align-self: flex-start;
+    }
+    .bi-remove { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 999px; color: var(--muted); transition: color 0.16s ease, background 0.16s ease; }
+    .bi-remove:hover { color: var(--accent); background: var(--surface-3); }
+    .bi-remove svg { width: 16px; height: 16px; }
+    .bag-summary { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; }
+    .bag-summary .s-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .bag-summary .s-total { font-family: var(--font-display); font-size: 22px; font-variant-numeric: tabular-nums; }
+    .bag-empty { text-align: center; color: var(--muted); padding: 40px 12px; font-size: 14px; }
+    .bag-empty svg { width: 32px; height: 32px; margin: 0 auto 12px; color: var(--surface-4); }
+
+    /* advanced filters */
+    .filt-group { margin-bottom: 22px; }
+    .filt-group > .label { color: var(--muted); display: block; margin-bottom: 10px; }
+    .check-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 14px; }
+    .check-row input { width: 18px; height: 18px; accent-color: var(--accent); }
+    .price-range { display: flex; align-items: center; gap: 10px; }
+    .price-range input {
+      width: 100%; min-height: 44px; padding: 10px 12px;
+      background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--fg); font: inherit; font-size: 14px;
+    }
+    .price-range input:focus-visible { outline: none; border-color: var(--accent); }
+    .price-range span { color: var(--muted); }
+    .filt-group select {
+      appearance: none; -webkit-appearance: none;
+      width: 100%; min-height: 44px;
+      padding: 10px 34px 10px 12px;
+      background: var(--surface-1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23b5b5b5' stroke-width='1.6'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 12px center;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--fg); font: inherit; font-size: 14px; font-weight: 600;
+    }
+    .filt-group select:focus-visible { outline: none; border-color: var(--accent); }
+
+    /* toast */
+    .toast {
+      position: fixed; left: 50%; bottom: 90px; z-index: 70;
+      transform: translate(-50%, 20px);
+      background: var(--surface-4);
+      color: var(--fg);
+      padding: 12px 18px;
+      border-radius: var(--radius);
+      font-size: 13px; font-weight: 600;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+    .toast.is-open { opacity: 1; transform: translate(-50%, 0); }
+
+    /* bottom action bar (mobile) */
+    .bottom-bar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
+      display: flex; gap: 10px;
+      padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom));
+      background: color-mix(in oklch, var(--surface-0) 88%, transparent);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.5);
+    }
+    .bottom-bar .btn { flex: 1; }
+    .bottom-bar #bbBag { flex: 1.4; }
+
+    /* ─── responsive ──────────────────────────────────────────────── */
+    @media (min-width: 600px) {
+      .bag-btn .txt { display: inline; }
+    }
+    @media (min-width: 1024px) {
+      :root { --gutter: 40px; }
+      .bottom-bar { display: none; }
+      .catalog { padding-bottom: 96px; }
+      .pill-scroll { flex: 0 1 auto; overflow-x: visible; flex-wrap: wrap; margin-inline: 0; padding-inline: 0; }
+      .controls-inner { flex-direction: row; align-items: center; flex-wrap: wrap; }
+      .search { flex: 1 1 260px; max-width: 340px; }
+      .filter-row { display: flex; flex: 1 1 auto; }
+    }
+    @media (max-width: 1023px) {
+      .sort-wrap { margin-left: 0; }
+      body.has-bottombar { padding-bottom: 78px; }
+      .bag-btn { display: none; }
+      .header-wa { display: inline-flex; }
+    }
+    @media (min-width: 480px) {
+      .header-wa .txt { display: inline; }
+    }
+    @media (min-width: 720px) {
+      .drawer .drag-handle { display: none; }
+    }
+    @media (min-width: 768px) {
+      .pill-scroll { overflow-x: visible; flex-wrap: wrap; margin-inline: 0; padding-inline: 0; }
+    }
+    @media (max-width: 439px) {
+      .brand-lockup .sub { display: none; }
+      .back-link .bl-txt { display: none; }
+      .back-link { padding-inline: 4px; }
+    }
+    @media (max-width: 719px) {
+      .modal { padding: 0; place-items: end center; }
+      .modal-card {
+        grid-template-columns: 1fr;
+        max-width: 100%; max-height: 92vh;
+        border-radius: 14px 14px 0 0;
+        transform: translateY(100%);
+        transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow-y: auto;
+      }
+      .modal.is-open .modal-card { transform: none; }
+      .lb-main { aspect-ratio: 4 / 3; }
+      .drawer {
+        top: auto; bottom: 0; right: 0;
+        width: 100%; height: 88vh;
+        border-radius: 14px 14px 0 0;
+        transform: translateY(100%);
+      }
+      .drawer.is-open { transform: none; }
+      body.has-bottombar { padding-bottom: 76px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        transition-delay: 0s !important;
+      }
+      html { scroll-behavior: auto; }
+      .ph { filter: none; }
+      .badge-ultimas .dot::after { display: none; }
+    }
+  </style>
+</head>
+<body class="has-bottombar">
+
+  <header class="topnav" data-od-id="topnav">
+    <div class="container topnav-inner">
+      <a class="brand-lockup" href="index.html" aria-label="T-Shirt Boutique — página inicial">
+        <span class="mark">T&#8209;Shirt <em>Boutique</em></span>
+        <span class="sub">Urban Premium</span>
+      </a>
+      <div class="nav-actions">
+        <a class="back-link" href="index.html" aria-label="Voltar à página inicial">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span class="bl-txt">Voltar à Home</span>
+        </a>
+        <a class="header-wa" id="headerWa" href="#" target="_blank" rel="noopener" aria-label="Falar com a loja no WhatsApp">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.2-5.6A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+          <span class="txt">Falar com a loja</span>
+        </a>
+        <button class="bag-btn" id="openBag" type="button" aria-label="Abrir sacola de interesse">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="txt">Sacola</span>
+          <span class="bag-badge" id="navBadge" hidden>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <section class="hero" data-od-id="hero">
+      <div class="container">
+        <p class="eyebrow label">Catálogo · Importados originais</p>
+        <h1>Coleções exclusivas &amp; <em>importadas</em></h1>
+        <p class="lead">Peças 100% originais com estoque ultralimitado. Escolha as suas e feche direto com um consultor no WhatsApp.</p>
+      </div>
+    </section>
+
+    <section class="controls" data-od-id="controls" aria-label="Busca e filtros do catálogo">
+      <div class="container controls-inner">
+        <div class="search" id="searchWrap">
+          <svg class="lupa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="search" id="searchInput" placeholder="Buscar por modelo, marca ou cor..." autocomplete="off" enterkeyhint="search" aria-label="Buscar peças" />
+          <button class="clear" id="searchClear" type="button" aria-label="Limpar busca">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="pill-scroll" id="brandPills" role="group" aria-label="Filtrar por marca">
+          <button class="pill" type="button" data-brand="todas" aria-pressed="true">Todas</button>
+          <button class="pill" type="button" data-brand="Lacoste" aria-pressed="false">Lacoste</button>
+          <button class="pill" type="button" data-brand="Tommy Hilfiger" aria-pressed="false">Tommy Hilfiger</button>
+          <button class="pill" type="button" data-brand="Tripps" aria-pressed="false">Tripps</button>
+          <button class="pill" type="button" data-brand="Aero For Men" aria-pressed="false">Aero For Men</button>
+          <button class="pill" type="button" data-brand="lancamentos" aria-pressed="false">Lançamentos</button>
+        </div>
+
+        <div class="filter-row">
+          <div class="size-chips" id="sizeChips" role="group" aria-label="Filtrar por tamanho">
+            <button class="chip" type="button" data-size="P" aria-pressed="false">P</button>
+            <button class="chip" type="button" data-size="M" aria-pressed="false">M</button>
+            <button class="chip" type="button" data-size="G" aria-pressed="false">G</button>
+            <button class="chip" type="button" data-size="GG" aria-pressed="false">GG</button>
+          </div>
+
+          <button class="btn btn-ghost adv-btn" id="openFilters" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+            Filtros avançados
+          </button>
+
+          <div class="sort-wrap">
+            <select id="sortSelect" aria-label="Ordenar">
+              <option value="recentes">Mais recentes</option>
+              <option value="menor">Menor preço</option>
+              <option value="maior">Maior preço</option>
+            </select>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog" data-od-id="catalog" aria-labelledby="catalogHeading">
+      <div class="container">
+        <h2 class="catalog-title" id="catalogHeading" data-od-id="catalog-heading">Peças em catálogo</h2>
+        <p class="results-meta" id="resultsMeta" aria-live="polite" aria-atomic="true"><strong id="resultCount">12</strong> peças · <span id="activeFilter">todas as marcas</span></p>
+        <div class="catalog-grid" id="grid"></div>
+        <div class="empty" id="emptyState" hidden>
+          <h2>Nenhuma peça encontrada com esses filtros</h2>
+          <p>Ajuste os filtros ou fale com um consultor para buscar a sua peça sob encomenda — trabalhamos com importação direta.</p>
+          <div class="empty-actions">
+            <button class="btn btn-ghost" id="emptyClear" type="button">Limpar filtros</button>
+            <a class="btn btn-primary neon-glow" id="emptyWa" href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.2-5.6A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+              Falar com um consultor
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pagefoot" data-od-id="footer">
+    <div class="container row-between">
+      <span>© <span id="year">2026</span> T&#8209;Shirt Boutique · Curadoria de streetwear importado</span>
+      <span class="row" style="gap:18px">
+        <a href="index.html">Página inicial</a>
+        <button class="to-top" id="toTop" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+          Voltar ao topo
+        </button>
+      </span>
+    </div>
+  </footer>
+
+  <!-- bottom action bar (mobile) -->
+  <div class="bottom-bar" data-od-id="mobile-actionbar">
+    <button class="btn btn-secondary" id="bbFilters" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+      Filtros
+    </button>
+    <button class="btn btn-primary" id="bbBag" type="button">
+      Ver sacola · <span id="bbBagCount" style="font-variant-numeric:tabular-nums">0</span>
+    </button>
+  </div>
+
+  <!-- overlays -->
+  <div class="scrim" id="scrim"></div>
+
+  <!-- Quick Lookbook -->
+  <div class="modal" id="lookModal" data-od-id="quick-lookbook" role="dialog" aria-modal="true" aria-labelledby="lbTitle" aria-hidden="true">
+    <div class="modal-card">
+      <div class="lb-gallery">
+        <div class="lb-main"><div class="ph revealed" id="lbMain" data-tone="0"><svg class="garment" viewBox="0 0 100 100"><path d="M32 16 22 24 15 40l10 6 4-7v43h42V39l4 7 10-6-7-16-10-8c-6 6-30 6-36 0Z"/></svg></div></div>
+        <div class="lb-thumbs" id="lbThumbs"></div>
+      </div>
+      <div class="lb-info">
+        <div class="row-between">
+          <span class="seal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5Z"/><path d="m9 12 2 2 4-4"/></svg>
+            Peça importada original
+          </span>
+          <button class="close-btn" data-close type="button" aria-label="Fechar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div>
+          <p class="lb-brand label" id="lbBrand">Lacoste</p>
+          <h2 id="lbTitle">Nome da peça</h2>
+        </div>
+        <p class="lb-price" id="lbPrice">R$ 0,00</p>
+        <p class="fabric-note" id="lbFabric">Composição do tecido</p>
+        <div class="size-select">
+          <span class="label">Escolha o tamanho</span>
+          <div class="size-opts" id="lbSizes"></div>
+        </div>
+        <button class="link-quiet" id="lbMeasuresToggle" type="button" aria-expanded="false" aria-controls="lbMeasures">Ver tabela de medidas</button>
+        <div class="measures" id="lbMeasures" hidden>
+          <table>
+            <thead><tr><th>Tam</th><th>Peito</th><th>Comprimento</th></tr></thead>
+            <tbody>
+              <tr><td>P</td><td>52 cm</td><td>70 cm</td></tr>
+              <tr><td>M</td><td>55 cm</td><td>72 cm</td></tr>
+              <tr><td>G</td><td>58 cm</td><td>74 cm</td></tr>
+              <tr><td>GG</td><td>61 cm</td><td>76 cm</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="lb-ctas">
+          <a class="btn btn-primary btn-block neon-glow" id="lbWa" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.2-5.6A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+            Garantir esta peça no WhatsApp
+          </a>
+          <button class="btn btn-secondary btn-block" id="lbAdd" type="button">Adicionar à sacola</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sacola de Interesse drawer -->
+  <aside class="drawer" id="bagDrawer" data-od-id="bag-drawer" role="dialog" aria-modal="true" aria-labelledby="bagTitle" aria-hidden="true">
+    <div class="drag-handle" aria-hidden="true"></div>
+    <div class="ov-head">
+      <h2 id="bagTitle">Sacola de interesse</h2>
+      <button class="close-btn" data-close type="button" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="ov-body" id="bagBody"></div>
+    <div class="ov-foot">
+      <div class="bag-summary">
+        <span class="s-label">Total aproximado</span>
+        <span class="s-total" id="bagTotal">R$ 0,00</span>
+      </div>
+      <a class="btn btn-primary btn-block neon-glow" id="bagSend" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.2-5.6A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+        <span id="bagSendLabel">Enviar pedido ao consultor</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Filtros avançados sheet -->
+  <div class="sheet" id="filterSheet" data-od-id="filter-sheet" role="dialog" aria-modal="true" aria-labelledby="filtTitle" aria-hidden="true">
+    <div class="drag-handle" aria-hidden="true"></div>
+    <div class="ov-head">
+      <h2 id="filtTitle">Filtros avançados</h2>
+      <button class="close-btn" data-close type="button" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="ov-body">
+      <div class="filt-group">
+        <span class="label">Marca</span>
+        <label class="check-row"><input type="radio" name="fBrand" value="todas" checked /> Todas as marcas</label>
+        <label class="check-row"><input type="radio" name="fBrand" value="Lacoste" /> Lacoste</label>
+        <label class="check-row"><input type="radio" name="fBrand" value="Tommy Hilfiger" /> Tommy Hilfiger</label>
+        <label class="check-row"><input type="radio" name="fBrand" value="Tripps" /> Tripps</label>
+        <label class="check-row"><input type="radio" name="fBrand" value="Aero For Men" /> Aero For Men</label>
+        <label class="check-row"><input type="radio" name="fBrand" value="lancamentos" /> Só lançamentos</label>
+      </div>
+      <div class="filt-group">
+        <span class="label">Tamanho</span>
+        <div class="size-chips" id="fSizeChips" style="flex-wrap:wrap">
+          <button class="chip" type="button" data-size="P" aria-pressed="false">P</button>
+          <button class="chip" type="button" data-size="M" aria-pressed="false">M</button>
+          <button class="chip" type="button" data-size="G" aria-pressed="false">G</button>
+          <button class="chip" type="button" data-size="GG" aria-pressed="false">GG</button>
+        </div>
+      </div>
+      <div class="filt-group">
+        <span class="label" id="fSortLabel">Ordenar por</span>
+        <select id="fSortSelect" aria-labelledby="fSortLabel">
+          <option value="recentes">Mais recentes</option>
+          <option value="menor">Menor preço</option>
+          <option value="maior">Maior preço</option>
+        </select>
+      </div>
+      <div class="filt-group">
+        <span class="label">Faixa de preço (R$)</span>
+        <div class="price-range">
+          <input type="number" id="fPriceMin" inputmode="numeric" placeholder="mín." min="0" />
+          <span>até</span>
+          <input type="number" id="fPriceMax" inputmode="numeric" placeholder="máx." min="0" />
+        </div>
+      </div>
+    </div>
+    <div class="ov-foot" style="display:flex;gap:10px">
+      <button class="btn btn-ghost" id="filterClear" type="button" style="flex:1">Limpar</button>
+      <button class="btn btn-primary" id="filterApply" type="button" style="flex:1.6">Aplicar filtros</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+  (function () {
+    'use strict';
+    var WA = 'https://wa.me/556992762900?text=';
+    var STORE = 'tsb:sacola:v1';
+    var $ = function (s, c) { return (c || document).querySelector(s); };
+    var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+    var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var brl = function (n) { return n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); };
+
+    var GARMENT = '<svg class="garment" viewBox="0 0 100 100"><path d="M32 16 22 24 15 40l10 6 4-7v43h42V39l4 7 10-6-7-16-10-8c-6 6-30 6-36 0Z"/></svg>';
+
+    /* ─── catálogo (dados de exemplo — placeholders honestos) ─────── */
+    var products = [
+      { id: 'lac-piquet-classic', brand: 'Lacoste', name: 'Piquet Crocodilo Classic Fit', price: 289, sizes: ['P', 'M', 'G', 'GG'], badge: 'original', fabric: '100% algodão Pima · caimento classic fit', tone: 0 },
+      { id: 'lac-ultradry-bloco', brand: 'Lacoste', name: 'Sport Ultra-Dry Color Block', price: 319, sizes: ['M', 'G', 'GG'], badge: 'ultimas', fabric: 'Piquet técnico Ultra-Dry · secagem rápida', tone: 3 },
+      { id: 'tom-flag-bordada', brand: 'Tommy Hilfiger', name: 'Essential Flag Bordada', price: 279, sizes: ['P', 'M', 'G'], badge: 'original', fabric: 'Jersey premium · bordado frontal', tone: 2 },
+      { id: 'tom-varsity-stripe', brand: 'Tommy Hilfiger', name: 'Varsity Stripe Heritage', price: 299, sizes: ['M', 'G', 'GG'], badge: 'lancamento', fabric: 'Algodão penteado · gola listrada tricô', tone: 4 },
+      { id: 'tri-nightshift', brand: 'Tripps', name: 'Oversized Graphic "Night Shift"', price: 249, sizes: ['P', 'M', 'G', 'GG'], badge: 'lancamento', fabric: 'Malha pesada 240g · corte oversized', tone: 5 },
+      { id: 'tri-acid-wash', brand: 'Tripps', name: 'Boxy Acid Wash', price: 259, sizes: ['M', 'G'], badge: 'ultimas', fabric: 'Estonado artesanal · modelagem boxy', tone: 1 },
+      { id: 'aero-biglogo', brand: 'Aero For Men', name: 'Big Logo Vintage', price: 199, sizes: ['P', 'M', 'G', 'GG'], badge: 'original', fabric: 'Algodão macio · estampa emborrachada', tone: 0 },
+      { id: 'aero-pocket-navy', brand: 'Aero For Men', name: 'Pocket Tee Washed Navy', price: 189, sizes: ['M', 'G', 'GG'], badge: null, fabric: 'Jersey 30/1 · bolso frontal', tone: 2 },
+      { id: 'lac-live-colorblock', brand: 'Lacoste', name: 'Live Colorblock Slim', price: null, sizes: ['P', 'M'], badge: 'ultimas', fabric: 'Piquet leve · modelagem slim', tone: 3 },
+      { id: 'tom-monotype-print', brand: 'Tommy Hilfiger', name: 'Monotype Print Relaxed', price: 289, sizes: ['P', 'M', 'G', 'GG'], badge: 'lancamento', fabric: 'Algodão orgânico · estampa all-over', tone: 4 },
+      { id: 'tri-longline-concrete', brand: 'Tripps', name: 'Longline Ribbed "Concrete"', price: 269, sizes: ['M', 'G', 'GG'], badge: 'original', fabric: 'Canelado premium · barra alongada', tone: 5 },
+      { id: 'aero-crew-triotone', brand: 'Aero For Men', name: 'Crew Neck Essential Trio-tone', price: 209, sizes: ['P', 'M', 'G'], badge: null, fabric: 'Algodão penteado · gola careca reforçada', tone: 1 }
+    ];
+    var BADGE_TXT = { original: '100% Original', ultimas: 'Últimas unidades', lancamento: 'Lançamento' };
+
+    var byId = function (id) { for (var i = 0; i < products.length; i++) { if (products[i].id === id) return products[i]; } return null; };
+
+    /* ─── estado dos filtros ─────────────────────────────────────── */
+    var state = { q: '', brand: 'todas', sizes: {}, sort: 'recentes', priceMin: null, priceMax: null };
+
+    var norm = function (s) { return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+
+    function activeSizes() { return Object.keys(state.sizes).filter(function (k) { return state.sizes[k]; }); }
+
+    function applyFilters() {
+      var q = norm(state.q);
+      var sz = activeSizes();
+      var list = products.filter(function (p) {
+        var brandOk = state.brand === 'todas' ||
+          (state.brand === 'lancamentos' ? p.badge === 'lancamento' : p.brand === state.brand);
+        if (!brandOk) return false;
+        if (sz.length && !p.sizes.some(function (s) { return sz.indexOf(s) > -1; })) return false;
+        if (q) {
+          var hay = norm(p.brand + ' ' + p.name + ' ' + p.fabric);
+          if (hay.indexOf(q) === -1) return false;
+        }
+        if (state.priceMin != null && (p.price == null || p.price < state.priceMin)) return false;
+        if (state.priceMax != null && (p.price == null || p.price > state.priceMax)) return false;
+        return true;
+      });
+      if (state.sort === 'menor') list.sort(function (a, b) { return (a.price == null ? 1e9 : a.price) - (b.price == null ? 1e9 : b.price); });
+      if (state.sort === 'maior') list.sort(function (a, b) { return (b.price == null ? -1 : b.price) - (a.price == null ? -1 : a.price); });
+      renderGrid(list);
+    }
+
+    var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (ents) {
+      ents.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }) : null;
+
+    var grid = $('#grid');
+    var emptyState = $('#emptyState');
+
+    function cardHTML(p) {
+      var price = p.price == null
+        ? '<div class="pc-price special">Consulte condição especial</div>'
+        : '<div class="pc-price">' + brl(p.price) + '</div>';
+      var badge = p.badge
+        ? '<span class="badge-float badge-' + p.badge + '"><span class="dot"></span>' + BADGE_TXT[p.badge] + '</span>'
+        : '';
+      var inBag = bag.some(function (it) { return it.id === p.id; });
+      var favLabel = inBag ? ('Remover ' + p.name + ' da sacola') : ('Adicionar ' + p.name + ' à sacola de interesse');
+      return '' +
+        '<article class="product-card" data-id="' + p.id + '" data-od-id="product-card-' + p.id + '">' +
+          '<div class="pc-media" data-quick>' +
+            '<div class="ph" data-tone="' + p.tone + '">' + GARMENT + '<span class="ph-brand" aria-hidden="true">' + p.brand + '</span></div>' +
+            badge +
+            '<button class="pc-fav' + (inBag ? ' added' : '') + '" type="button" data-add aria-pressed="' + (inBag ? 'true' : 'false') + '" aria-label="' + favLabel + '">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>' +
+              '<span class="pc-fav-plus" aria-hidden="true">+</span>' +
+            '</button>' +
+            '<button class="pc-quick" type="button" data-quick aria-label="Ver detalhes de ' + p.brand + ' ' + p.name + '">Ver detalhes</button>' +
+          '</div>' +
+          '<div class="pc-body">' +
+            '<span class="pc-brand label">' + p.brand + '</span>' +
+            '<h3 class="pc-name">' + p.name + '</h3>' +
+            '<div class="pc-sizes">' + p.sizes.join(' &middot; ') + '</div>' +
+            price +
+            '<a class="btn btn-secondary btn-block pc-wa" href="' + waSingle(p) + '" target="_blank" rel="noopener">Pedir no WhatsApp</a>' +
+          '</div>' +
+        '</article>';
+    }
+
+    function renderGrid(list) {
+      $('#resultCount').textContent = list.length;
+      $('#activeFilter').textContent = filterSummary();
+      if (!list.length) {
+        grid.innerHTML = '';
+        emptyState.hidden = false;
+        $('#emptyWa').href = WA + encodeURIComponent('Olá! Não encontrei no catálogo da T-Shirt Boutique a peça que procuro. Vocês conseguem buscar sob encomenda? Estou procurando: ');
+        return;
+      }
+      emptyState.hidden = true;
+      grid.innerHTML = list.map(cardHTML).join('');
+      $$('.ph', grid).forEach(function (el) {
+        if (RM || !io) { el.classList.add('revealed'); } else { io.observe(el); }
+      });
+    }
+
+    function filterSummary() {
+      var parts = [];
+      if (state.brand === 'todas') parts.push('todas as marcas');
+      else if (state.brand === 'lancamentos') parts.push('lançamentos');
+      else parts.push(state.brand);
+      var sz = activeSizes();
+      if (sz.length) parts.push('tam ' + sz.join('/'));
+      if (state.q) parts.push('“' + state.q + '”');
+      if (state.priceMin != null || state.priceMax != null) {
+        parts.push('R$ ' + (state.priceMin != null ? state.priceMin : '0') + '–' + (state.priceMax != null ? state.priceMax : '∞'));
+      }
+      return parts.join(' · ');
+    }
+
+    /* ─── mensagens WhatsApp ─────────────────────────────────────── */
+    function waSingle(p) {
+      var price = p.price == null ? 'sob consulta' : brl(p.price);
+      var msg = 'Olá! Tenho interesse nesta peça do catálogo da T-Shirt Boutique:\n\n' +
+        p.brand + ' — ' + p.name + '\n' + price + '\n\n' +
+        'Ela está disponível? Quais tamanhos e formas de pagamento?';
+      return WA + encodeURIComponent(msg);
+    }
+    function waLook(p, size) {
+      var price = p.price == null ? 'sob consulta' : brl(p.price);
+      var msg = 'Olá! Quero garantir esta peça do catálogo da T-Shirt Boutique:\n\n' +
+        p.brand + ' — ' + p.name + ' (Tam ' + size + ')\n' + price + '\n\n' +
+        'Qual a forma de pagamento e o frete para o meu CEP?';
+      return WA + encodeURIComponent(msg);
+    }
+    function waBag() {
+      if (!bag.length) return WA;
+      var lines = bag.map(function (it, i) {
+        var p = byId(it.id);
+        var price = p.price == null ? 'sob consulta' : brl(p.price);
+        return (i + 1) + '. Camiseta ' + p.brand + ' ' + p.name + ' (Tam ' + it.size + ') — ' + price;
+      });
+      var total = bagTotal();
+      var msg = 'Olá! Vim pelo catálogo da T-Shirt Boutique e quero fechar este pedido:\n\n' +
+        lines.join('\n') + '\n\nTotal aproximado: ' + brl(total) + '\n' +
+        'Qual a forma de pagamento e o frete para o meu CEP?';
+      return WA + encodeURIComponent(msg);
+    }
+
+    /* ─── sacola de interesse ────────────────────────────────────── */
+    var bag = [];
+    try { bag = JSON.parse(localStorage.getItem(STORE)) || []; } catch (e) { bag = []; }
+    bag = bag.filter(function (it) { return it && byId(it.id); });
+
+    function persist() { try { localStorage.setItem(STORE, JSON.stringify(bag)); } catch (e) {} }
+    function bagCount() { return bag.length; }
+    function bagTotal() { return bag.reduce(function (s, it) { var p = byId(it.id); return s + (p && p.price ? p.price : 0); }, 0); }
+
+    function updateBadges() {
+      var n = bagCount();
+      var nb = $('#navBadge');
+      nb.textContent = n; nb.hidden = n === 0;
+      $('#bbBagCount').textContent = n;
+      var pc = n === 1 ? 'peça' : 'peças';
+      $('#bbBag').setAttribute('aria-label', 'Ver sacola de interesse, ' + n + ' ' + pc);
+      $('#openBag').setAttribute('aria-label', 'Abrir sacola de interesse, ' + n + ' ' + pc);
+      $('#bagSendLabel').textContent = n ? ('Enviar pedido ao consultor (' + n + ' ' + pc + ')') : 'Enviar pedido ao consultor';
+      var send = $('#bagSend');
+      send.href = waBag();
+      send.style.pointerEvents = n ? '' : 'none';
+      send.style.opacity = n ? '' : '0.4';
+      if (n) { send.removeAttribute('aria-disabled'); send.removeAttribute('tabindex'); }
+      else { send.setAttribute('aria-disabled', 'true'); send.setAttribute('tabindex', '-1'); }
+    }
+
+    function addToBag(id, size) {
+      var p = byId(id);
+      if (!p) return;
+      size = size || p.sizes[0];
+      var exists = bag.some(function (it) { return it.id === id && it.size === size; });
+      if (exists) { toast('Essa peça já está na sacola'); return; }
+      bag.push({ id: id, size: size });
+      persist(); updateBadges(); renderBag();
+      toast(p.name + ' adicionada à sacola');
+    }
+    function removeFromBag(idx) {
+      bag.splice(idx, 1); persist(); updateBadges(); renderBag();
+    }
+    function removeFromBagById(id) {
+      var i = -1;
+      for (var k = 0; k < bag.length; k++) { if (bag[k].id === id) { i = k; break; } }
+      if (i > -1) { bag.splice(i, 1); persist(); updateBadges(); renderBag(); toast('Peça removida da sacola'); }
+    }
+    function changeSize(idx, size) {
+      bag[idx].size = size; persist(); updateBadges();
+    }
+    function syncGridFav() {
+      $$('.product-card', grid).forEach(function (card) {
+        var b = card.querySelector('.pc-fav');
+        if (!b) return;
+        var id = card.getAttribute('data-id');
+        var on = bag.some(function (it) { return it.id === id; });
+        var p = byId(id) || { name: '' };
+        b.classList.toggle('added', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        b.setAttribute('aria-label', on ? ('Remover ' + p.name + ' da sacola') : ('Adicionar ' + p.name + ' à sacola de interesse'));
+      });
+    }
+
+    function renderBag() {
+      var body = $('#bagBody');
+      if (!bag.length) {
+        body.innerHTML = '<div class="bag-empty">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>' +
+          'Sua sacola está vazia.<br>Toque no ícone de sacola sobre a foto de qualquer peça para começar.</div>';
+      } else {
+        var html = '<div class="bag-list">' + bag.map(function (it, i) {
+          var p = byId(it.id);
+          var price = p.price == null ? 'Sob consulta' : brl(p.price);
+          var opts = p.sizes.map(function (s) { return '<option value="' + s + '"' + (s === it.size ? ' selected' : '') + '>Tam ' + s + '</option>'; }).join('');
+          return '<div class="bag-item" data-idx="' + i + '">' +
+            '<div class="bag-thumb"><div class="ph revealed" data-tone="' + p.tone + '">' + GARMENT + '</div></div>' +
+            '<div class="bag-meta">' +
+              '<span class="bi-brand label">' + p.brand + '</span>' +
+              '<span class="bi-name">' + p.name + '</span>' +
+              '<span class="bi-price">' + price + '</span>' +
+              '<select class="bi-size" aria-label="Tamanho de ' + p.name + '">' + opts + '</select>' +
+            '</div>' +
+            '<button class="bi-remove" type="button" aria-label="Remover ' + p.name + '">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>' +
+            '</button>' +
+          '</div>';
+        }).join('') + '</div>';
+        body.innerHTML = html;
+      }
+      $('#bagTotal').textContent = brl(bagTotal());
+      updateBadges();
+      syncGridFav();
+    }
+
+    /* ─── overlays ──────────────────────────────────────────────── */
+    var scrim = $('#scrim');
+    var openStack = [];
+    var lastFocus = null;
+
+    function lockScroll(on) { document.body.style.overflow = on ? 'hidden' : ''; }
+
+    function focusables(el) {
+      return $$('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])', el)
+        .filter(function (n) { return n.getClientRects().length > 0; });
+    }
+
+    function openOverlay(el) {
+      if (!openStack.length) lastFocus = document.activeElement;
+      el.classList.add('is-open');
+      el.setAttribute('aria-hidden', 'false');
+      scrim.classList.add('is-open');
+      openStack.push(el);
+      lockScroll(true);
+      var f = el.querySelector('[data-close]') || focusables(el)[0];
+      if (f) setTimeout(function () { f.focus(); }, 60);
+    }
+    function closeOverlay(el) {
+      el = el || openStack[openStack.length - 1];
+      if (!el) return;
+      el.classList.remove('is-open');
+      el.setAttribute('aria-hidden', 'true');
+      openStack = openStack.filter(function (x) { return x !== el; });
+      if (!openStack.length) { scrim.classList.remove('is-open'); lockScroll(false); }
+      if (openStack.length) { var top = openStack[openStack.length - 1]; setTimeout(function () { (top.querySelector('[data-close]') || focusables(top)[0] || top).focus(); }, 0); }
+      else if (lastFocus && lastFocus.focus) { lastFocus.focus(); }
+    }
+    scrim.addEventListener('click', function () { while (openStack.length) closeOverlay(); });
+    document.addEventListener('keydown', function (e) {
+      if (!openStack.length) return;
+      if (e.key === 'Escape') { e.preventDefault(); closeOverlay(); return; }
+      if (e.key !== 'Tab') return;
+      var top = openStack[openStack.length - 1];
+      var f = focusables(top);
+      if (!f.length) { e.preventDefault(); return; }
+      var first = f[0], last = f[f.length - 1];
+      if (!top.contains(document.activeElement)) { e.preventDefault(); first.focus(); return; }
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    $$('[data-close]').forEach(function (b) {
+      b.addEventListener('click', function () { closeOverlay(b.closest('.modal, .drawer, .sheet')); });
+    });
+
+    /* ─── quick lookbook ────────────────────────────────────────── */
+    var lookModal = $('#lookModal');
+    var currentLook = null, currentSize = null;
+
+    function openLook(id) {
+      var p = byId(id); if (!p) return;
+      currentLook = p;
+      currentSize = p.sizes[0];
+      $('#lbBrand').textContent = p.brand;
+      $('#lbTitle').textContent = p.name;
+      $('#lbPrice').textContent = p.price == null ? 'Consulte condição especial' : brl(p.price);
+      $('#lbFabric').textContent = p.fabric;
+      $('#lbMain').setAttribute('data-tone', p.tone);
+      var thumbs = [0, 1, 2].map(function (n) {
+        return '<button class="lb-thumb" type="button" aria-pressed="' + (n === 0) + '" aria-label="Foto ' + (n + 1) + '">' +
+          '<div class="ph revealed" data-tone="' + ((p.tone + n) % 6) + '">' + GARMENT + '</div></button>';
+      }).join('');
+      $('#lbThumbs').innerHTML = thumbs;
+      $('#lbSizes').innerHTML = ['P', 'M', 'G', 'GG'].map(function (s) {
+        var has = p.sizes.indexOf(s) > -1;
+        return '<button class="size-opt" type="button" data-size="' + s + '" aria-pressed="' + (has && s === currentSize) + '"' + (has ? '' : ' disabled') + '>' + s + '</button>';
+      }).join('');
+      $('#lbMeasures').hidden = true;
+      $('#lbMeasuresToggle').textContent = 'Ver tabela de medidas';
+      $('#lbMeasuresToggle').setAttribute('aria-expanded', 'false');
+      syncLookCtas();
+      openOverlay(lookModal);
+    }
+    function syncLookCtas() {
+      $('#lbWa').href = waLook(currentLook, currentSize);
+    }
+    $('#lbSizes').addEventListener('click', function (e) {
+      var b = e.target.closest('.size-opt'); if (!b || b.disabled) return;
+      currentSize = b.getAttribute('data-size');
+      $$('.size-opt', $('#lbSizes')).forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      syncLookCtas();
+    });
+    $('#lbThumbs').addEventListener('click', function (e) {
+      var b = e.target.closest('.lb-thumb'); if (!b) return;
+      $$('.lb-thumb', $('#lbThumbs')).forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      var tone = b.querySelector('.ph').getAttribute('data-tone');
+      $('#lbMain').setAttribute('data-tone', tone);
+    });
+    $('#lbMeasuresToggle').addEventListener('click', function () {
+      var m = $('#lbMeasures');
+      m.hidden = !m.hidden;
+      this.setAttribute('aria-expanded', m.hidden ? 'false' : 'true');
+      this.textContent = m.hidden ? 'Ver tabela de medidas' : 'Ocultar tabela de medidas';
+    });
+    $('#lbAdd').addEventListener('click', function () {
+      if (!currentLook) return;
+      addToBag(currentLook.id, currentSize);
+      closeOverlay(lookModal);
+      openOverlay($('#bagDrawer'));
+      renderBag();
+    });
+
+    /* ─── grid delegation ──────────────────────────────────────── */
+    grid.addEventListener('click', function (e) {
+      var card = e.target.closest('.product-card'); if (!card) return;
+      var id = card.getAttribute('data-id');
+      if (e.target.closest('[data-add]')) {
+        e.preventDefault(); e.stopPropagation();
+        if (bag.some(function (it) { return it.id === id; })) removeFromBagById(id);
+        else addToBag(id);
+        return;
+      }
+      if (e.target.closest('.pc-wa')) { return; }
+      if (e.target.closest('[data-quick]')) { openLook(id); }
+    });
+
+    /* ─── sacola drawer bindings ───────────────────────────────── */
+    $('#bagBody').addEventListener('click', function (e) {
+      var row = e.target.closest('.bag-item'); if (!row) return;
+      if (e.target.closest('.bi-remove')) removeFromBag(+row.getAttribute('data-idx'));
+    });
+    $('#bagBody').addEventListener('change', function (e) {
+      var row = e.target.closest('.bag-item'); if (!row) return;
+      if (e.target.classList.contains('bi-size')) changeSize(+row.getAttribute('data-idx'), e.target.value);
+    });
+    $('#openBag').addEventListener('click', function () { renderBag(); openOverlay($('#bagDrawer')); });
+    $('#bbBag').addEventListener('click', function () { renderBag(); openOverlay($('#bagDrawer')); });
+
+    /* ─── busca ────────────────────────────────────────────────── */
+    var sInput = $('#searchInput'), sWrap = $('#searchWrap');
+    sInput.addEventListener('input', function () {
+      state.q = sInput.value.trim();
+      sWrap.classList.toggle('has-value', !!sInput.value);
+      applyFilters();
+    });
+    $('#searchClear').addEventListener('click', function () {
+      sInput.value = ''; state.q = ''; sWrap.classList.remove('has-value');
+      sInput.focus(); applyFilters();
+    });
+
+    /* ─── pílulas de marca ─────────────────────────────────────── */
+    $('#brandPills').addEventListener('click', function (e) {
+      var b = e.target.closest('.pill'); if (!b) return;
+      state.brand = b.getAttribute('data-brand');
+      $$('.pill', this).forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      syncAdvancedFromState();
+      applyFilters();
+    });
+
+    /* ─── chips de tamanho (barra) ─────────────────────────────── */
+    function bindSizeChips(container) {
+      container.addEventListener('click', function (e) {
+        var b = e.target.closest('.chip'); if (!b) return;
+        var s = b.getAttribute('data-size');
+        state.sizes[s] = !state.sizes[s];
+        syncSizeChips();
+        applyFilters();
+      });
+    }
+    function syncSizeChips() {
+      $$('.chip').forEach(function (c) {
+        c.setAttribute('aria-pressed', !!state.sizes[c.getAttribute('data-size')]);
+      });
+    }
+    bindSizeChips($('#sizeChips'));
+    bindSizeChips($('#fSizeChips'));
+
+    /* ─── ordenação ────────────────────────────────────────────── */
+    $('#sortSelect').addEventListener('change', function () {
+      state.sort = this.value;
+      var fs = $('#fSortSelect'); if (fs) fs.value = this.value;
+      applyFilters();
+    });
+
+    /* ─── filtros avançados ────────────────────────────────────── */
+    var fSheet = $('#filterSheet');
+    function openFilters() { syncAdvancedFromState(); openOverlay(fSheet); }
+    $('#openFilters').addEventListener('click', openFilters);
+    $('#bbFilters').addEventListener('click', openFilters);
+
+    function syncAdvancedFromState() {
+      var r = fSheet.querySelector('input[name="fBrand"][value="' + state.brand + '"]');
+      if (r) r.checked = true;
+      $('#fPriceMin').value = state.priceMin != null ? state.priceMin : '';
+      $('#fPriceMax').value = state.priceMax != null ? state.priceMax : '';
+      var fs = $('#fSortSelect'); if (fs) fs.value = state.sort;
+      syncSizeChips();
+    }
+    $('#filterApply').addEventListener('click', function () {
+      var br = fSheet.querySelector('input[name="fBrand"]:checked');
+      state.brand = br ? br.value : 'todas';
+      var mn = parseInt($('#fPriceMin').value, 10);
+      var mx = parseInt($('#fPriceMax').value, 10);
+      state.priceMin = isNaN(mn) ? null : mn;
+      state.priceMax = isNaN(mx) ? null : mx;
+      var fs = $('#fSortSelect');
+      if (fs) { state.sort = fs.value; $('#sortSelect').value = fs.value; }
+      $$('.pill', $('#brandPills')).forEach(function (x) {
+        x.setAttribute('aria-pressed', x.getAttribute('data-brand') === state.brand);
+      });
+      applyFilters();
+      closeOverlay(fSheet);
+    });
+    function resetFilters() {
+      state.q = ''; state.brand = 'todas'; state.sizes = {};
+      state.priceMin = null; state.priceMax = null; state.sort = 'recentes';
+      sInput.value = ''; sWrap.classList.remove('has-value');
+      var r = fSheet.querySelector('input[name="fBrand"][value="todas"]'); if (r) r.checked = true;
+      $('#fPriceMin').value = ''; $('#fPriceMax').value = '';
+      var fs = $('#fSortSelect'); if (fs) fs.value = 'recentes';
+      $('#sortSelect').value = 'recentes';
+      $$('.pill', $('#brandPills')).forEach(function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-brand') === 'todas'); });
+      syncSizeChips();
+      applyFilters();
+    }
+    $('#filterClear').addEventListener('click', resetFilters);
+    $('#emptyClear').addEventListener('click', resetFilters);
+
+    /* ─── diversos ─────────────────────────────────────────────── */
+    $('#toTop').addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' });
+    });
+    $('#year').textContent = new Date().getFullYear();
+    $('#headerWa').href = WA + encodeURIComponent('Olá! Vim pelo catálogo da T-Shirt Boutique e gostaria de falar com a loja.');
+
+    var toastEl = $('#toast'), toastT = null;
+    function toast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add('is-open');
+      clearTimeout(toastT);
+      toastT = setTimeout(function () { toastEl.classList.remove('is-open'); }, 2200);
+    }
+
+    /* ─── init ─────────────────────────────────────────────────── */
+    updateBadges();
+    renderBag();
+    applyFilters();
+  })();
+  </script>
+</body>
+</html>

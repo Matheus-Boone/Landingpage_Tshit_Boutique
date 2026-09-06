@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Marcas &amp; Categorias · Painel T-Shirt Boutique</title>
+  <meta name="description" content="Gestão de marcas e categorias do catálogo da T-Shirt Boutique." />
+  <meta name="theme-color" content="#0e0e0e" />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#131313; --surface:#1b1b1b; --fg:#e2e2e2; --muted:#b5b5b5;
+      --border:rgba(91,63,72,0.26); --accent:#ff1493;
+      --surface-0:#0e0e0e; --surface-1:#1b1b1b; --surface-2:#1f1f1f; --surface-3:#2a2a2a; --surface-4:#353535;
+      --on-accent:#fff; --metal:#c6c6c6; --success:#6ae04d; --danger:#ff6b6b; --warn:#ffb020;
+      --stroke:color-mix(in oklch, var(--metal) 24%, transparent);
+      --accent-soft:color-mix(in oklch, var(--accent) 16%, transparent);
+      --accent-line:color-mix(in oklch, var(--accent) 45%, transparent);
+      --fg-soft:color-mix(in oklch, var(--fg) 6%, transparent);
+      --glow:0 0 15px rgba(255,71,156,.30); --glow-strong:0 0 26px rgba(255,71,156,.5);
+      --font-display:'Newsreader',Georgia,'Times New Roman',serif;
+      --font-body:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+      --radius:4px; --radius-lg:8px; --nav-h:60px;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    svg{display:block;max-width:100%} img{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+    input,select,textarea{font:inherit}
+    h1,h2,h3{margin:0}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+    ::selection{background:var(--accent);color:var(--on-accent)}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:11px 16px;border-radius:var(--radius);border:1px solid transparent;font:600 14px/1 var(--font-body);letter-spacing:.01em;cursor:pointer;transition:background .16s ease,border-color .16s ease,color .16s ease,box-shadow .16s ease,transform .06s ease;white-space:nowrap}
+    .btn:active{transform:translateY(1px)}
+    .btn svg{width:16px;height:16px;flex:none}
+    .btn-primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+    .btn-primary:hover{background:color-mix(in oklch, var(--accent) 88%, white);border-color:color-mix(in oklch, var(--accent) 88%, white)}
+    .btn-secondary{background:transparent;color:var(--fg);border-color:var(--accent-line)}
+    .btn-secondary:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--on-accent)}
+    .btn-ghost{background:transparent;color:var(--fg);border-color:var(--stroke)}
+    .btn-ghost:hover{background:var(--surface-3);border-color:var(--metal)}
+    .btn-danger{background:transparent;color:var(--danger);border-color:color-mix(in oklch, var(--danger) 45%, transparent)}
+    .btn-danger:hover{background:color-mix(in oklch, var(--danger) 14%, transparent);border-color:var(--danger);color:var(--on-accent)}
+
+    .ad-top{position:sticky;top:0;z-index:30;background:color-mix(in oklch, var(--surface-0) 88%, transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 4px 30px rgba(0,0,0,.5)}
+    .ad-top-in{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:var(--nav-h);max-width:1320px;margin-inline:auto;padding:10px 20px}
+    .ad-brand{font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.01em;line-height:1.1}
+    .ad-brand em{color:var(--accent);font-style:italic}
+    .ad-brand span{display:block;font:700 9px/1 var(--font-body);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+    .ad-top-actions{display:flex;gap:10px;align-items:center}
+    .ad-top-actions .btn{min-height:40px;padding:9px 13px;font-size:13px}
+    .ad-top-actions .lbl-full{display:none}
+    @media(min-width:560px){ .ad-top-actions .lbl-full{display:inline} }
+
+    .ad-shell{display:grid;grid-template-columns:1fr;max-width:1320px;margin-inline:auto;position:relative;z-index:1}
+    @media(min-width:960px){ .ad-shell{grid-template-columns:236px 1fr} }
+    .ad-side{display:none}
+    @media(min-width:960px){ .ad-side{display:flex;flex-direction:column;gap:2px;padding:26px 14px;border-right:1px solid var(--border);min-height:calc(100vh - var(--nav-h))} }
+    .ad-side a{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:var(--radius);font-size:14px;font-weight:600;color:var(--muted);min-height:44px;transition:color .14s ease,background .14s ease}
+    .ad-side a svg{width:17px;height:17px;flex:none}
+    .ad-side a:hover{color:var(--fg);background:var(--surface-2)}
+    .ad-side a[aria-current=page]{color:var(--fg);background:var(--accent-soft);box-shadow:inset 2px 0 0 var(--accent)}
+    .ad-side .sep{height:1px;background:var(--border);margin:12px 6px}
+
+    .ad-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 20px;border-bottom:1px solid var(--border);position:sticky;top:var(--nav-h);z-index:20;background:color-mix(in oklch, var(--bg) 92%, transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+    .ad-tabs::-webkit-scrollbar{display:none}
+    .ad-tabs a{flex:none;display:inline-flex;align-items:center;padding:9px 14px;border-radius:999px;border:1px solid var(--border);font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap;min-height:40px}
+    .ad-tabs a[aria-current=page]{color:var(--fg);border-color:var(--accent);background:var(--accent-soft)}
+    @media(min-width:960px){ .ad-tabs{display:none} }
+
+    .ad-main{padding:22px 20px 96px;min-width:0}
+    @media(min-width:960px){ .ad-main{padding:32px 32px 64px} }
+    .ad-h1{font-family:var(--font-display);font-weight:500;font-size:clamp(24px,4vw,32px);letter-spacing:-.015em;margin:0 0 4px}
+    .ad-sub{color:var(--muted);font-size:14px;margin:0 0 26px}
+
+    .sec{margin-bottom:40px}
+    .sec-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
+    .sec-head h2{font-family:var(--font-display);font-weight:500;font-size:20px;letter-spacing:-.01em}
+    .sec-head p{color:var(--muted);font-size:13px;margin:4px 0 0}
+
+    .brand-grid{display:grid;grid-template-columns:1fr;gap:12px}
+    @media(min-width:620px){ .brand-grid{grid-template-columns:1fr 1fr} }
+    @media(min-width:1100px){ .brand-grid{grid-template-columns:1fr 1fr 1fr} }
+    .brand-card{display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:start;background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px}
+    .bc-logo{width:56px;height:56px;border-radius:var(--radius);display:grid;place-items:center;font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--metal);background:linear-gradient(150deg,var(--surface-3),var(--surface-0));border:1px solid var(--border);overflow:hidden}
+    .bc-logo img{width:100%;height:100%;object-fit:cover}
+    .bc-body{min-width:0}
+    .bc-body h3{font-size:15px;font-weight:600}
+    .bc-desc{color:var(--muted);font-size:13px;margin:4px 0 8px;line-height:1.45}
+    .bc-count{font:700 10px/1 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--metal)}
+    .bc-actions{display:flex;flex-direction:column;gap:6px}
+    .icon-btn{width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--stroke);border-radius:var(--radius);color:var(--muted);transition:color .14s ease,border-color .14s ease,background .14s ease}
+    .icon-btn:hover{color:var(--fg);border-color:var(--metal);background:var(--surface-3)}
+    .icon-btn.danger:hover{color:var(--danger);border-color:color-mix(in oklch, var(--danger) 45%, transparent);background:color-mix(in oklch, var(--danger) 10%, transparent)}
+    .icon-btn svg{width:16px;height:16px}
+
+    .cats{background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px}
+    .cat-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+    .cat{display:inline-flex;align-items:center;gap:8px;padding:8px 8px 8px 13px;border:1px solid var(--stroke);border-radius:999px;font-size:13px;font-weight:600;color:var(--fg)}
+    .cat button{width:24px;height:24px;display:grid;place-items:center;border-radius:999px;color:var(--muted)}
+    .cat button:hover{color:var(--danger);background:var(--surface-3)}
+    .cat button svg{width:12px;height:12px}
+    .cat-add{display:flex;gap:8px}
+    .cat-add input{flex:1;min-width:0;min-height:44px;padding:10px 12px;background:var(--surface-2);border:1px solid var(--stroke);border-radius:var(--radius);color:var(--fg);font-size:14px}
+    .cat-add input:focus-visible{outline:none;border-color:var(--accent);box-shadow:var(--glow)}
+
+    .empty-a{text-align:center;padding:44px 20px;color:var(--muted);border:1px dashed var(--stroke);border-radius:var(--radius-lg)}
+    .empty-a svg{width:32px;height:32px;margin:0 auto 12px;color:var(--surface-4)}
+    .empty-a h3{color:var(--fg);margin:0 0 6px;font-size:16px}
+
+    /* modal */
+    .scrim{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.62);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .25s ease}
+    .scrim.is-open{opacity:1;pointer-events:auto}
+    .modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;visibility:hidden;transition:opacity .22s ease,visibility 0s linear .22s}
+    .modal.is-open{opacity:1;pointer-events:auto;visibility:visible;transition:opacity .22s ease,visibility 0s}
+    .modal-card{width:100%;max-width:460px;max-height:88vh;overflow:auto;background:var(--surface-2);border:1px solid var(--border);border-radius:12px}
+    .mc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid var(--border)}
+    .mc-head h2{font-family:var(--font-display);font-weight:500;font-size:19px}
+    .mc-body{padding:20px}
+    .mc-foot{padding:16px 20px calc(16px + env(safe-area-inset-bottom));border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end}
+    .close-x{width:44px;height:44px;display:grid;place-items:center;border-radius:999px;color:var(--muted)}
+    .close-x:hover{color:var(--fg);background:var(--surface-3)}
+    @media(max-width:520px){
+      .modal{place-items:end center;padding:0}
+      .modal-card{max-width:100%;border-radius:14px 14px 0 0;transform:translateY(100%);transition:transform .3s cubic-bezier(.16,1,.3,1)}
+      .modal.is-open .modal-card{transform:none}
+    }
+    .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+    .flabel{font:700 11px/1.3 var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--metal)}
+    .flabel .opt{color:var(--muted);font-weight:600;text-transform:none;letter-spacing:.02em}
+    .input{width:100%;min-height:46px;padding:12px 14px;background:var(--surface-1);border:1px solid var(--stroke);border-radius:var(--radius);color:var(--fg);font:400 15px/1.4 var(--font-body);transition:border-color .16s ease,box-shadow .16s ease}
+    .input::placeholder{color:var(--muted)}
+    .input:focus-visible{outline:none;border-color:var(--accent);box-shadow:var(--glow)}
+    .field.invalid .input{border-color:var(--danger)}
+    .field .err{font-size:12px;color:var(--danger);display:none}
+    .field.invalid .err{display:block}
+    .logo-drop{display:flex;align-items:center;gap:14px}
+    .logo-prev{width:56px;height:56px;border-radius:var(--radius);border:1px solid var(--border);background:linear-gradient(150deg,var(--surface-3),var(--surface-0));display:grid;place-items:center;font-family:var(--font-display);font-weight:600;color:var(--metal);overflow:hidden;flex:none}
+    .logo-prev img{width:100%;height:100%;object-fit:cover}
+    .logo-drop .hint{font-size:12px;color:var(--muted);margin-top:6px}
+
+    .toast{position:fixed;left:50%;bottom:24px;z-index:70;transform:translate(-50%,16px);background:var(--surface-4);color:var(--fg);padding:12px 18px;border-radius:var(--radius);font:600 13px var(--font-body);box-shadow:0 12px 40px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;max-width:calc(100vw - 40px);text-align:center}
+    .toast.is-open{opacity:1;transform:translate(-50%,0)}
+    @media (prefers-reduced-motion: reduce){ *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;transition-delay:0s!important} }
+  </style>
+</head>
+<body>
+  <header class="ad-top" data-od-id="admin-header">
+    <div class="ad-top-in">
+      <a class="ad-brand" href="admin-produtos.html" aria-label="Painel T-Shirt Boutique">
+        T&#8209;Shirt <em>Boutique</em><span>Painel · Marcas</span>
+      </a>
+      <div class="ad-top-actions">
+        <a class="btn btn-ghost" href="catalogo.html" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          <span class="lbl-full">Ver catálogo</span>
+        </a>
+        <button class="btn btn-ghost" id="logoutBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+          <span class="lbl-full">Sair</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="ad-tabs" aria-label="Seções do painel">
+    <a href="admin-produtos.html">Produtos</a>
+    <a href="admin-marcas.html" aria-current="page">Marcas &amp; Categorias</a>
+    <a href="catalogo.html" target="_blank" rel="noopener">Catálogo público</a>
+  </nav>
+
+  <div class="ad-shell">
+    <aside class="ad-side" data-od-id="admin-sidebar">
+      <a href="admin-produtos.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+        Produtos
+      </a>
+      <a href="admin-marcas.html" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7-7A2 2 0 0 1 3 12V4h8a2 2 0 0 1 1.4.6l8.2 8.2a2 2 0 0 1 0 2.6Z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+        Marcas &amp; Categorias
+      </a>
+      <div class="sep" role="separator"></div>
+      <a href="catalogo.html" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        Abrir catálogo público
+      </a>
+    </aside>
+
+    <main class="ad-main" id="main">
+      <h1 class="ad-h1">Marcas &amp; Categorias</h1>
+      <p class="ad-sub">Cadastre marcas e coleções sem depender de suporte técnico.</p>
+
+      <section class="sec" data-od-id="sec-marcas">
+        <div class="sec-head">
+          <div>
+            <h2>Marcas</h2>
+            <p id="brandCount">0 marcas cadastradas</p>
+          </div>
+          <button class="btn btn-primary" id="newBrandBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            Nova marca
+          </button>
+        </div>
+        <div class="brand-grid" id="brandGrid"></div>
+        <div class="empty-a" id="brandEmpty" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7-7A2 2 0 0 1 3 12V4h8a2 2 0 0 1 1.4.6l8.2 8.2a2 2 0 0 1 0 2.6Z"/></svg>
+          <h3>Nenhuma marca cadastrada</h3>
+          <p style="margin:0">Adicione a primeira marca para organizar o catálogo.</p>
+        </div>
+      </section>
+
+      <section class="sec" data-od-id="sec-categorias">
+        <div class="sec-head">
+          <div>
+            <h2>Categorias</h2>
+            <p>Coleções e tipos de peça usados como etiquetas internas.</p>
+          </div>
+        </div>
+        <div class="cats">
+          <div class="cat-list" id="catList" aria-live="polite"></div>
+          <form class="cat-add" id="catForm">
+            <input type="text" id="catInput" placeholder="Nova categoria (ex.: Manga longa)" aria-label="Nova categoria" autocomplete="off" maxlength="28" />
+            <button class="btn btn-secondary" type="submit">Adicionar</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+  <div class="modal" id="brandModal" role="dialog" aria-modal="true" aria-labelledby="bmTitle" aria-hidden="true" data-od-id="brand-modal">
+    <div class="modal-card">
+      <div class="mc-head">
+        <h2 id="bmTitle">Nova marca</h2>
+        <button class="close-x" data-close type="button" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <form id="brandForm">
+        <div class="mc-body">
+          <div class="field" id="bfName">
+            <label class="flabel" for="bName">Nome da marca</label>
+            <input class="input" id="bName" autocomplete="off" placeholder="Ex.: Ralph Lauren" aria-describedby="bName-err" data-autofocus />
+            <span class="err" id="bName-err">Informe o nome da marca.</span>
+          </div>
+          <div class="field">
+            <label class="flabel" for="bLogo">Logo / imagem <span class="opt">(opcional)</span></label>
+            <div class="logo-drop">
+              <span class="logo-prev" id="bLogoPrev" aria-hidden="true">?</span>
+              <div>
+                <label class="btn btn-ghost" for="bLogo" style="min-height:40px;padding:9px 13px;font-size:13px">Escolher imagem</label>
+                <input type="file" id="bLogo" accept="image/*" hidden />
+                <p class="hint">Pré-visualização apenas nesta sessão. Sem imagem, usamos o monograma.</p>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="flabel" for="bDesc">Descrição curta <span class="opt">(opcional)</span></label>
+            <input class="input" id="bDesc" autocomplete="off" placeholder="Ex.: Preppy americano com bordados." maxlength="90" />
+          </div>
+        </div>
+        <div class="mc-foot">
+          <button class="btn btn-ghost" data-close type="button">Cancelar</button>
+          <button class="btn btn-primary" type="submit" id="bSave">Salvar marca</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="delModal" role="dialog" aria-modal="true" aria-labelledby="dmTitle" aria-hidden="true" data-od-id="brand-delete-modal">
+    <div class="modal-card">
+      <div class="mc-head">
+        <h2 id="dmTitle">Excluir marca</h2>
+        <button class="close-x" data-close type="button" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="mc-body" style="color:var(--muted);font-size:14px;line-height:1.6">
+        <span id="dmMsg">Tem certeza que deseja excluir esta marca?</span>
+      </div>
+      <div class="mc-foot">
+        <button class="btn btn-ghost" data-close type="button">Cancelar</button>
+        <button class="btn btn-danger" id="dmConfirm" type="button">Excluir marca</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+  (function(){
+    'use strict';
+    var $=function(s,c){return (c||document).querySelector(s)};
+    var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+    var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})};
+    var _t; function toast(m){var e=$('#toast');e.textContent=m;e.classList.add('is-open');clearTimeout(_t);_t=setTimeout(function(){e.classList.remove('is-open')},2400);}
+
+    if(sessionStorage.getItem('tsb:admin:auth')!=='1'){ try{ sessionStorage.setItem('tsb:admin:auth','1'); }catch(e){} }
+    $('#logoutBtn').addEventListener('click',function(){ try{ sessionStorage.removeItem('tsb:admin:auth'); }catch(e){} location.href='admin-login.html'; });
+
+    var PK='tsb:admin:products:v1', BK='tsb:admin:brands:v1', CK='tsb:admin:cats:v1';
+    var seedB=[
+      {id:'lacoste',name:'Lacoste',desc:'Piquet francês e ícones esportivos.'},
+      {id:'tommy',name:'Tommy Hilfiger',desc:'Preppy americano com bordados e bandeiras.'},
+      {id:'tripps',name:'Tripps',desc:'Streetwear oversized e lavagens especiais.'},
+      {id:'aero',name:'Aero For Men',desc:'Básicos com logo e caimento confortável.'}
+    ];
+    var seedC=['Piquet','Oversized','Básica','Estampada','Canelada','Bordada'];
+    var seedP=[
+      {brand:'Lacoste'},{brand:'Lacoste'},{brand:'Tommy Hilfiger'},{brand:'Tommy Hilfiger'},
+      {brand:'Tripps'},{brand:'Tripps'},{brand:'Aero For Men'},{brand:'Aero For Men'},
+      {brand:'Lacoste'},{brand:'Tommy Hilfiger'}
+    ];
+    function lget(k,s){ try{ var v=JSON.parse(localStorage.getItem(k)); return (v&&v.length!=null)?v:(Array.isArray(s)?s.slice():s); }catch(e){ return Array.isArray(s)?s.slice():s; } }
+    function lset(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+    var brands=lget(BK,seedB);
+    var cats=lget(CK,seedC);
+    var products=lget(PK,seedP);
+
+    function mono(name){
+      return String(name).trim().split(/\s+/).slice(0,2).map(function(w){return w.charAt(0)}).join('').toUpperCase()||'?';
+    }
+    function slug(str){
+      return String(str).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40)||('marca-'+Date.now().toString(36).slice(-4));
+    }
+    function countFor(b){
+      return products.filter(function(p){ return (p.brand||'').toLowerCase()===b.name.toLowerCase(); }).length;
+    }
+    var logoCache={}; // id -> objectURL (session only)
+
+    function renderBrands(){
+      $('#brandCount').textContent=brands.length+(brands.length===1?' marca cadastrada':' marcas cadastradas');
+      $('#brandEmpty').hidden=brands.length>0;
+      $('#brandGrid').innerHTML=brands.map(function(b){
+        var n=countFor(b);
+        var logo=logoCache[b.id]?'<img src="'+logoCache[b.id]+'" alt="">':esc(mono(b.name));
+        return '<article class="brand-card" data-id="'+esc(b.id)+'">'+
+          '<span class="bc-logo" aria-hidden="true">'+logo+'</span>'+
+          '<div class="bc-body"><h3>'+esc(b.name)+'</h3>'+
+            '<p class="bc-desc">'+(b.desc?esc(b.desc):'<span style="opacity:.6">Sem descrição</span>')+'</p>'+
+            '<span class="bc-count">'+n+(n===1?' peça':' peças')+' no catálogo</span></div>'+
+          '<div class="bc-actions">'+
+            '<button class="icon-btn" type="button" data-edit="'+esc(b.id)+'" aria-label="Editar marca '+esc(b.name)+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>'+
+            '<button class="icon-btn danger" type="button" data-del="'+esc(b.id)+'" aria-label="Excluir marca '+esc(b.name)+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button>'+
+          '</div>'+
+        '</article>';
+      }).join('');
+    }
+    function renderCats(){
+      $('#catList').innerHTML=cats.length?cats.map(function(c){
+        return '<span class="cat">'+esc(c)+'<button type="button" data-cat="'+esc(c)+'" aria-label="Remover categoria '+esc(c)+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span>';
+      }).join(''):'<span style="color:var(--muted);font-size:13px">Nenhuma categoria ainda.</span>';
+    }
+
+    /* ---- overlay core ---- */
+    var scrim=$('#scrim'), ovStack=[], ovLast=null;
+    function focusables(el){return $$('a[href],button:not([disabled]),input:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])',el).filter(function(n){return n.getClientRects().length>0})}
+    function openOv(el){ if(!ovStack.length) ovLast=document.activeElement; el.classList.add('is-open'); el.setAttribute('aria-hidden','false'); scrim.classList.add('is-open'); ovStack.push(el); document.body.style.overflow='hidden'; var f=el.querySelector('[data-autofocus]')||el.querySelector('input:not([type=file])')||el.querySelector('[data-close]')||focusables(el)[0]; if(f) setTimeout(function(){f.focus()},50); }
+    function closeOv(el){ el=el||ovStack[ovStack.length-1]; if(!el) return; el.classList.remove('is-open'); el.setAttribute('aria-hidden','true'); ovStack=ovStack.filter(function(x){return x!==el}); if(!ovStack.length){ scrim.classList.remove('is-open'); document.body.style.overflow=''; if(ovLast&&ovLast.focus) ovLast.focus(); } }
+    document.addEventListener('keydown',function(e){
+      if(!ovStack.length) return;
+      if(e.key==='Escape'){ e.preventDefault(); closeOv(); return; }
+      if(e.key!=='Tab') return;
+      var top=ovStack[ovStack.length-1], f=focusables(top); if(!f.length){ e.preventDefault(); return; }
+      var a=f[0], z=f[f.length-1];
+      if(!top.contains(document.activeElement)){ e.preventDefault(); a.focus(); return; }
+      if(e.shiftKey && document.activeElement===a){ e.preventDefault(); z.focus(); }
+      else if(!e.shiftKey && document.activeElement===z){ e.preventDefault(); a.focus(); }
+    });
+    document.addEventListener('click',function(e){
+      if(e.target===scrim){ while(ovStack.length) closeOv(); return; }
+      var c=e.target.closest('[data-close]'); if(c) closeOv(c.closest('.modal'));
+    });
+
+    /* ---- brand modal ---- */
+    var brandModal=$('#brandModal'), editId=null, pendingLogo=null;
+    function openBrandModal(b){
+      editId=b?b.id:null;
+      $('#bmTitle').textContent=b?'Editar marca':'Nova marca';
+      $('#bSave').textContent=b?'Salvar alterações':'Salvar marca';
+      $('#bName').value=b?b.name:'';
+      $('#bDesc').value=b&&b.desc?b.desc:'';
+      $('#bfName').classList.remove('invalid');
+      pendingLogo=null; $('#bLogo').value='';
+      var prev=$('#bLogoPrev');
+      if(b && logoCache[b.id]){ prev.innerHTML='<img src="'+logoCache[b.id]+'" alt="">'; }
+      else { prev.textContent=b?mono(b.name):'?'; }
+      openOv(brandModal);
+    }
+    $('#newBrandBtn').addEventListener('click',function(){ openBrandModal(null); });
+    $('#bName').addEventListener('input',function(){
+      $('#bfName').classList.remove('invalid');
+      if(!logoCache[editId] && !pendingLogo) $('#bLogoPrev').textContent=mono(this.value||'?');
+    });
+    $('#bLogo').addEventListener('change',function(){
+      var f=this.files&&this.files[0];
+      if(f && /^image\//.test(f.type)){ pendingLogo=URL.createObjectURL(f); $('#bLogoPrev').innerHTML='<img src="'+pendingLogo+'" alt="">'; }
+    });
+    $('#brandForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      var name=$('#bName').value.trim();
+      if(!name){ $('#bName-err').textContent='Informe o nome da marca.'; $('#bfName').classList.add('invalid'); $('#bName').focus(); return; }
+      var dup=brands.some(function(x){ return x.name.toLowerCase()===name.toLowerCase() && x.id!==editId; });
+      if(dup){ $('#bName-err').textContent='Já existe uma marca com esse nome.'; $('#bfName').classList.add('invalid'); $('#bName').focus(); return; }
+      var desc=$('#bDesc').value.trim();
+      if(editId){
+        var b=brands.filter(function(x){return x.id===editId})[0];
+        b.name=name; b.desc=desc;
+        if(pendingLogo) logoCache[b.id]=pendingLogo;
+        toast('“'+name+'” atualizada');
+      }else{
+        var id=slug(name); if(brands.some(function(x){return x.id===id})) id=id+'-'+Date.now().toString(36).slice(-3);
+        brands.push({id:id,name:name,desc:desc});
+        if(pendingLogo) logoCache[id]=pendingLogo;
+        toast('“'+name+'” cadastrada');
+      }
+      lset(BK,brands);
+      closeOv(brandModal);
+      renderBrands();
+    });
+
+    /* ---- delete brand ---- */
+    var delModal=$('#delModal'), delId=null;
+    $('#brandGrid').addEventListener('click',function(e){
+      var ed=e.target.closest('[data-edit]'); var dl=e.target.closest('[data-del]');
+      if(ed){ var b=brands.filter(function(x){return x.id===ed.getAttribute('data-edit')})[0]; if(b) openBrandModal(b); }
+      else if(dl){
+        delId=dl.getAttribute('data-del');
+        var b2=brands.filter(function(x){return x.id===delId})[0]; if(!b2) return;
+        var n=countFor(b2);
+        $('#dmMsg').innerHTML='Excluir <strong style="color:var(--fg)">“'+esc(b2.name)+'”</strong>? '+
+          (n>0?('<strong style="color:var(--warn)">'+n+(n===1?' peça usa':' peças usam')+'</strong> esta marca e continuará(ão) no catálogo com o nome atual, mas a marca sai desta lista.'):'Nenhuma peça usa esta marca no momento.');
+        openOv(delModal);
+      }
+    });
+    $('#dmConfirm').addEventListener('click',function(){
+      if(!delId) return;
+      var b=brands.filter(function(x){return x.id===delId})[0];
+      brands=brands.filter(function(x){return x.id!==delId});
+      delete logoCache[delId];
+      lset(BK,brands);
+      closeOv(delModal); renderBrands();
+      toast((b?('“'+b.name+'”'):'Marca')+' excluída');
+      delId=null;
+    });
+
+    /* ---- categories ---- */
+    $('#catForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      var v=$('#catInput').value.trim();
+      if(!v) return;
+      if(cats.some(function(c){return c.toLowerCase()===v.toLowerCase()})){ toast('Categoria já existe'); $('#catInput').select(); return; }
+      cats.push(v); lset(CK,cats); $('#catInput').value=''; renderCats(); toast('Categoria “'+v+'” adicionada'); $('#catInput').focus();
+    });
+    $('#catList').addEventListener('click',function(e){
+      var b=e.target.closest('[data-cat]'); if(!b) return;
+      var c=b.getAttribute('data-cat');
+      cats=cats.filter(function(x){return x!==c}); lset(CK,cats); renderCats(); toast('Categoria “'+c+'” removida');
+    });
+
+    renderBrands(); renderCats();
+  })();
+  </script>
+</body>
+</html>
