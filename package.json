@@ -1,0 +1,9 @@
+{
+  "name": "landingpage-tshirt-boutique",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page T-Shirt Boutique",
+  "scripts": {
+    "build": "node build.js"
+  }
+}
