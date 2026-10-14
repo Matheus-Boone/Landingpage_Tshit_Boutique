@@ -1,0 +1,8 @@
+# Cloudflare Pages Redirects & Rewrites
+
+# Rotas Limpas para Catálogo e Protótipo Administrativo (Rewrite 200)
+/catalogo                /Web-Prototype-Catalogo_Tshirt/catalogo.html         200
+/admin                   /Web-Prototype-Catalogo_Tshirt/admin-login.html      200
+/admin/produtos          /Web-Prototype-Catalogo_Tshirt/admin-produtos.html   200
+/admin/produto           /Web-Prototype-Catalogo_Tshirt/admin-produto.html    200
+/admin/marcas            /Web-Prototype-Catalogo_Tshirt/admin-marcas.html     200
